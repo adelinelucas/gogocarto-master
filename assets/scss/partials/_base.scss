@@ -1,0 +1,32 @@
+//@import '../modules/normalize';
+@import '../modules/prefixer';
+@import '../modules/variables';
+
+@import 'fonts';
+//@import '../vendors/materialize';
+
+@import '../components/scroll-bar';
+@import '../components/page-modals';
+
+html
+{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+body
+{
+  height: 100%;
+  width: 100%;  
+}
+
+#page-container
+{
+	@include flex(1 auto);
+}
+
+#page-content
+{
+	position: relative;
+}

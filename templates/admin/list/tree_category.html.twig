@@ -1,0 +1,132 @@
+{% extends base_template %}
+{% trans_default_domain 'admin' %}
+
+{% block navbar_title %}
+    {{ 'categories.list.title'|trans }}
+{% endblock %}
+
+{%- block actions -%}
+    <li><a class="sonata-action-element" href="{{ path('admin_app_category_create') }}">
+    				<i class="fa fa-plus-circle" aria-hidden="true"></i>
+            {{ 'categories.list.addCategories'|trans }}
+    </a></li>
+     <li><a class="sonata-action-element" href="{{ path('admin_app_option_create') }}">
+    				<i class="fa fa-plus-circle" aria-hidden="true"></i>
+            {{ 'categories.list.addCategory'|trans }}
+    </a></li>
+{%- endblock -%}
+
+
+{% block show %}
+
+  <link rel="stylesheet" href="{{ asset('fonts/fontawesome-5/css/all.css') }}" />
+  {{ config.iconImport|raw }}
+
+  <p><a class="btn btn-primary sonata-action-element" href="{{ path('admin_app_category_create') }}" style="margin-right: 10px;">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        {{ 'categories.list.addCategories'|trans }}
+  </a>
+  <a class="btn btn-primary sonata-action-element {{ categories|length == 0 ? 'disabled' : ''}}" href="{{ path('admin_app_option_create') }}">
+          <i class="fa fa-plus-circle" aria-hidden="true"></i>
+          {{ 'categories.list.addCategory'|trans }}
+  </a></p>
+
+	<div class="well" style="margin-top: 20px; font-size: 15px; line-height: 26px;">
+  	{% if categories|length %}
+  		{% for category in categories %}
+        {% if category %}
+        <ul>
+          {% include 'admin/list/tree_category_item.html.twig' with {'category': category, 'firstDepth':true} %}
+        </ul>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+    	{{ 'categories.list.empty'|trans }}
+    {% endif %}
+	</div>
+
+  <div class="alert alert-default">
+    <h4>{{ 'categories.list.help'|trans }}</h4>
+    {{ 'categories.list.help_description'|trans|raw }}
+  </div>
+
+<script>
+$(document).ready(function () {
+	$('.expandable').click(function (e) {
+		$(this).siblings('ul.children').toggle(300);
+		e.stopPropagation();
+    e.stopImmediatePropagation();
+    e.preventDefault();
+	});
+});
+</script>
+
+<style>
+
+.name{ margin-right: 10px; }
+
+li.category-item
+{
+	list-style-type: none;
+}
+
+span.category-item .name
+{
+	font-weight: bold;
+  text-transform: uppercase;
+  font-size: .85em;
+}
+
+span.category-item .arrow-after { margin-right: 10px; }
+
+li.option-item
+{
+	list-style-type: circle;
+}
+
+span.option-item
+{
+	/*font-style: italic;*/
+}
+
+.expandable:hover
+{
+	cursor: pointer;
+	color: black;
+}
+
+.arrow-after
+{
+	display: inline-block;
+  margin-left: 5px;
+  border: solid 3px;
+  margin-bottom: -1px;
+  border-color: #545454 transparent transparent transparent;
+}
+
+.actions
+{
+	margin-left: 1rem;
+}
+
+.btn-sm.btn-default
+{
+	border: none;
+	padding: 5px 5px;
+  font-size: 10px;
+  color: grey;
+}
+
+ul
+{
+	padding-left: 30px;
+}
+
+ul.option-children {
+    padding-left: 10px;
+}
+
+</style>
+{% endblock %}
+
+

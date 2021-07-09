@@ -1,0 +1,53 @@
+{% extends 'admin/pages/page_layout.html.twig' %}
+{% trans_default_domain 'admin' %}
+
+{% block page_title %}{{ 'imports.progress.title'|trans({'name': import.sourceName }) }}{% endblock %}
+
+{% block page_content %}
+  <div class="alert alert-default text-center progress-container">
+    <div class="curr-message">{{ 'imports.progress.inProgress'|trans }}</div>
+    <p class="redirect-url" style="display:none">
+      <a href="{{redirectUrl}}"><button class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i>{{ 'imports.progress.return_to_import'|trans }}</button></a>
+      {% if redirectListUrl is defined %}
+        <a href="{{redirectListUrl}}"><button class="btn btn-default"><i class="fa fa-list" aria-hidden="true"></i>{{ 'imports.progress.return_to_list'|trans }}</button></a>
+      {% endif %}
+    </p>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      function checkCurrState($logId) {
+        $.ajax({
+          method: 'get',
+          url: '{{ stateUrl }}',
+          success: function(data, status, object) {
+            $('.curr-message').html(data.message);
+
+            var currClass = 'alert-default';
+            switch(data.state) {
+              case 'downloading': currClass = 'alert-info'; break;
+              case 'in_progress': currClass = 'alert-info'; break;
+              case 'failed': currClass = 'alert-danger'; break;
+              case 'errors': currClass = 'alert-warning'; break;
+              case 'completed': currClass = 'alert-success'; break;
+            }
+            $('.progress-container').removeClass("alert-info").addClass(currClass);
+
+            if (data.state == "failed" || data.state == 'completed' || data.state == 'errors') {
+              $('.redirect-url').show();
+            } else {
+              setTimeout(checkCurrState, 1000);
+            }
+          },
+        });
+      }
+
+      checkCurrState();
+    });
+  </script>
+{% endblock %}
+
+
+
+
+

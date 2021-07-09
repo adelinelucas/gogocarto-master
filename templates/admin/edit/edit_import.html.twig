@@ -1,0 +1,78 @@
+{% extends 'admin/core_custom/base_edit.html.twig' %}
+{% trans_default_domain 'admin' %}
+
+{% block actions %}
+{% endblock %}
+
+{% block sonata_form_actions %}
+  {% if object.lastRefresh %}
+    <p>{{ 'imports.edit.lastRefresh'|trans }} {{ object.lastRefresh|date('commons.date_time_format'|trans) }}</p>
+  {% endif %}
+
+  <button type="submit" class="btn btn-success" name="submit">
+    <i class="fa fa-save" aria-hidden="true"></i>{{ 'imports.edit.submit'|trans }}
+  </button>
+
+  {% if object.id != "" and object.ontologyMapping|length > 0 %}
+    <button type="submit" class="btn btn-primary" name="import" value="import"
+      {% if not object.lastRefresh and object.warnUserThatDuplicatesWillBeDetectedAndAutoMerged %}
+        onclick="return confirm({{ 'imports.edit.confirm'|trans }})"
+      {% endif %}>
+      {% if object.lastRefresh %}
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+        {{ 'imports.edit.reimport'|trans }}
+      {% else %}
+        <i class="fa fa-download" aria-hidden="true"></i>
+        {{ 'imports.edit.import'|trans }}
+      {% endif %}
+    </button>
+  {% endif %}
+  
+  {% set class = object.ontologyMapping|length > 0 ? 'btn-default' : 'btn-primary' %}
+  {% if object.id != "" %}
+    <button type="submit" class="btn btn-default" name="collect" value="collect" title="Met à jour les tables de correspondance sans réellement importer les données">
+      <i class="fa fa-eye" aria-hidden="true"></i>{{ 'imports.edit.collect'|trans }}
+    </button>
+    <button type="submit" class="btn btn-default" name="clear-elements" value="clear-elements" title="Efface toutes les données précedemment importées. Il vous suffira de relancer l'import pour les recréer">
+      <i class="fa fa-eraser" aria-hidden="true"></i>{{ 'imports.edit.clear-elements'|trans }}
+    </button>
+    <a href="{{ admin.generateObjectUrl('delete', object) }}" class="btn btn-danger view_link">
+      <i class="fa fa-trash" aria-hidden="true"></i>{{ 'imports.edit.delete'|trans }}
+    </a>
+  {% endif %}
+
+  <div class="save-overlay">
+    <div class="save-overlay-content">
+      <p>{{ 'imports.edit.saving'|trans }}</p>
+      <i class="loading-icon fa fa-spinner fa-spin"></i>
+    </div>
+  </div>
+
+  <script>
+    $(document).on('ready', function() {
+      $('[name=submit], [name=collect]').click(() => $('.save-overlay').show());
+    })
+  </script>
+
+  <style>
+    .save-overlay {
+      display: none;
+      z-index: 500;
+      position: fixed;
+      top: 0; bottom: 0; right: 0; left: 0;
+      background-color: #222c32b8;
+    }
+    .save-overlay-content {
+      position: absolute;
+      top: 40%; left: 0; right: 0;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .save-overlay .loading-icon {
+      font-size: 35px;
+    }
+  </style>
+
+{% endblock %}

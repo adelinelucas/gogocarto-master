@@ -1,0 +1,43 @@
+{% trans_default_domain 'admin' %}
+
+<div class="bs-callout {{ automaticMerge ? 'bs-callout-success' : 'bs-callout-warning' }} bulk-duplicate">
+
+    <h4>{{ automaticMerge ? 'bulk.automaticMerge'|trans : 'bulk.manualMerge'|trans }}</h4>
+
+    {% for duplicate in duplicates %}
+        <li>
+            <a class="duplicate-name" href="{{ path('admin_app_element_showEdit', { 'id': duplicate.id }) }}" target="_blank"><b>
+              {{ duplicate.name }}
+              {% if duplicate.sourceKey %}<i> ({{ duplicate.sourceKey }})</i>{% endif %}
+            </b></a>
+
+            {% if automaticMerge %}
+              {% if loop.first %}
+                <span class="label label-success">{{ 'bulk.duplicateKept'|trans }}</span>
+              {% else %}
+                <span class="label label-default">{{ 'bulk.duplicateDeleted'|trans }}</span>
+              {% endif %}
+            {% endif %}
+
+            {% for prop in config.duplicates.fieldsInvolvedInDetection %}
+              {% if prop != 'name' %}
+                {% set value = duplicate.getProperty(prop) %}
+                {% if value %}
+                  <span class="field-name">{{ prop }}</span>
+                  <span class="field-value"> : {{ value }}</span>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+        </li>
+    {% endfor %}
+  </ul>
+
+</div>
+
+<style>
+  .field-name {
+    text-decoration: underline;
+    margin-left: 10px;
+    margin-right: 0;
+  }
+</style>

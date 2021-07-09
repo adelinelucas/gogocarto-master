@@ -1,0 +1,7 @@
+pix_sortable_behavior:
+    db_driver: mongodb
+    position_field:
+        default: position
+        entities:
+            App\Document\Option: index
+            App\Document\Category: index

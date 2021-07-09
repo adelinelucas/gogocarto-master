@@ -1,0 +1,203 @@
+{% trans_default_domain 'admin' %}
+
+{# put this hidden input otherwise the elementFomFieldJson is overwritten with blank string #}
+<input type="hidden" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}" />
+
+<h3 style="margin-top: -30px">{{ 'config_infobar.fields_list.form'|trans }}</h3>
+{% set fields = value|json_decode %}
+
+{% set filterFromType = {
+  'taxonomy': 'taxonomy',
+  'email': 'email',
+  'checkbox': 'text',
+  'checkbox-group': 'tags',
+  'radio-group': 'text',
+  'select': 'text',
+  'date': 'date',
+  'number': 'text',
+  'title': 'text',
+  'text': 'text',
+  'url': 'url',
+  'tel': 'tel',
+  'textarea': 'textarea',
+  'address': 'text',
+  'openhours': 'openhours',
+  'separator': 'separator',
+  'header': 'header',
+  'files': 'files',
+  'elements': 'elements'
+}
+%}
+{% set formFields = [] %}
+<table style="width:100%;margin-bottom: 20px;">
+  <tr>
+    <th>{{ 'config_infobar.fields.label'|trans }}</th>
+    <th>{{ 'config_infobar.fields.name'|trans }}</th>
+    <th>{{ 'config_infobar.fields.type'|trans }}</th>
+    <th>{{ 'config_infobar.fields.exemple'|trans }}</th>
+  </tr>
+
+  {% for field in fields %}
+    {% if field.type in filterFromType|keys %}
+      {% set gogoFilter = filterFromType[field.type] %}
+      {% if field.type == 'text' %}{% set gogoFilter = field.subtype %}{% endif %}
+      {% if gogoFilter in ['text', 'email', 'textarea', 'date', 'tel', 'url'] %}
+        {% set gogoFilter = gogoFilter ~ '(label = "' ~ field.label|striptags ~ '")' %}
+      {% endif %}
+      {% set gogoFilter = gogoFilter ? ('|gogo_' ~ gogoFilter) : '' %}
+
+      {% set fieldName = field.name is defined ? field.name : '' %}
+      {% if field.type == 'address' %}{% set fieldName = "address" %}{% endif %}
+      {% if field.type == 'openhours' %}{% set fieldName = "formatedOpenHours" %}{% endif %}
+      {% set formFields = formFields|merge([fieldName]) %}
+
+      {% if field.type == "header" %}
+        {% set fieldTag = '## ' ~ field.label %}
+      {% elseif field.type == "separator" %}
+        {% set fieldTag = '________________________________' %}
+      {% else %}
+        {% set fieldTag = '{{ ' ~ fieldName ~ gogoFilter ~ ' }}' %}
+      {% endif %}
+
+      <tr {% if field.type in ["separator", "header"] %}style="display:none"{% endif %}>
+        <td>{{ field.label|raw }}</td>
+        <td>{{ fieldName }}</td>
+        <td>{{ field.type|capitalize }}</td>
+        <td class="value">{{ fieldTag }}</td>
+      </tr>
+    {% endif %}
+  {% endfor %}
+</table>
+
+{# Get all the fields in the data, and remove the form fields already listed #}
+{% set allFields = form.vars.attr.dataproperties|split(',') %}
+{% set otherFields = [] %}
+{% for field in allFields %}
+  {% if field not in formFields %}{% set otherFields = otherFields|merge([field]) %}{% endif %}
+{% endfor %}
+
+<h3>{{ 'config_infobar.fields_list.system'|trans }}</h3>
+
+<table style="margin-bottom: 20px;">
+  <tr>
+    <th>{{ 'config_infobar.fields.name'|trans }}</th>
+    <th>{{ 'config_infobar.fields.description._label'|trans }}</th>
+    <th>{{ 'config_infobar.fields.usage'|trans }}</th>
+  </tr>
+
+  {# TODO Translations, the code should be extracted from the translation... need a refactor #}
+  <tr>
+    <td>categories</td> 
+    <td>{{ 'config_infobar.fields.description.categories'|trans }}</td>
+    <td>{{ 'config_infobar.fields.example.categories'|trans }}</td>
+  </tr>
+
+  <tr>
+    <td>categoriesFull</td> 
+    <td>{{ 'config_infobar.fields.description.categoriesFull'|trans }}</td>
+    <td>{{ 'config_infobar.fields.example.categoriesFull'|trans|raw }}</td>
+  </tr>
+
+  <tr>
+    <td>originalAddress</td> 
+    <td>{{ 'config_infobar.fields.description.originalAddress'|trans }}</td>
+    <td>{{ 'config_infobar.fields.example.originalAddress'|trans }}</td>
+  </tr>
+
+  <tr>
+    <td>distance</td> 
+    <td>{{ 'config_infobar.fields.description.distance'|trans }}</td>
+    <td>{{ 'config_infobar.fields.example.distance'|trans }}</td>
+  </tr>
+
+  <tr>
+    <td>status</td> 
+    <td>{{ 'config_infobar.fields.description.status'|trans|raw }}</td>
+    <td>{{ 'config_infobar.fields.example.status'|trans }}</td>
+  </tr>
+
+  <tr>
+    <td>isPending</td> 
+    <td>{{ 'config_infobar.fields.description.isPending'|trans }}</td>
+    <td>{{ 'config_infobar.fields.example.isPending'|trans }}</td>
+  </tr>
+
+  <tr>
+    <td>isDeleted</td> 
+    <td>{{ 'config_infobar.fields.description.isDeleted'|trans }}</td>
+    <td>{{ 'config_infobar.fields.example.isDeleted'|trans }}</td>
+  </tr>
+
+  <tr>
+    <td>colorOptionId</td> 
+    <td>{{ 'config_infobar.fields.description.colorOptionId'|trans }}</td>
+    <td>{{ 'config_infobar.fields.example.colorOptionId'|trans|raw }}</td>
+  </tr>
+
+  <tr>
+    <td>images</td> 
+    <td>{{ 'config_infobar.fields.description.images'|trans }}</td>
+    <td>{{ 'config_infobar.fields.example.images'|trans }}</td>
+  </tr>
+
+  <tr>
+    <td>createdAt</td> 
+    <td>{{ 'config_infobar.fields.description.createdAt'|trans }}</td>
+    <td>{{ 'config_infobar.fields.example.createdAt'|trans }}</td>
+  </tr>
+
+  <tr>
+    <td>updatedAt</td> 
+    <td>{{ 'config_infobar.fields.description.updatedAt'|trans }}</td>
+    <td>{{ 'config_infobar.fields.example.updatedAt'|trans }}</td>
+  </tr>
+
+  <tr>
+    <td>sourceKey</td> 
+    <td>{{ 'config_infobar.fields.description.sourceKey'|trans }}</td>
+    <td>{{ 'config_infobar.fields.example.sourceKey'|trans }}</td>
+  </tr>
+</table>
+
+{% if otherFields|length %}
+  <h3>{{ 'config_infobar.fields_list.other'|trans }}</h3>
+
+  <table style="margin-bottom: 20px;">
+    <tr>
+      <th>{{ 'config_infobar.fields.name'|trans }}</th>
+      <th>{{ 'config_infobar.fields.usage'|trans }}</th>
+    </tr>
+
+    {% for field in otherFields %}
+      <tr>
+        <td>{{ field }}</td>
+        <td>{{ '{{ ' ~ field ~ ' }}'}}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endif %}
+
+<style>
+  td, th {
+    padding: 5px;
+    border: 1px solid #dadada;
+  }
+  th { background-color: #f1f1f1; }
+  #generate-body-template { float: right; }
+</style>
+
+<script>
+  function generateBodyTemplate() {
+    var template = ""
+    $('td.value').each(function() {
+      template += $(this).text() + '\n';
+    })
+    $('textarea[data-id="body-template"]').text(template).change();
+    $('input[type=checkbox].use-markdown').prop('checked', true)
+  }
+  $(document).ready(function() {
+    $('.control-label__text').each(function() {
+      $(this).text($(this).text().replace('Autoriser', "Masquer l'email aux")) // TODO Translation
+    })
+  })
+</script>

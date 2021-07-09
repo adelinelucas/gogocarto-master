@@ -1,0 +1,55 @@
+{% extends 'admin/pages/page_layout.html.twig' %}
+{% trans_default_domain 'admin' %}
+
+{% block breadcrumb %}
+  <li><a href={{ path('gogo_bulk_actions_index') }}>{{ 'bulk._label'|trans }}</a></li>
+  <li class="active">{{ title }}</li>
+{% endblock breadcrumb %}
+
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block page_content %}
+
+  <div style="margin-bottom: 1rem; text-align: center">
+    <h2 style="margin-top: 0;margin-bottom: 20px;">{{ 'bulk.analyse'|trans({'%first%': firstId, '%last%':lastId}) }}</h2>
+    
+    {% if isStillElementsToProceed %}
+      <a class="btn btn-success" href='{{ redirectionRoute }}'>{{ 'bulk.continue'|trans({'%count%': elementsToProcceedCount}) }}</a>
+    {% else %}
+      <div class="alert alert-success">{{ 'bulk.done'|trans }}</div>
+    {% endif %}
+  </div>
+
+{% endblock %}
+
+{% block page_content_after %}
+  <h3 style="margin-bottom: 20px">{{ 'bulk.results'|trans }}</h3>
+  {% set isDuplicateAction = (title == 'bulk.isDuplicateAction'|trans) %}
+  {% if isDuplicateAction %}
+    <a class="btn btn-primary" href={{ path('gogo_duplicates_index') }}>{{ 'bulk.managed'|trans }}</a>
+    <a class="btn btn-default" href={{ path('gogo_core_bundle_config_duplicates_admin_classname_list') }}>{{ 'bulk.return'|trans }}</a>
+  {% endif %}
+  
+  {% for partialView in renderedViews %}
+    {{ partialView.content | raw }}
+  {% endfor %}
+
+  {% if isDuplicateAction and renderedViews|length %}
+    <a class="btn btn-primary" href={{ path('gogo_duplicates_index') }}>{{ 'bulk.managed'|trans }}</a>
+    <a class="btn btn-default" href={{ path('gogo_core_bundle_config_duplicates_admin_classname_list') }}>{{ 'bulk.return'|trans }}</a>
+  {% endif %}
+
+  <style>
+    .bulk-duplicate h4 { margin-bottom:15px; }
+    .bulk-duplicate li { margin-bottom: 20px; }
+    .bulk-duplicate .duplicate-name { margin-right: 10px; }
+    .bulk-duplicate .element-description { margin-left: 28px; margin-top: 5px; }
+  </style>
+
+{% endblock %}
+
+
+
+
+
+

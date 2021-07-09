@@ -1,0 +1,19 @@
+{% extends 'admin/pages/page_layout.html.twig' %}
+{% trans_default_domain 'admin' %}
+
+{% block page_title %}{{ 'imports.progress.reading_from'|trans({ source: import.sourceName }) }}{% endblock %}
+
+{% block page_content %}
+  <p>
+    <a href="{{redirectUrl}}"><button class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i>{{ 'imports.progress.return_to_import'|trans }}</button></a>
+  </p>
+  <pre>{{ dataDisplay }}</pre>
+  <p>
+    <a href="{{redirectUrl}}"><button class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i>{{ 'imports.progress.return_to_import'|trans }}</button></a>
+  </p>
+{% endblock %}
+
+
+
+
+

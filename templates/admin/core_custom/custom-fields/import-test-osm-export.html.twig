@@ -1,0 +1,8 @@
+{% trans_default_domain 'admin' %}
+
+{% set elementId = form.vars.sonata_admin.admin.elementId %}
+{% if elementId %}
+    <a href="{{ url('gogo_element_test_export', {id: elementId}) }}" class="btn btn-primary">{{ 'imports.edit.test_export.see_osm_export'|trans }}</a>
+{% else %}
+    {{ 'imports.edit.test_export.no_element'|trans }}
+{% endif %}

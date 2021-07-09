@@ -1,0 +1,11 @@
+<!-- Pop up page A propos-->
+
+{% for about in listAbouts %}
+
+	{% include 'modals/pageModal.html.twig'
+            						with {'id' : about.id, 'title': about.name, 'content': about.content } %}
+
+{% endfor %}
+
+{% include 'modals/pageModal.html.twig'
+                        with {'id' : 'collaborative-explanation', 'title': 'Modération collaborative', 'content': config.collaborativeModerationExplanations | raw } %}

@@ -1,0 +1,15 @@
+{% trans_default_domain 'admin' %}
+
+{% if real_value <= -4 %}
+    <span class="label label-default">
+{% elseif real_value <= -2 %}
+    <span class="label label-danger">
+{% elseif real_value <= 0 %}
+    <span class="label label-warning">
+{% else %}
+    <span class="label label-success">
+{% endif %}
+{% set result = object.isExternal ? 'imports.import'|trans : '' %}
+{% set result = result ~ ('elements.fields.status_choices.' ~ value)|trans %}
+{{ result }}
+</span>

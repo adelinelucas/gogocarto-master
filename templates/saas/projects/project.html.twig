@@ -1,0 +1,22 @@
+<div class="project-container">
+  <a class="project-item waves-effect gogo-border-primary waves-block waves-light" href="{{ project.homeUrl }}" target="_blank">
+    {% if project.imageUrl %}
+      <img class="project-logo" src="{{ project.imageUrl }}">
+    {% else %}
+      {% set image = loop.index % 2 == 0 ? 'gogo-bot.png' : 'plane.png' %}
+      <img class="project-logo default" src="{{ asset('img/' ~ image) }}">
+    {% endif %}
+
+    <div class="project-content gogo-bg-primary">
+      <div class="name gogo-neutral">{{ project.name|capitalize }}</div>
+      {% set date = project.publishedAt ? project.publishedAt : project.createdAt %}
+      <div class="published-at">{{ date|date('commons.date_format'|trans) }}</div>
+      <div class="published-at-int">{{ date ? date.getTimestamp : '' }}</div>
+      <div class="tags">{{ project.tags }}</div>
+      <div class="data-size gogo-bg-neutral">
+        <span class="size">{{ project.dataSize }}</span>
+        <span class="icon gogo-icon-marker-symbol"></span>
+      </div>
+    </div>
+  </a>
+</div>

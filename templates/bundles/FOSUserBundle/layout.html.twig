@@ -1,0 +1,16 @@
+{% extends "page-layout.html.twig" %}
+
+{% block body_content %}
+<section>
+	{% block fos_user_content %}
+	{% endblock fos_user_content %}
+</section>
+{% endblock body_content %}
+
+{% block page_stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/element-form.css?ver=' ~ version) }}">
+{% endblock %}
+
+{% block page_javascripts %}
+  <script src="{{ asset('js/element-form.js?ver=' ~ version) }}"></script>
+{% endblock %}

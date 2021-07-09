@@ -1,0 +1,229 @@
+<style>
+  {# --------------------#}
+  {#     GENERAL         #}
+  {# ------------------- #}
+
+  {% set text = config.defaultTextContentColor %}
+  {% set textSoft = config.defaultTextSoftContentColor %}
+  {% set primary = config.primaryColor %}
+  {% set secondary = config.defaultSecondaryColor %}
+  {% set background = config.defaultBackgroundColor %}
+  {% set homeBgd = config.defaultHomeBackgroundColor %}
+  {% set header = config.defaultHeaderColor %}
+  {% set headerText = config.defaultHeaderTextColor %}
+  {% set headerTextHover = config.defaultHeaderHoverColor %}
+  {% set contentBgd = config.defaultContentBackgroundColor %}
+  {% set contentBgdSoft = config.defaultContentBackgroundSoftColor %}
+  {% set disable = config.defaultDisableColor %}
+  {% set error = config.defaultErrorColor %}
+
+  {% import _self as self %}
+  {{ self.createcolor('primary', primary) }}
+  {{ self.createcolor('secondary', secondary) }}
+  {{ self.createcolor('background', background) }}
+  {{ self.createcolor('neutral', text) }}
+
+  html{
+    line-height: 1.5;
+    font-size: 14px;
+
+    font-family: sans-serif; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+
+    box-sizing: border-box;
+  }
+  @media screen and (min-width: 900px) { html {font-size: 14.5px;} }
+  @media screen and (min-width: 1200px) { html {font-size: 15px;} }
+
+  *, *:before, *:after {
+   box-sizing: inherit;
+  }
+
+  body, html { background-color: {{ background }}; color: {{ text }}; font-family: {{ config.mainFont }}; }
+
+  .gogo-load-css h1:not(.element-title), .gogo-load-css h2 { font-family: {{ config.titleFont }}; }
+
+  #page-content.with-section section { background-color: {{ contentBgd }}; }
+
+  .gogo-load-css .btn { background-color: {{ primary }}; color: {{ contentBgd }} }
+  .gogo-load-css .btn:hover { background-color: {{ primary }}; }
+  .gogo-load-css .btn:focus { background-color: {{ primary }}; }
+
+  .gogo-load-css .btn.btn-secondary { background-color: {{ secondary }}; }
+  .gogo-load-css .btn.btn-secondary:hover { background-color: {{ secondary }}; }
+
+  .gogo-load-css .btn.btn-neutral { background-color: {{ textSoft }}; }
+  .gogo-load-css .btn.btn-neutral:hover { background-color: {{ textSoft }}; }
+
+  .gogo-load-css .btn.btn-outline-neutral { 
+    background-color: white; 
+    color: {{ text }};
+    border: 2px solid {{ text }};
+  }
+  {# .gogo-load-css .btn.btn-neutral:hover { background-color: {{ textSoft }}; } #}
+
+  .gogo-load-css a { color: {{ primary }}; }
+  .gogo-load-css .modal.page-modal { background-color: {{ text }} !important; }
+
+  .gogo-load-css .neutral-color { color: {{ textSoft }}; }
+
+  .gogo-load-css #page-content { background-color : {{ contentBgd }}; }
+
+  .gogo-load-css .flash-message a:hover { color: {{ primary }}; }
+  .gogo-load-css #page-content.directory .flash-messages-container .flash-message { background-color: {{ secondary }}; }
+
+  .gogo-load-css #page-content.contributor-login .login-section .oauth-section .oauth-btn.instance-login { color: {{ primary }}; }
+
+  .gogo-load-css #section-credits { background-color: {{ header }}; color: {{ headerText }}; }
+  .gogo-load-css #section-credits strong { color: {{ headerText }}; }
+  {% if header == "white" or header == "#ffffff" %}.gogo-load-css #section-credits { border-top: 1px solid #eaeaea; }{% endif %}
+
+
+  {# --------------------#}
+  {#      HEADER         #}
+  {# ------------------- #}
+
+  .gogo-load-css #menu { background-color: {{ header }}; color: {{ headerText }}; }
+  .gogo-load-css #menu .dropdown-content { background-color: {{ header }}; }
+  .gogo-load-css #menu .menu-item:hover { color: {{ headerTextHover }}; background-color: transparent; }
+  .gogo-load-css #menu .menu-item .arrow-after { border-color: {{ headerText }} transparent transparent transparent; }
+  .gogo-load-css #menu .menu-item:hover .arrow-after { border-color: {{ headerTextHover }} transparent transparent transparent; }
+  .gogo-load-css #menu ul.dropdown-content li:hover a { color: {{ headerTextHover }} !important; }
+  .gogo-load-css #menu-home .small-logo .header-icon { background-color: {{ headerTextHover }}; }
+  .gogo-load-css #menu-home { font-family: {{ config.titleFont }}; }
+  {% if header == "white" or header == "#ffffff" %}.gogo-load-css #menu { border-bottom: 1px solid #eaeaea; }{% endif %}
+  .gogo-load-css header #menu .dropdown-content .item-divider { background-color: {{ headerText }}; opacity: .2; }
+
+  {# --------------------#}
+  {#      MODALS         #}
+  {# ------------------- #}
+  .gogo-load-css .modal.page-modal { background-color: transparent !important; }
+  .gogo-load-css .modal.page-modal .modal-content.page-modal-content {
+    background-color: {{ config.getDefaultModalBackgroundColor }};
+    color: {{ config.getDefaultTextLightColor }};
+  }
+  .gogo-load-css .modal.page-modal .btn {
+    color: {{ config.getDefaultModalBackgroundColor }};
+  }
+
+
+  {# --------------------#}
+  {#      DIRECTORY      #}
+  {# ------------------- #}
+
+  .gogo-load-css #gogo-controls-mobile.map { padding-right: 15px; }
+  .gogo-load-css .show-directory-menu-button img { display: none; }
+
+  {# ----------- #}
+  {#     HOME    #}
+  {# ----------- #}
+  {% if config.backgroundImage %}
+    body.home { background-image: url({{ config.backgroundImage.imageUrl }}); }
+  {% else %}
+    .gogo-load-css #home-main-wrapper { background-color: {{ homeBgd }}; }
+  {% endif %}
+
+  .gogo-load-css section.bottom-section { padding: 0; }
+  .gogo-load-css #search-geolocalize { color: {{ textSoft }}; }
+  .gogo-load-css section#home-main-container { background-color: {{ contentBgd }}; }
+  .gogo-load-css section#home-main-container h1 { color: {{ primary }}; }
+  .gogo-load-css .search-bar-with-options-container .search-bar-container.search-bar { border: none !important; }
+  #bottom-more-info { background-color: {{ header }}; color: {{ headerText }} }
+  #bottom-more-info:hover { color: {{ headerTextHover }} }
+  .wrappers-container { color: {{ text }}; background-color: {{ contentBgd }}; }
+  #home-main-wrapper #search-bar { background-color: {{ contentBgdSoft }} !important; color: {{ text }} !important; }
+  .gogo-load-css #home-main-wrapper #search-bar-icon { color: {{ textSoft }}; }
+  .gogo-load-css #home-main-wrapper #search-bar-icon:hover { color: {{ primary }}; }
+
+  {% set placeholderColor = textSoft ~ '!important' %}
+  .gogo-load-css #home-main-wrapper #search-bar::-webkit-input-placeholder { color: {{ placeholderColor }}; }
+  .gogo-load-css #home-main-wrapper #search-bar::-moz-placeholder { color: {{ placeholderColor }}; }
+  .gogo-load-css #home-main-wrapper #search-bar:-ms-input-placeholder { color: {{ placeholderColor }}; }
+  .gogo-load-css #home-main-wrapper #search-bar:-moz-placeholder { color: {{ placeholderColor }}; }
+
+  .gogo-load-css #home-main-wrapper #search-bar::selection { background-color: {{ secondary }} !important; }
+  .gogo-load-css #home-main-wrapper #search-bar::-moz-selection { background-color: {{ secondary }} !important; }
+
+  {% set placeholderFocusColor = disable ~ '!important' %}
+  /*.gogo-load-css #home-main-wrapper #search-bar:focus { box-shadow: 4px 3px 6px 0px {{ primary }} !important;}*/
+  .gogo-load-css #home-main-wrapper #search-bar:focus::-webkit-input-placeholder { color: {{ placeholderFocusColor }}; }
+  .gogo-load-css #home-main-wrapper #search-bar:focus::-moz-placeholder { color: {{ placeholderFocusColor }}; }
+  .gogo-load-css #home-main-wrapper #search-bar:focus:-ms-input-placeholder { color: {{ placeholderFocusColor }}; }
+  .gogo-load-css #home-main-wrapper #search-bar:focus:-moz-placeholder { color: {{ placeholderFocusColor }}; }
+
+  {# ----------- #}
+  {#     USER    #}
+  {# ----------- #}
+
+  .gogo-load-css .menu-user ul li { background-color: {{ contentBgd }}; }
+  .gogo-load-css .menu-user ul li.title { background-color: {{ textSoft }}; color: {{ contentBgd }}; }
+  .gogo-load-css .menu-user ul li:hover:not(.title) { background-color: {{ contentBgdSoft }}; }
+  .gogo-load-css .menu-user ul a:not(:last-child) li {
+    border-bottom: 1px solid {{ contentBgdSoft }};
+  }
+  .gogo-load-css #page-content.user-contributions thead {
+    background-color: {{ contentBgdSoft }};
+    border-top: 1px solid #d0d0d0;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    background: {{ primary }};
+  }
+  input[type=range]::-ms-thumb {
+    background: {{ primary }};
+  }
+  input[type=range]::-moz-range-thumb {
+    background: {{ primary }};
+  }
+
+  #page-content.contributor-login .email-already-in-use { color: {{ error }}; }
+  form.gogo_user_profile .error ul li, form.fos_user_registration_register .error ul li { color: {{ error }}; }
+
+  {# ------------------ #}
+  {#  SAAS / PROJECT    #}
+  {# ------------------ #}
+  .btn.btn-primary-neutral { 
+    font-family: {{ config.titleFont }}; 
+    background-color: {{ text }}; 
+    color: white;     
+  }
+  .btn.btn-primary-neutral.reversed {
+    background-color: {{ background }}; 
+    color: {{ text }};  
+  }
+  .saas-layout #page-container:not(.home) h2 {
+    font-family: {{ config.mainFont }};
+  }
+  .gogo-load-css .pagination li.active {
+    background-color: {{ text }}
+  }
+  .saas-layout #page-container.home h2, .saas-layout [type="submit"] {
+    font-family: {{ config.titleFont }};
+  }
+  .btn.new-project:hover { background-color: {{ primary }}; }
+  .project-create ul li, .project-create .error-label { color: {{ error }}; }
+  .project-create .contrib-option .hint { color: {{ disable }}; }
+  .project-create .overlay { background-color: {{ text }}; opacity: .9; }
+  .project-create .overlay .message { color: {{ contentBgd }}; }
+  .project-create .cgu-content { background-color: {{ background }} }
+  .gogo-load-css .spinner-layer {
+    border-color: {{ primary }} !important;
+  }
+
+</style>
+
+{% macro createcolor(name, value) %}
+  .gogo-{{ name }} { color: {{ value }}; }
+  .gogo-h-{{ name }}:hover { color: {{ value }} !important; }
+  .gogo-h-{{ name }}.hover { color: {{ value }} !important; }
+  .gogo-bg-{{ name }} { background-color: {{ value }} !important; }
+  .gogo-h-bg-{{ name }}:hover { background-color: {{ value }} !important; }
+  .gogo-border-{{ name }} { border-color: {{ value }}; }
+  .gogo-h-border-{{ name }}:hover { border-color: {{ value }} !important; }
+{% endmacro %}
+
+{% include "styles/form.html.twig" %}
+{% include 'styles/themes/' ~ config.theme ~ '.html.twig' ignore missing %}
+
+

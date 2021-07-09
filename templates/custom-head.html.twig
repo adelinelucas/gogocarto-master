@@ -1,0 +1,63 @@
+{% set config = helper.config %}
+<meta name="description" content="{{ config.appBaseline }}" />
+<meta name="keywords" content="{{ config.appTags }}" />
+
+{% set socialShare = config.socialShareImage ? config.socialShareImage : config.logo %}
+{% set favicon     = config.favicon ? config.favicon : config.logo %}
+<link rel="manifest" href="{{ path('gogo_api_manifest') }}">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="application-name" content="{{ config.appName }}">
+<meta name="apple-mobile-web-app-title" content="{{ config.appName }}">
+<meta name="theme-color" content="{{ config.primaryColor }}">
+<meta name="msapplication-navbutton-color" content="{{ config.primaryColor }}">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="msapplication-starturl" content="{{ path('gogo_directory') ~ '#/carte/autour-de-moi' }}">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% if favicon %}<link rel="icon" type="image/png" href="{{ favicon.imageUrl }}">
+{% else %}<link rel="icon" type="image/png" href="{{ asset('img/gogo-bot.png') }}">
+{% endif %}
+{% if favicon %}<link rel="apple-touch-icon" type="image/png"  href="{{ favicon.imageUrl }}">
+{% else %}<link rel="apple-touch-icon" type="image/png"  href="{{ asset('img/gogo-bot.png') }}">
+{% endif %}
+{% if socialShare %}<link rel="image_src" type="image/png" href="{{ socialShare.imageUrl }}">
+{% else %}<link rel="image_src" type="image/png" href="{{ asset('img/logo.png') }}">{% endif %}
+<meta property="og:title" content="{{ config.appName }}" />
+{% if config.appBaseline %}<meta property="og:description" content="{{ config.appBaseline }}" />{% endif %}
+{% if socialShare %}<meta property="og:image" content="{{ socialShare.imageUrl }}" />{% endif %}
+
+{# custom javascript code #}
+<script>window.onload = function() { {{ config.customJavascript | raw }} }</script>
+
+{# general gogocarto styles depending on configuration style (colors, font...) #}
+{% include 'gogocarto-styles.html.twig' %}
+
+{# custom CSS written from configuration admin #}
+<style>{{ config.customCSS | raw }}</style>
+
+{# the icons as SVG font #}
+<link rel="stylesheet" href="{{ asset('fonts/fontawesome-5/css/all.css') }}" />
+{{ config.iconImport|raw }}
+
+{{ config.fontImport | raw }}
+
+{# Matomo user tracking, if enabled in .env file #}
+{% if matomo_url and matomo_site_id and matomo_token %}
+<script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setDocumentTitle" should be called before "trackPageView" */
+    _paq.push(["setDocumentTitle", "{{ helper.mainUrl }}"]); // we use the projectUrl as pageName in order to easily get stats for every project on saas instance
+    _paq.push(["setCookieDomain", "*.{{ base_url }}"]);
+    _paq.push(["setDomains", ["*.{{ base_url }}"]]);
+    _paq.push(['trackPageView']);
+
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="{{ matomo_url }}";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '{{ matomo_site_id }}']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+</script>
+{% endif %}

@@ -1,0 +1,70 @@
+<!-- Pop up message alerte-->
+{% set oauthLoginAvailable = config.user.loginWithLesCommuns and oauth_communs != 'disabled' or config.user.loginWithMonPrintemps and oauth_communs != 'disabled' or config.user.loginWithGoogle and oauth_google != 'disabled' or config.user.loginWithFacebook and oauth_facebook != 'disabled' %}
+
+<div id="popup-login" class="modal page-modal {{ oauthLoginAvailable ? 'with-oauth' : 'without-oauth' }}">
+  <div class="modal-content page-modal-content">
+
+    <span class="icon btn-back gogo-icon-material-design-icons-1" onclick="$('#popup-login').closeModal()"></span>
+    <h1>{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</h1>
+
+    <div class="row login-form">
+
+      {# OAuth LOGIN #}
+      {% if oauthLoginAvailable %}
+        <div class="col s12 m6 oauth-section section">
+          {% if config.user.loginWithLesCommuns and oauth_communs != 'disabled' %}
+          <a class="oauth-btn waves-effect waves-light communs" href="{{ hwi_oauth_login_url('communs') }}"><i class="icon gogo-icon-communs left"></i>LesCommuns.org</a>
+          {% endif %}
+          {% if config.user.loginWithMonPrintemps and oauth_communs != 'disabled' %}
+          <a class="oauth-btn waves-effect waves-light printemps" href="{{ hwi_oauth_login_url('communs') }}"><i class="icon gogo-icon-printemps left"></i>Printemps de l'éducation</a>
+          {% endif %}
+          {% if config.user.loginWithGoogle and oauth_google != 'disabled' %}
+          <a class="oauth-btn waves-effect waves-light gplus" href="{{ hwi_oauth_login_url('gplus') }}"><i class="icon gogo-icon-gplus left"></i>Google</a>
+          {% endif %}
+          {% if config.user.loginWithFacebook and oauth_facebook != 'disabled' %}
+          <a class="oauth-btn waves-effect waves-light facebook" href="{{ hwi_oauth_login_url('facebook') }}"><i class="icon gogo-icon-facebook left"></i>Facebook</a>
+          <p class="facebook-alert"{{ 'sonata.user.user.facebook_warning'|trans }}></p>
+          {% endif %}
+          {#<a class="oauth-btn waves-effect waves-light yahoo" href="{{ hwi_oauth_login_url('yahoo') }}"><i class="icon gogo-icon-yahoo left"></i>Se connecter avec Yahoo</a>#}
+        </div>
+      {% endif %}
+
+      {# FORM LOGIN #}
+      <div class="col s12 {{ oauthLoginAvailable ? 'm6' : '' }} form-section section">
+
+        <div id="login-form" role="form">
+
+          <div class="error-message" style="display:none"></div>
+
+          <div class="input-field">
+            <input type="text" class="validate" id="username" name="_username" required="required" onkeypress="if(event.keyCode === 13) submitAjaxLogin()"/>
+            <label for="username">{{ "security.login.username"|trans({}, 'SonataUserBundle') }}</label>
+          </div>
+
+          <div class="input-field">
+            <input type="password" class="validate" id="password" name="_password" required="required" onkeypress="if(event.keyCode === 13) submitAjaxLogin()"/>
+            <label for="password" >{{ 'security.login.password'|trans({}, 'SonataUserBundle') }}</label>
+          </div>
+
+          <p>
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+            <label id="remember-me-checkbox" for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+          </p>
+
+          </div>
+
+        <button id="submit-login" class="btn waves-effect waves-light" onclick="submitAjaxLogin()">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</button>
+        <a class="forgotten-password" href="{{ path('fos_user_resetting_request') }}">{{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}</a>
+      </div>
+    </div>
+
+    {% if config.user.enableRegistration %}
+    <div class="register">{{ "login.register"|trans({ url: path('fos_user_registration_register') })|raw }}</div>
+    {% endif %}
+  </div>
+
+</div>
+
+<script>
+// scripts are in header.html.twig
+</script>

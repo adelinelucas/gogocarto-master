@@ -1,0 +1,32 @@
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix:   /connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   oauth/login
+
+facebook_login:
+    path: /login/check-facebook
+
+gplus_login:
+    path: /login/check-google
+
+communs_login:
+    path: /login/check-les-communs
+
+yahoo_login:
+    path: /login/check-yahoo
+
+# This route is used in SAAS mode
+gogo_oauth_login:
+    path: /root/login/{ressourcePath}
+    controller: App\Application\Hwi\OAuthBundle\Controller\ConnectController::gogoOAuthAction
+
+gogo_oauth_connect:
+    path: /root/{domainName}/connect/{service}
+    controller: App\Application\Hwi\OAuthBundle\Controller\ConnectController::gogoRedirectToServiceAction

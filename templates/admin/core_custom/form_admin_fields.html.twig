@@ -1,0 +1,55 @@
+{% extends '@SonataDoctrineMongoDBAdmin/Form/form_admin_fields.html.twig' %}
+
+{% block sonata_admin_mongo_collection %}
+    {% include 'admin/core_custom/custom-fields/edit_mongo_collection.html.twig' %}
+{% endblock %}
+
+{#
+  Here we can create custom fields renderer in the Admin
+  An easy way to achieve custom field is to use a dedicate class like
+  ->add('elementFormFieldsJson', 'hidden', array('attr' => ['class' => 'gogo-form-builder']))
+#}
+{% block form_widget_simple %}
+    {% set attr_class = attr.class|default('') %}
+
+    {% if type|default('null') == 'file' %}
+      {% include 'admin/core_custom/custom-fields/file.html.twig' %}
+    {% elseif attr_class == "gogo-form-fields" %}
+      {% include 'admin/partials/show_element_form_fields.html.twig' %}
+    {% elseif attr_class starts with 'gogo-' %}
+      {% include 'admin/core_custom/custom-fields/' ~ attr_class|replace({'gogo-': ''}) ~ '.html.twig' %}
+    {% else %}
+      {% set attr = attr|merge({'class': attr_class ~ ' form-control'}) %}
+      {{ parent() }}
+    {% endif %}
+{% endblock form_widget_simple %}
+
+{# Vich Upoload widget (image, file...) #}
+{% block vich_file_widget %}
+    {% spaceless %}
+        <div class="vich-file">
+            <div style="{{ download_uri ? 'display: none;' : ''}}">
+              {{ form_widget(form.file) }}
+            </div>
+            {% set download_uri = download_uri|replace({'uploads/uploads': 'uploads'}) %}
+            {% if download_uri %}
+              <a href="{{ download_uri }}" target="_blank">{{ download_uri|split('/')|last }}</a>
+            {% endif %}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+{% block vich_image_widget %}
+    {% spaceless %}
+        <div class="vich-image">    
+            <div style="{{ image_uri ? 'display: none;' : ''}}">
+              {{ form_widget(form.file) }}
+            </div>
+            {% set image_uri = image_uri|replace({'uploads/uploads': 'uploads'}) %}
+            {% if image_uri %}
+              <a href="{{ image_uri }}" target="_blank"><img class="thumbnail" src="{{ image_uri }}" alt="" /></a>
+            {% endif %}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+

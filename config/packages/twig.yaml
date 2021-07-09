@@ -1,0 +1,22 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    exception_controller: null
+
+    globals:
+        version: '%app.version%'
+        base_url: '%base_url%'
+        use_as_saas: '%use_as_saas%'
+        contact_email: '%contact_email%'
+        oauth_communs: '%oauth_communs_id%'
+        oauth_google: '%oauth_google_id%'
+        oauth_facebook: '%oauth_facebook_id%'
+        helper: '@App\Services\TwigHelperService'
+        matomo_url: '%env(MATOMO_URL)%'
+        matomo_site_id: '%env(MATOMO_SITE_ID)%'
+        matomo_token: '%env(MATOMO_USER_TOKEN)%'
+    paths:
+        "%kernel.root_dir%/../web": RootDir
+    form_themes:
+        - '@SonataFormatter/Form/formatter.html.twig'

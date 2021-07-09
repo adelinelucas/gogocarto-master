@@ -1,0 +1,11 @@
+{% extends "admin/list/base_list_custom_batch.html.twig" %}
+{% trans_default_domain 'admin' %}
+
+{% block list_header %}
+  <p>
+    <h4 style="margin: 0 0 20px 10px">{{ 'imports.form.groups.staticList'|trans }}</h4>
+    {# TODO translation videos links should be localized #}
+    <div style="float: left;margin-right: 30px;"><iframe height="150" sandbox="allow-same-origin allow-scripts" src="https://video.colibris-outilslibres.org/videos/embed/835f2bfc-2c44-4f0d-ba56-bae25bf444d9" frameborder="0" allowfullscreen></iframe></div>
+    <div><iframe height="150" sandbox="allow-same-origin allow-scripts" src="https://video.colibris-outilslibres.org/videos/embed/c74fc469-c822-4ab8-82a7-a2555e49e576" frameborder="0" allowfullscreen></iframe></div>
+  </p>
+{% endblock %}

@@ -1,0 +1,71 @@
+<div class="form-error">{{ form_errors(form.images) }}</div>
+
+{# PREVIOUS UPLOADS #}
+<ul class="file-fields-list {{field.name}}">
+  {% for formField in form[field.name] %}
+    {# Display images #}
+    {% if field.name == 'images' %}
+      {% set image_url = formField.vars.value.fileUrl ? formField.vars.value.fileUrl : formField.vars.value.externalImageUrl %}
+      {% if image_url %}
+      <li class="image-container">
+          <img src="{{ image_url }}" />
+          <span class="btn-close material-icons gogo-icon-close"></span>
+          <input style="display:none" type="file" name="{{ formField.vars.form.vars.full_name }}[file][file]" value="{{image_url}}">
+      </li>
+      {% endif %}
+    {# Display Files #}
+    {% else %}
+      <div class="file-field input-field">
+        <div class="btn btn-pick-file btn-neutral disabled">
+          <span class="fa fa-upload"></span>
+          <input style="display:none" type="file" name="{{ formField.vars.form.vars.full_name }}[file][file]" value="{{formField.vars.value.fileUrl}}">
+        </div>
+        <div class="file-path-wrapper">
+          <a href="{{formField.vars.value.fileUrl}}" target="_blank">{{ formField.vars.value.fileName }}</a>
+        </div>
+        <span class="btn-close far fa-times-circle" onclick="$(this).closest('.input-field').remove();"></span>
+      </div>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+{# NEW UPLOADS #}
+<ul class="new-file-fields-list {{field.name}}">
+  {# Dynamically added file upload button #}
+</ul>
+
+{% set maxFilesize = field.name == 'images' ? imagesMaxFilesize : filesMaxFilesize %}
+
+{# BUTTON ADD FILE #}
+<div class="input-field {{field.name}}">
+  {% if field.icon is defined %}
+    <i class="material-icons {{ field.icon }} prefix"></i>
+  {% endif %}
+  <button type="button" class="btn-add-file btn btn-secondary waves-effect waves-light"
+          data-count="{{ form[field.name]|length }}" data-type="{{ field.name }}" data-maxsize="{{ maxFilesize }}">
+    <span >{{ field.label|raw }}</span>
+  </button>
+</div>
+
+{# TEMPLATE added when user click "add image" #}
+<div style="display: none" class="new-file-template {{field.name}}">
+  <div class="file-field input-field">
+    <div class="btn btn-pick-file btn-neutral">
+      <span class="fa fa-upload"></span>
+      {% if field.type == 'images' %}
+        {% set accept = 'image/*' %}
+      {% elseif field.accept is defined %}
+        {% set accept = field.accept %}
+      {% endif %}
+      <input type="file" name="element[{{field.name}}][__count__][file][file]"
+             {% if accept is defined %}accept="{{ accept|replace({" ": ','}) }}"{% endif %}>
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text">
+    </div>
+    <span class="btn-close far fa-times-circle" onclick="$(this).closest('li').remove();"></span>
+    <div class="error file-too-big" style="display:none">
+      {{ 'commons.errors.file-too-big'|trans({size: (maxFilesize / 1024 / 1024) | round(2)}) }}
+    </div>
+  </div>
+</div>

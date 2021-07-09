@@ -1,0 +1,12 @@
+{% extends admin.getTemplate('base_list_field') %}
+{% trans_default_domain 'admin' %}
+
+{% block field %}
+  {% spaceless %}
+      {% if value %}
+        <span class="label label-primary">{{ 'imports.fields.refreshFrequency'|trans({'%days%': value}) }}</span>
+      {% else %}
+        <span class="label label-default">{{ 'imports.fields.manualRefresh'|trans }}</span>
+      {% endif %}
+  {% endspaceless %}
+{% endblock %}

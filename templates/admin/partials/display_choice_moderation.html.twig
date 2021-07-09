@@ -1,0 +1,14 @@
+{% trans_default_domain 'admin' %}
+
+{% if real_value != 0 %}
+    <span class="label label-danger">
+      {{ ('elements.fields.moderationState_choices.' ~ real_value)|trans }}
+    </span>
+    {% if object.reports %}
+      {% for report in object.getUnresolvedReports() %}
+          <span class="label label-danger" style="margin-left: 5px">{{ ('elements.fields.reportValues_choices.' ~ report.value)|trans }}</span>
+      {% endfor %}
+    {% endif %}
+{% else %}
+    <span style="display:none">{{ value }}</span>
+{% endif %}

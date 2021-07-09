@@ -1,0 +1,10 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+  {% spaceless %}
+    {% if object.logs|length > 0 %}
+      {% set log = object.logs[0] %}
+      {{ log.getDataProp('elementsCount') }}
+    {% endif %}
+  {% endspaceless %}
+{% endblock %}

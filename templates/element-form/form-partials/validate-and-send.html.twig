@@ -1,0 +1,34 @@
+<section id="section-validate-and-send">
+
+  {% if isAllowedDirectModeration %}
+    {% include "element-form/form-partials/admin.html.twig" %}
+  {% else %}
+    {% include "element-form/form-partials/user-validation.html.twig" %}
+  {% endif %}
+
+  {% set showOwnerCheckbox = config.elementFormOwningText and (userType == "loggued" or userType == "email") %}
+  <div class="col s12 checkbox-container" {{ showOwnerCheckbox ? '' : 'style="display:none"'}}>
+    <input type="checkbox" name="owning" id="owning" {{ userEmail == element.userOwnerEmail ? 'checked' : '' }} />
+    <label id="label-owning" for="owning">{{ config.elementFormOwningText | raw }}</label>
+  </div>
+
+  {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') and isAnonymousWithEmail %}
+    <div class="input-field col s12">
+      <i class="material-icons gogo-icon-lock prefix"></i>
+      <input type="password" id="input-password" name="input-password" class="required validate"
+             placeholder="{{ 'element.form.create_user'|trans }}">
+    </div>
+  {% endif %}
+
+  <input type="hidden" id="submit-option" name="submit-option" />
+  <center>
+    <button onclick="checkAndSend('backtomap')" id="element-form-submit-btn" type="button" class="btn element-form-submit-btn waves-effect waves-light">{{ 'action.send'|trans }}</button>
+    {% if isAllowedDirectModeration %}
+      <button onclick="checkAndSend('stayonform')" type="button" class="btn element-form-submit-btn waves-effect waves-light">{{ 'action.send_stay'|trans }}</button>
+    {% endif %}
+
+    {% if editMode %}
+      <button onclick="history.back()" id="element-form-cancel-btn" type="button" class="btn btn-neutral element-form-cancel-btn waves-effect waves-light">{{ 'action.cancel'|trans }}</button>
+    {% endif %}
+  </center>
+</section>

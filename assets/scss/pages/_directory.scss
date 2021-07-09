@@ -1,0 +1,83 @@
+/*
+* @Author: Sebastian Castro
+* @Date:   2017-06-22 18:43:02
+* @Last Modified by:   Sebastian Castro
+* @Last Modified time: 2017-11-08 15:59:54
+*/
+
+body.directory
+{
+	height: 100% !important;
+	 display: flex;
+  flex-direction: column;
+}
+
+#page-container.directory
+{
+	@include flexbox();
+	height: 5px;
+	width: 100%;
+}
+
+#page-content.directory
+{
+	width: 100%;
+	margin: 0;
+	max-width: 100%;
+	@include flexbox();
+  @include flex-flow(column);
+
+	section
+	{
+		padding: 0;
+		margin: 0;
+	}
+
+	.flash-messages-container
+	{
+		display: block;
+    margin: 0;
+
+    .flash-message
+		{
+		    padding: .5rem;
+		    text-align: center;
+		    margin-bottom: 0;
+
+		    background-color: #4a7874;
+		    color: #fff;
+
+		    border-bottom: 2px solid #37504e;
+		    border-radius: 0 !important;
+
+		    a.validation-process {
+				    text-decoration: underline;
+				    cursor: help;
+				    color: #354254;
+				}
+
+		    .btn-close
+		    {
+		    	display: block;
+		    	top: .5rem;
+
+		    	color: white;
+			    font-size: 20px;
+			    margin: 0 1rem;
+			    position: absolute;
+			    right: 0;
+
+			    &:hover { color: $primary-color; cursor: pointer;}
+		    }
+
+		}
+	}
+}
+
+#directory-container
+{
+	height: 100%;
+	@include flexbox();
+  @include flex(1 auto);
+  position: relative;
+}

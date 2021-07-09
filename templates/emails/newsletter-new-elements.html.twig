@@ -1,0 +1,63 @@
+<table style="width:100%">
+  {% for element in elements|slice(0,9) %}
+
+    <tr style="">
+      <td style="text-align: left;
+                  padding: 10px;
+                  padding-left: 4px;
+                  line-height: 25px;
+                  border-bottom: 1px dashed grey;">
+
+        {# NAME #}
+        <div class="name" style="font-weight: bold;">
+          {{ element.name | capitalize }}
+          {% if element.isPending %}<span style="padding: .2em .6em .3em;
+                                                font-size: 75%;
+                                                font-weight: 700;
+                                                line-height: 1;
+                                                color: #fff;
+                                                background-color: {{ config.getDefaultColor('disableColor') }};
+                                                text-align: center;
+                                                white-space: nowrap;
+                                                vertical-align: baseline;
+                                                margin-left: 6px;
+                                                border-radius: .25em;">
+              {{ element.status == 0 ? 'element.status.pending'|trans : 'element.status.modifications'|trans }}</span>
+          {% endif %}
+
+        </div>
+
+        {# DESCRIPTION #}
+        {% if element.description is defined %}
+          <div class="description" style="font-style: italic;color: #5f5f5f;">{{ element.description | capitalize }}</div>
+        {% endif %}
+
+        {# ADDRESS #}
+        <div class="address" style="text-transform: capitalize">{{ element.getFormatedAddress() }}</div>
+
+      </td>
+      <td style="width: 80px;border-bottom: 1px dashed grey;">
+
+        {# LINK #}
+        <a href="{{ baseUrl ~ path('gogo_directory_showElement', {'id': element.id }) | replace({"%23":'#'}) }}">
+          <button class="btn-gogo btn-secondary small waves-light waves-effect btn"
+                  style= "font-size: 11px;
+                          line-height: 30px;
+                          height: 30px;
+                          padding: 0 15px;
+                          font-weight: bold;
+                          color: white;
+                          border-radius: 5px;
+                          text-transform: uppercase;
+                          letter-spacing: 1px;
+                          border: none;
+                          background-color: {{ config.getDefaultColor('secondaryColor') }};">{{ element.isPending ? 'element.status.vote'|trans : 'element.status.view'|trans }}</button>
+        </a>
+
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+{% if elements|length > 10 %}
+<p style="margin-top: 20px;font-weight: bold;text-align: center;">{{ 'element.status.more_to_discover'|trans({ nb: elements|length - 10 }) }}</p>
+{% endif %}

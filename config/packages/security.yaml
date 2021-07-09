@@ -1,0 +1,121 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_SONATA_ADMIN, ROLE_DIRECTMODERATION_ADD, ROLE_DIRECTMODERATION_EDIT_OWN_CONTRIB]
+        ROLE_ADMIN:       [ROLE_DIRECTMODERATION_ADD, ROLE_DIRECTMODERATION_EDIT_OWN_CONTRIB, ROLE_ADMIN_ELEMENTS_LIST, ROLE_ADMIN_ELEMENTS_CREATE, ROLE_ADMIN_ELEMENTS_EDIT, ROLE_ADMIN_ELEMENTS_DELETE, ROLE_ADMIN_ELEMENTS_EXPORT]
+        ROLE_SONATA_ADMIN: []
+        ROLE_DIRECTMODERATION_ADD: []
+        ROLE_DIRECTMODERATION_EDIT_OWN_CONTRIB: []
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        # Disabling the security for the web debug toolbar, the profiler and Assetic.
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        # -> custom firewall for the admin area of the URL
+        admin:
+            pattern:            /admin(.*)
+            context:            user
+            access_denied_url: /
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /admin/login
+                use_forward:    true
+                check_path:     /admin/login_check
+                failure_path:   null
+            logout:
+                path:           /admin/logout
+                target:         /admin/login
+            anonymous:          true
+
+        main:
+            pattern:             .*
+            context:             user
+            logout_on_user_change: true
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /login
+                use_forward:    true
+                default_target_path:          gogo_homepage
+                use_referer:    true
+                check_path:     /login_check
+                failure_path:   /login
+                success_handler: App\Application\Sonata\UserBundle\Security\AuthenticationHandler
+                failure_handler: App\Application\Sonata\UserBundle\Security\AuthenticationHandler
+            logout:
+                path:   /logout
+                success_handler: App\Application\Sonata\UserBundle\Security\AuthenticationHandler
+            anonymous: ~
+            oauth:
+                resource_owners:
+                    facebook:          "/login/check-facebook"
+                    gplus:             "/login/check-google"
+                    yahoo:             "/login/check-yahoo"
+                    communs:           "/login/check-les-communs"
+                login_path:        /login
+                failure_path:      /login
+
+                oauth_user_provider:
+                    #this is my custom user provider, created from FOSUBUserProvider - will manage the
+                    #automatic user registration on your site, with data from the provider (facebook. google, etc.)
+                    service: App\Application\Sonata\UserBundle\Security\FOSUBUserProvider
+
+    # set access_strategy to unanimous, else you may have unexpected behaviors
+    access_decision_manager:
+        strategy: unanimous
+
+    access_control:
+        # URL of FOSUserBundle which need to be available to anonymous users
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        # Admin login page needs to be accessed without credential
+        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        # Secured part of the site
+        # This config requires being logged for the whole site and having the admin role for the admin part.
+        # Change these rules to adapt them to your needs
+        - { path: ^/admin/bulkActions/, role: [ROLE_ADMIN] }
+        - { path: ^/admin/, role: [ROLE_SONATA_ADMIN] }
+        - { path: ^/user/, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/duplicates, role: [ROLE_ADMIN] }
+        - { path: ^/api/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+
+# DEFAULT CONFIG
+# security:
+#     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+#     providers:
+#         in_memory: { memory: null }
+#     firewalls:
+#         dev:
+#             pattern: ^/(_(profiler|wdt)|css|images|js)/
+#             security: false
+#         main:
+#             anonymous: lazy
+
+#             # activate different ways to authenticate
+#             # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+#             # https://symfony.com/doc/current/security/impersonating_user.html
+#             # switch_user: true
+
+#     # Easy way to control access for large sections of your site
+#     # Note: Only the *first* access control that matches will be used
+#     access_control:
+#         # - { path: ^/admin, roles: ROLE_ADMIN }
+#         # - { path: ^/profile, roles: ROLE_USER }

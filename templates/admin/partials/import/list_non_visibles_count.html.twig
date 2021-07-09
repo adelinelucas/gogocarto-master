@@ -1,0 +1,35 @@
+{% extends admin.getTemplate('base_list_field') %}
+{% trans_default_domain 'admin' %}
+
+{% block field %}
+  {% spaceless %}
+    {% if object.newOntologyToMap %}
+      <span class="label label-info log-label">{{ 'imports.fields.newOntologyToMap'|trans }}</span>
+    {% endif %}
+
+    {% if object.newTaxonomyToMap %}
+      <span class="label label-info log-label">{{ 'imports.fields.newTaxonomyToMap'|trans }}</span>
+    {% endif %}
+
+    {% set deletedCount = field_description.options.choices[object.id] is defined ? field_description.options.choices[object.id] : 0 %}
+    {% if deletedCount > 0 %}
+      <span class="label label-danger log-label">{{ 'imports.fields.deletedCount'|trans({'%count%': deletedCount}) }}</span>
+    {% endif %}
+    {% if object.logs|length > 0 %}
+      {% set log = object.logs[0] %}
+      {% if log.getDataProp('elementsMissingGeoCount') > 0 %}
+        <span class="label label-warning log-label">{{ 'imports.fields.elementsMissingGeoCount'|trans({'%count%': log.getDataProp('elementsMissingGeoCount')}) }}</span>
+      {% endif %}
+      {% if log.getDataProp('elementsMissingTaxoCount') > 0 %}
+        <span class="label label-warning log-label">{{ 'imports.fields.elementsMissingTaxoCount'|trans({'%count%': log.getDataProp('elementsMissingTaxoCount')}) }}</span>
+      {% endif %}
+      {% if log.getDataProp('elementsPreventImportedNoTaxo') > 0 %}
+        <span class="label label-warning log-label">{{ 'imports.fields.elementsPreventImportedNoTaxo'|trans({'%count%': log.getDataProp('elementsPreventImportedNoTaxo')}) }}</span>
+      {% endif %}
+
+      <style>
+        .label.log-label { margin-right: 5px; }
+      </style>
+    {% endif %}
+  {% endspaceless %}
+{% endblock %}

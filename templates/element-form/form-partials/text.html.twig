@@ -1,0 +1,105 @@
+<div class="input-field col s12">
+  {# ICON #}
+  {% set icon = field.icon|default(null) %}
+  {% if not icon %}
+    {% if field.type == "text" %}
+      {% if field.subtype is defined %}
+        {% set icon = field.subtype == "email" ? "gogo-icon-mail" : field.subtype == "tel" ? "gogo-icon-phone" : field.subtype == "url" ? "gogo-icon-internet" : "gogo-icon-description" %}
+      {% else %}
+        {% set icon = "gogo-icon-description"  %}
+      {% endif %}
+    {% elseif field.type == "number" %}
+      {% set icon = 'gogo-icon-number' %}
+    {% elseif field.type == "email" %}
+      {% set icon = 'gogo-icon-mail' %}
+    {% elseif field.type == "image" %}
+      {% set icon = 'far fa-image' %}
+    {% elseif field.type == "textarea" %}
+      {% set icon = 'gogo-icon-description' %}
+    {% endif %}
+  {% endif %}
+
+  {# ERROR MESSAGE #}
+  {% set errorMsg = field.errorMsg|default(null) %}
+  {% if not errorMsg %}
+    {% if field.subtype is defined and field.subtype == "email" or field.type == 'email' %}
+      {% set errorMsg = 'commons.errors.bad_email'|trans %}
+    {% elseif field.subtype is defined and field.subtype == "url" or field.type == 'image' %}
+      {% set errorMsg = 'commons.errors.bad_url'|trans %}
+    {% elseif field.type == "number" %}
+      {% set errorMsg = 'commons.errors.bad_number'|trans %}
+    {% elseif field.maxlength is defined %}
+      {% set errorMsg = 'commons.errors.too_long'|trans %}
+    {% endif %}
+  {% endif %}
+
+  {# CLASS #}
+  {% set inputClass = field.required|default(false) ? "required validate" : "validate"%}
+  {% if field.type == "textarea" and field.subtype == "wysiwyg" %}
+    {% set inputClass = inputClass ~ " ace-editor" %}
+  {% endif %}
+
+  {# NAME #}
+  {% set baseName = field.type == "title" ? "element" : "data" %}
+  {% set fieldName = field.type == "email" ? 'email' : field.name %}
+
+  {# TYPE #}
+  {% set inputType = field.subtype is defined ? field.subtype : field.type == "number" ? "number" : "text" %}
+  {% set inputType = field.type == "email" ? 'email' : inputType %}
+  {% set inputType = field.type == "image" ? 'url' : inputType %}
+
+  {# VALUE #}
+  {% set inputValue = elementValue %}
+  {% if field.type == "title" %}{% set inputValue = element.name %}{% endif %}
+  {% if field.type == "email" %}{% set inputValue = element.email %}{% endif %}
+  {% if not inputValue and field.value is defined %}{% set inputValue = field.value %}{% endif %}
+
+  {# ICON #}
+  {% if icon %}
+    <i class="material-icons {{ icon }} prefix"></i>
+  {% endif %}
+
+  {# INPUT #}
+  {% if field.type == "textarea" %}
+    {% set inputClass = inputClass ~ " materialize-textarea" %}
+    <textarea
+  {% else %}
+    <input type="{{ inputType }}"
+  {% endif %}
+     name="{{ baseName }}[{{fieldName}}]" id="input-{{ field.name }}" class="{{ inputClass }}"
+      {% if inputValue %} value="{{ inputValue }}"{% endif %}
+      {% if field.rows is defined %} rows="{{ field.rows }}"{% endif %}
+      {% if field.placeholder is defined %} placeholder="{{ field.placeholder }}"{% endif %}
+      {% if field.maxlength is defined %} length="{{ field.maxlength }}"{% endif %}
+      {% if field.pattern is defined %} pattern="{{ field.pattern }}"{% endif %}
+  {% if field.type == "textarea" %}
+    ></textarea>
+  {% else %}
+    />
+  {% endif %}
+
+  {# LABEL #}
+  <label for="input-{{ field.name }}" data-error="{{ errorMsg|default('') }}" class="gogo-form-label label-{{ field.type }} {% if field.subtype is defined %}label-{{ field.subtype }} {% if field.subtype == 'wysiwyg' %}active{% endif %}{% endif %}"><span class="to-html">{{ field.label|raw }}</span>{% if field.required|default(false) %}<span class="mandatory-asterisk"></span>{% endif %}</label>
+
+  {% if field.type == "textarea" and field.subtype == "wysiwyg" %}
+    <script src="//cdn.ckeditor.com/4.14.0/basic/ckeditor.js"></script>
+    <script>
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        {% set height = field.rows is defined ? field.rows * 40 : 150 %}
+        CKEDITOR.replace('input-{{ field.name }}', {
+          height: "{{ height }}"
+        });
+        CKEDITOR.on('instanceReady', function( evt ) {
+            var editorBody = $('.cke_wysiwyg_frame').contents().find('body');
+            editorBody.css('background-color', 'transparent');
+            editorBody.css('color', '{{ config.defaultTextContentColor }}');
+        });
+        // force label to be active because they are not linked anymore to the materialize textarea
+        document.addEventListener("DOMContentLoaded", function(event) {
+          setTimeout(function() { $('.label-wysiwyg').addClass('active') }, 0);
+        })
+    </script>
+  {% endif %}
+</div>
+

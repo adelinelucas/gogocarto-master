@@ -1,0 +1,22 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    app.version: 3.3.6
+    locale: fr
+    router.request_context.host: '%env(string:BASE_URL)%'
+    from_email: "%env(FROM_EMAIL)%"
+    use_as_saas: '%env(bool:USE_AS_SAAS)%'
+    images_max_filesize: "%env(IMAGES_MAX_FILESIZE)%"
+    files_max_filesize: "%env(FILES_MAX_FILESIZE)%"
+    base_protocol: '%env(BASE_PROTOCOL)%'
+    base_url: '%env(BASE_URL)%'
+    root_db: '%env(DATABASE_NAME)%'    
+    instance_name: '%env(INSTANCE_NAME)%'
+    contact_email: '%env(CONTACT_EMAIL)%'
+    oauth_communs_id: '%env(OAUTH_COMMUNS_ID)%'
+    oauth_communs_secret: '%env(OAUTH_COMMUNS_SECRET)%'
+    oauth_google_id: '%env(OAUTH_GOOGLE_ID)%'
+    oauth_google_secret: '%env(OAUTH_GOOGLE_SECRET)%'
+    oauth_facebook_id: '%env(OAUTH_FACEBOOK_ID)%'
+    oauth_facebook_secret: '%env(OAUTH_FACEBOOK_SECRET)%'
+    doctrine_mongodb.odm.fixtures_dirs: ['src/DataFixtures/MongoDB']

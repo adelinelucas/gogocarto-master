@@ -1,0 +1,33 @@
+<h2>{{ "pending-contributions._label"|trans }}</h2>
+{% if pendingContributions|length > 0 %}
+  <table class="bordered">
+    <thead>
+      <tr>
+        <th>{{ "pending-contributions.form"|trans }}</th>
+        <th class="type">{{ 'my_contributions.type'|trans }}</th>
+        <th class="date">{{ 'my_contributions.date'|trans }}</th>
+        <th class="action">{{ 'my_contributions.action'|trans }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for contribution in pendingContributions %}
+        <tr>
+          <td>
+            <a href="{{ path('gogo_directory_showElement', {'id': contribution.element.id, 'name': contribution.element.name}) | replace({"%23":'#'}) }}">{{ contribution.element.name }}</a>
+          </td>
+          <td>{{ ('elements.fields.contributionType_choices.' ~ contribution.type)|trans({}, 'admin') }}</td>
+          <td>{{ contribution.createdAt|date('commons.date_format'|trans({}, 'admin'))}}</td>
+          <td>
+            <a href="{{ path('gogo_element_edit', {'id': contribution.element.id, 'hash': contribution.element.randomHash}) }}">
+              <button class="btn-gogo btn-secondary small waves-light waves-effect btn">{{ 'my_contributions.edit'|trans }}</button>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p class="empty-secton-message">
+    {{ "pending-contributions.empty_section"|trans({url: path('gogo_element_add')})|raw }}
+  </p>
+{% endif %}

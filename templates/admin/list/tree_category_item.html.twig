@@ -1,0 +1,56 @@
+{% trans_default_domain 'admin' %}
+
+<li class="category-item">
+
+	<span class="category-item {{ category.options|length and not category.unexpandable ? 'expandable':'unexpandable' }}" {% if not category.displayInForm or not category.displayInMenu %}style="opacity: 0.5"{% endif %}>
+		<span class="name">(Groupe) {{ category.name|capitalize }}</span>
+    <span style="opacity: .6;margin-right: 10px;">( {{ category.customStringId }} )</span>
+    {% if not category.displayInForm or not category.displayInMenu %}<span class="fa fa-eye-slash"></span>{% endif %}
+		{% if category.options|length and not category.unexpandable %}<span class="arrow-after"></span>{% endif %}
+    {% if category.isMandatory %}<span class="label label-warning">Obligatoire</span>{% endif %}
+    <span class="label label-default">{{ category.singleOption ? 'categories.list.unique'|trans : 'categories.list.multiple'|trans }}</span>
+    {% if category.enableDescription %}<span class="label label-info">{{ 'categories.list.categoriesDescription'|trans }}</span>{% endif %}
+	</span>
+	<span class="actions">
+    <a href="{{ path('admin_app_category_edit', {id: category.id}) }}" class="btn btn-sm btn-default"> <i class="fa fa-pen" aria-hidden="true"></i></a>
+    <a href="{{ path('admin_app_category_delete', {id: category.id}) }}" class="btn btn-sm btn-default"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+  </span>
+
+  <ul class="children category-children"
+      {% if not category.showExpanded %}style="display:none"{% endif %}
+      {% if not category.displayInForm %}style="opacity: 0.5"{% endif %}>
+  	{% for key, option in category.options %}
+      <li class="option-item">
+      	<span class="option-item {{ option.subcategories|length and not option.unexpandable ? 'expandable': 'unexpandable' }}" {% if not option.displayInForm or not option.displayInMenu %}style="opacity: 0.5"{% endif %}>
+          <span class="icon {{ option.icon }}" style="margin-right: 10px; color: {{ option.color }}"></span>
+          <span class="name">{{ option.name }}</span>
+          {% if not option.displayInForm or not option.displayInMenu %}<span class="fa fa-eye-slash"></span>{% endif %}
+          <span style="opacity: .6;">( {{ option.customStringId }} )</span>
+          <span style="opacity: .6;"> {{ option.osmTagsStringified }} </span>
+	      	{% if option.subcategories|length and not option.unexpandable %}<span class="arrow-after"></span>{% endif %}
+      	</span>
+      	<span class="actions">
+	      	<a href="{{ path('admin_app_option_edit', {id: option.id}) }}" class="btn btn-sm btn-default"> <i class="fa fa-pen" aria-hidden="true"></i></a>
+	      	<a href="{{ path('admin_app_option_delete', {id: option.id}) }}" class="btn btn-sm btn-default"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+	      </span>
+
+      	<ul class="children option-children"
+            {% if not option.showExpanded %}style="display:none"{% endif %}
+            {% if not option.displayChildrenInForm or not option.displayChildrenInMenu %}style="opacity: 0.5"{% endif %}>
+      	{% for subkey, subcategory in option.subcategories %}
+						{% include 'admin/list/tree_category_item.html.twig' with {'category': subcategory, 'firstDepth':false } %}
+				{% endfor %}
+				</ul>
+      </li>
+
+    {% endfor %}
+	</ul>
+</li>
+
+<style>
+  .fa-eye-slash
+  {
+    font-size: .9em;
+    margin-left: 5px;
+  }
+</style>

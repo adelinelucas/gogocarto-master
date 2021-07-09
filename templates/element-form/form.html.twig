@@ -1,0 +1,27 @@
+{{ form_start(form, {'id': 'formElement'}) }}
+
+<div id="element-form-content" class="{{ editMode ? 'edit' : 'new' }} {{ isOwner ? 'by-owner' : ''}} {{ isAllowedDirectModeration ? 'by-admin' : '' }}"
+     data-element-id="{{ element.id }}">
+	<section>
+		{% include "element-form/form-renderer.html.twig" %}
+	</section>
+
+	{% include "element-form/form-partials/validate-and-send.html.twig" %}
+
+</form>
+
+{% block modals %}
+	<!-- Pop up alert message-->
+	<div id="popup" class="modal">
+	<div class="modal-content">
+	  <h5 id="modal-title"></h5>
+	  <p id="popup-content"></p>
+	</div>
+	<div class="modal-footer">
+		<span class="modal-action modal-close waves-effect waves-teal btn-flat">OK</span>
+	</div>
+	</div>
+{% endblock %}
+
+
+

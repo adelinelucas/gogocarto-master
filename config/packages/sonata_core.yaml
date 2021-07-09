@@ -1,0 +1,9 @@
+sonata_core:
+    form:
+        mapping:
+            enabled: false
+
+sonata_doctrine_mongo_db_admin:
+    templates:
+        form:
+            - "admin/core_custom/form_admin_fields.html.twig"

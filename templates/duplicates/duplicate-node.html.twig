@@ -1,0 +1,75 @@
+{% trans_default_domain 'admin' %}
+
+{% set duplicates = [duplicateNode]|merge(duplicateNode.potentialDuplicates) %}
+{% if duplicates|length > 1 %}
+<div class="duplicate-node">
+  <div class="group-actions">
+    <button class="btn-merge btn btn-success waves-effect waves-light" data-id="{{ duplicateNode.id }}"
+            title="{{ 'duplicates.node.merge_title'|trans }}">
+        {{ 'duplicates.node.merge'|trans }}
+      </button>
+      <button class="btn-non-duplicates btn btn-default waves-effect waves-light" data-id="{{ duplicateNode.id }}"
+              title="{{ 'duplicates.node.non-duplicates_title'|trans }}">
+        {{ 'duplicates.node.non-duplicates'|trans }}
+      </button>
+  </div>
+  <div class="duplicates">
+    <ul class="collapsible" data-collapsible="false">
+    {% for duplicate in duplicates %}
+      <li class="collection-item">
+        <div class="collapsible-header">
+          <span class='title'>
+            <span class="name">{{ duplicate.name }}</span>
+            {% if duplicate.sourceKey %} ({{ duplicate.sourceKey }}){% endif %}
+            <span class="updated-at"> - Maj {{ duplicate.updatedAt|date('commons.date_format'|trans) }}</span> {# TODO Translation use local #}
+            {% if duplicate.isDeleted %}
+              <span style="color: #9c3f3a;margin-left: 5px;">
+                {{ 'duplicates.node.deleted'|trans }}
+              </span>
+            {% endif %}
+          </span>
+          <div class="actions">
+            <a href={{ path('admin_app_element_showEdit', { id: duplicate.id}) }} target="_blank" class="btn-edit icon gogo-icon-eye"></a>
+          </div>
+          {% for prop in config.duplicates.fieldsInvolvedInDetection %}
+            {% if prop != 'name' %}
+              {% set value = duplicate.getProperty(prop) %}
+              {% if value %}
+                <div><u>{{ prop|capitalize }}</u> : {{ value }}</div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}        
+          <div class="options">{{duplicate.optionsString }}</div>
+        </div>
+        <div class="collapsible-body">
+          {# Address #}
+          {% if duplicate.address.getFormatedAddress %}
+            <div class="key-value">
+              <span class="key">{{ 'duplicates.node.address'|trans }}</span>
+              <span class="value">{{ duplicate.address.getFormatedAddress }}</span>
+            </div>
+          {% endif %}
+          {# Other Attributes #}
+          {% for key, data in duplicate.data %}
+            {% if data and key not in config.duplicates.fieldsInvolvedInDetection %}
+            <div class="key-value">
+              <span class="key">{{ key }}</span>
+              <span class="value">
+                {% if data is iterable %}
+                  {% for subkey, subdata in data %}
+                    <br/>{{ subkey }} : {{ subdata|json_encode }}
+                  {% endfor %}
+                {% else %}
+                  {{ data }}
+                {% endif %}
+              </span>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>  
+</div>
+{% endif %}

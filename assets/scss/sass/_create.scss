@@ -1,0 +1,50 @@
+.top-form-message {
+  text-align: center;
+  margin-bottom: 30px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.project-create {
+  h1 {
+    position: relative;
+    margin-top: 6rem;
+    img {
+      position: absolute;
+      width: 15rem;
+      top: -4rem;
+      transform: translateX(-80%);
+    }
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  // Symfony errors
+  .project-create ul li {
+    text-align: left;
+    padding-left: 3.5rem;
+  }
+
+  .contrib-config-section {
+    padding-left: 1.4rem;
+  }
+
+  .btn[type=submit] { margin-top: 1rem; }
+
+  .cgu-config-section {
+    margin-top: 1.5rem;
+    .cgu-content {
+      padding: 1.5rem;
+      border-radius: 5px;
+
+      p {
+        margin: 0;
+      }
+    }
+    .cgu-checkbox-container {
+      text-align: center;
+    }
+  }
+
+}

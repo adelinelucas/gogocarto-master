@@ -1,0 +1,422 @@
+action:
+  cancel: Cancel
+  continue: Continue
+  create: Create
+  element:
+    delete:
+      done: Item deletion confirmed
+      unallowed: Sorry, you are not allowed to delete an item!
+      uncomplete: Missing parameters
+    report:
+      done: Thank you, your report has been saved!
+      unallowed: Sorry, you are not allowed to report errors!
+    resolveReports:
+      done: Item moderation confirmed
+      unallowed: Sorry, you are not allowed to moderate this item!
+      uncomplete: Incomplete parameters
+    sendEditLink:
+      done: An edition link has been sent successfully to {email}
+      emailContent: >-
+        <p>Hello <i>'{{ element '}}</i>,</p> <p><a href="'{{
+        directEditElementUniqueUrl '}}">Click here</a> to update your
+        information</p>
+    sendMail:
+      done: The email has been sent
+      emailContent: >-
+        <p>Hello<i>{element}</i>,</p> <p>You have received a message from <a
+        href="mailto:{sender}">{sender}</a></br> </p> <p><b>Subject of the
+        message</b></p><p> {subject}</p> <p><b>Content</b></p><p>{content}</p>
+      emailSubject: Message received from the {instance} instance
+      uncomplete: The settings are incomplete
+    stamp:
+      done: Label modification confirmed
+      unallowed: You are not allowed to use this label
+      uncomplete: The parameters are incomplete
+    vote:
+      unallowed: Sorry, you are not allowed to vote!
+      uncomplete: The voting parameters are incomplete
+  error: 'Error: {message}'
+  geolocalize_me: Geolocate my position
+  ok: OK
+  registration:
+    geo_error: Impossible to geolocate this address
+    need_address: If you want to receive new additions, you need to provide an address
+    unallowed: Sorry, you are not allowed to create an account.
+  search: Search
+  send: Send
+  send_stay: Send and remain on the form
+  submit: Save
+
+api_ui:
+  _label: Configure API
+  api_url: API URL
+  format: 'Format:'
+  include_external: Include the database external sources
+  json: JSON
+  jsonld: JSON-LD (Semantic)
+  test: Test
+  title: Access data through an API
+  use_bounds: Bind to a geographical zone (draw a rectangle on the map)
+  use_categories: Filter by categories
+  use_limit: Limit the number of results
+
+commons:
+  category_placeholder: Specify (if necessary)
+  check_password: Re-enter your password
+  choose_category: Choose {cat}
+  choose_one_option: Please choose at least one option
+  continue_browsing: You can continue browsing the site!
+  email: Email address
+  errors:
+    bad_email: Please enter a valid email address
+    bad_number: This is not a number!
+    bad_url: Please enter a URL such as http://…
+    file-too-big: "This file is too large, the maximum size allowed is {size}\_MB"
+    too_long: Oops, this text is a little too long!
+  every:
+    month: Every month
+    week: Every week
+  location: Your address or town
+  menu: Menu
+  never: Never
+  newsletter-explanation: Be informed by email of new references near you!
+  optional: (optional)
+  password: Password
+  register: Create account
+  username: Username
+  validation: Validation
+
+contributor-login:
+  _label: Authentication
+  communs: LesCommuns.org
+  email: Simply enter an email address
+  error:
+    admin_only: 'Warning: This feature is only for administrators'
+    invalid_email: Please enter a valid email address
+    used_email: >-
+      Sorry, an account already exists with this email address! Please sign in
+      or use another address!
+  login: Sign in
+  oauth: Sign in with your account
+  printemps: Education spring
+
+directory:
+  _label: The map
+
+duplicates:
+  controller:
+    marked: Flagged as not a duplicate
+    marked_long: The items have been confirmed as non-duplicates
+    merged: This item has been merged with a potential duplicate
+  duplicated_element: This is it!
+  label: Duplicate detection
+  new_element: No, this is a new item, let's proceed!
+  see_on_map: (View on OpenStreetMap)
+  subtitle: Similar items have been detected, maybe you wanted to add one of them?
+  title: Duplicate detection
+
+element:
+  form:
+    admin_section:
+      _label: Validation
+      admin_message: >-
+        Change details, this text will replace 'customMessage' in automatic
+        emails
+      do_not_validate: Do not validate {element}, I only change the appearance
+      recopy_info: Copy the information in a new form
+      send_mail:
+        add: Notify the addition of {element} by sending an email
+        modify: Notify the {element} changes by sending an email
+    controller:
+      error_dont_exist: The requested item does not exist…
+      error_unauthorized: You are not allowed to edit this item, sorry!
+      pending: >-
+        Your contribution is currently pending validation. <a
+        class='validation-process'
+        onclick="$('#popup-collaborative-explanation').openModal()">click
+        here</a> to learn more about the collective moderation process!
+      success: >-
+        Your account has been created! You can now complete <a href="{url}"
+        >your profile</a>!
+      thankyou:
+        added: Thank you for your help! {name} has been added
+        edited: Thank you for your help! The changes have been taken into account!
+      user_contributions: >-
+        Find and modify your contributions in the <a href="{url}">My
+        Contributions</a> page
+    create_user: Password to create your account
+    error_becomeOwner: Sorry, this item already belongs to someone!
+    error_geocode: Impossible to locate this address
+    error_missing_adress: >-
+      You need to enter an address in order to be notified of the latest
+      additions
+    error_username: This username is already taken!
+    info_saved: Changes saved!
+    localize: Locate
+    need_help: Help?
+    open_hours:
+      add_tooltip: Add time slot
+      and: And
+      days_of_week:
+        '0': Monday
+        '1': Tuesday
+        '2': Wednesday
+        '3': Thursday
+        '4': Friday
+        '5': Saturday
+        '6': Sunday
+      days_of_week_short:
+        '0': Mon
+        '1': Tue
+        '2': Wed
+        '3': Thu
+        '4': Fri
+        '5': Sat
+        '6': Sun
+      from: From
+      recopy_tooltip: Copy the previous schedules
+      to: to
+    success_becomeOwner: You now own {name}!
+    title_add: Add {element}
+    title_edit: Editing data
+  status:
+    modifications: Modifications
+    more_to_discover: … and {nb} others to discover on the site!
+    pending: Pending
+    view: View
+    vote: Vote!
+
+error:
+  '404':
+    text: The requested page doesn't exist (anymore?) …
+  edit_constraints: >-
+    It is forbidden to use the folllowing words: new , process, mongo, this,
+    symfony, exec, passthru, shell_exec, system, proc_open, popen, curl_exec,
+    curl_multi_exec, parse_ini_file, show_source, var_dump, print_r… Thank you
+    for not messing up!
+  fields_not_shared: >-
+    The fields ‘{fieldsList}’ were configured not to be shared. You cannot use
+    them on the details display. To change this setting, go to: Other
+    configuration / API
+  generic:
+    file_line: '{file} at Line {line}'
+    text: >-
+      If the problem is recurrent, please inform us, preferably in <br> <a
+      href="https://chat.lescommuns.org/channel/gogocarto"
+      target="blank">GoGoCarto Chatroom</a> or by email to {email}, including
+      the error message displayed below.
+  header: Oops! Something went wrong
+  title: Error !
+
+home:
+  admin_interface: Admin interface
+  all_projects: All projects ({length})
+  credits: Powered by {ggc}
+  discover: Discover
+  documentation: Documentation
+  donate: Donate
+  geolocalize: Geolocate your position
+  logout: Log out
+  my_space: My Space
+  pick_category: 'Pick a category (by default: all)'
+  pinned_projects: Pinned Projects
+  search:
+    address: an address
+    all: All
+    category: a category
+    placeholder: Enter
+  search_placeholder: Search by name, by tag
+  sort_by_date: Sort by publication date
+  sort_by_points: Sort by number of points
+  source_code: Source code
+
+js:
+  element_form:
+    geocoded_marker_text: Move me to specify the position</br>(in the centre of the building)
+  login:
+    exception: An error occurred while attempting to log in
+    wrong_id: Wrong credentials
+
+load_configuration:
+  AboutHeaderTitle: About
+  AddElementHintText: Contribute to the database!
+  AppBaseline: Create maps à gogo
+  CollaborativeModerationExplanations: ' <p> When an item is added or modified, the data is not updated immediately. The item will first appear ‘greyed out’ on the map and it becomes possible for all logged users to vote once and once only about the change. This vote is not an opinion but knowledge sharing. If you know this item, or know that the item does not exist, then we want your knowledge! </p> <p> After a number of votes, the item can then be automatically validated or rejected. In case of dispute (presence of positive and negative votes), a moderator will check it out as soon as possible. We count on you! </p>'
+  ElementFormGeocodingHelp: >-
+    Don’t put any punctuation, the name in all capitals are not accepted either.
+    If the localization doesn’t work (some addresses do fail to be recognized),
+    enter the name of the nearest town or village then click on ‘Localize’ and
+    put the localization point manually. Re-enter the complete address into the
+    text area, skip the ‘Localize’ button and continue to fill in the form.
+  PartnerPageTitle: Partners
+  SeeMoreButtonText: More information
+
+login:
+  _label: Log in
+  login_with: Log in with {provider}
+  register: Need an account? <a href="{url}">Sign up</a>
+
+my_contributions:
+  _label: My contributions
+  action: Action
+  become_owner: Take ownership
+  confirmation: Confirmation
+  confirmation_button: I confirm
+  confirmation_cancel: Cancel
+  confirmation_hint: >-
+    In order to become owner of a file, you need to commit to participate to the
+    structure management
+  date: Date
+  edit: Edit
+  element: File
+  element_contributed: Other files I contributed to
+  history: My contributions history
+  me: Me
+  my_elements: My files
+  my_reports: My reports
+  my_votes: My votes
+  name: Name
+  none: You don't have any contribution yet
+  owner: Owner
+  show: Show
+  status: Status
+  type: Type
+
+my_parameters:
+  _label: My settings
+  input_location: Your address or town
+  range: 'Search range:'
+  unit: kilometres
+
+notifications:
+  import_error:
+    content: >-
+      Hello!</br></br> The import {import} seems to have failed for some reason.
+      <a href='{url}'>Click here</a> to try to figure it out.
+    subject: Errors occured during the import on {appname}
+  import_mapping:
+    content: >-
+      Hello!</br></br> The import {import} has new fields or new categories,
+      which may require your attention ... <a href='{url}'>Click here</a> to
+      display the list of matches.
+    subject: Action required for an import on {appname}
+  moderation:
+    content: >-
+      Hello!</br></br> {count, plural, =1 {# {element_singular} requires } other
+      {# {element_plural} require } } moderation on the map
+      ‘{appname}’</br></br><a href='{url}'>Access the map</a></br></br> To
+      change your notifications preferences, <a href='{edit_url}'>click
+      here</a>.
+    subject: Some items need moderation on {appname}
+
+pending-contributions:
+  _label: My pending contributions
+  approved: This contribution has been approved by the collaborative moderation process
+  empty_section: >-
+    You have no pending contributions. Feel free to <a href="{url}">add a
+    file</a>!
+  form: File
+  rejected: This contribution has been rejected by the collaborative moderation process
+
+project.create:
+  _label: GoGoCarto – Plenty of Maps
+  accept_cgu: I accept the general terms of use
+  cgu: Terms of use
+  contrib: Open to public contribution
+  contribHints:
+    closed: Only administrators can contribute
+    inherit: Use {base_url} default parameters
+    intermediate: >-
+      Al the users can contribute, but the contributions need to be moderated by
+      the admins
+    open: All the users can freely add, modify and delete
+  contribOptions:
+    closed: Closed
+    inherit: Default
+    intermediate: Intermediate
+    open: Open
+  data-error: Oops, this name is too long!
+  domaine_name: Domain name
+  message: Your project is being created, please wait…
+  project_name: Project name
+  title: Create a project
+
+projects:
+  controller:
+    main_categories: Main categories
+    main_category: A main category
+  form:
+    _label: Create a project
+    accept_cgu: I accept the general terms of use
+    cgu: Terms of use
+    contrib: Open to public contribution
+    contribHints:
+      closed: Only administrators can contribute
+      inherit: Use {base_url} default settings
+      intermediate: >-
+        All users can contribute, but contributions must be moderated by
+        administrators
+      open: All users can add / edit / delete freely
+    contribOptions:
+      closed: Closed
+      inherit: Default
+      intermediate: Intermediate
+      open: Open
+    data-error: Oops, this name is too long!
+    domaine_name: Domain name
+    message: Your project is being created, please wait…
+    project_name: Project name
+  initialize:
+    _label: Create an admin account
+    email: Email address
+    plainPassword-1: password
+    plainPassword-2: Re-enter your password
+    username: User name
+  pitch: Create GoGo maps!
+
+reports:
+  _label: My reports
+  date: Date
+  element: Name
+  empty: You haven't reported any errors yet. Could our database be perfect? :P
+  pending_moderation: Waiting for moderation
+  report: Reporting
+  reportValues:
+    v0: The item does not exist any more
+    v1: Information is wrong
+    v2: The item does not respect the charter
+    v3: The item is referenced several times
+  status: Status
+
+vote:
+  admin:
+    negative: the {element} was rejected
+    positive: the {element} has been validated
+  collaborative:
+    negative: the {element} has received enough negative votes, it will be deleted.
+    positive: Congratulations, the {element} has received enough votes to be validated!
+  pending:
+    admin_validated:
+      negative: The changes have been refused
+      positive: The changes have been accepted
+    user_validated:
+      negative: >-
+        The proposed amendment has received sufficient negative votes, it is
+        revoked.
+      positive: Congratulations, the changes have received enough votes to be validated!
+  user_vote_for_him: >-
+    Come on, you weren't going to vote for your own contribution, were you?
+    Leave some for others! </br> Attention clever ones, if you use another of
+    your personal addresses, we will see it too! 
+  vote_added: Thank you for your contribution!
+  vote_modified: 'Thank you {user}: your vote has been edited!'
+
+votes:
+  _label: My Votes
+  date: Date
+  element: Name
+  empty: >-
+    You haven't voted yet! You have to start :) </br>Voting allows collaborative
+    moderation!
+  status: Status
+  vote: Vote

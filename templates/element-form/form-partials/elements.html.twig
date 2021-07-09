@@ -1,0 +1,45 @@
+<div class="input-field select-elements-input {{ field.required|default(false) ? 'required' : '' }}">
+  {% set icon = field.icon|default('fas fa-database') %}
+  <i class="material-icons {{ icon }} prefix"></i>
+
+  <div class="select-wrapper">
+    <select class="select2" id="select-{{field.name}}" {% if field.multiple is defined %}multiple="multiple"{% endif %}>
+      {% for value, name in elementValue %}
+        <option value="{{value}}" selected="selected">{{ name }}</option>
+      {% endfor %}
+    </select>
+    <input type="hidden" name="data-json[{{ field.name }}]" class="select-encoded-result" />
+  </div>
+
+  {% set errorMsg = fields.errorMsg|default('commons.choose_one_option'|trans) %}
+
+  {% if field.label is defined and field.label != "undefined" %}
+    <label>
+      <span class="to-html">{{ field.label|raw }}</span>
+      {% if field.required|default(false) %}<span class="mandatory-asterisk"></span>{% endif %}
+      <span class="error">{{ errorMsg }}</span>
+    </label>
+  {% endif %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    $('#select-{{ field.name }}').select2({
+      language: 'fr',
+      minimumInputLength: 3,
+      placeholder: '{{ field.placeholder is defined ? field.placeholder|raw|striptags : ""}}',
+      ajax: {
+        url: '{{ path("gogo_api_element_names_from_text") }}',
+        data: function (params) { return { text: params.term, excludeId: "{{ element.id|raw }}"  }; },
+        processResults: function (data, params) {
+          result = [];
+          for(var id in data) {
+            result.push({ id: id, text: data[id].name})
+          }
+          return { results: result };
+        },
+        dataType: 'json'
+      }
+    });
+  });
+</script>

@@ -1,0 +1,63 @@
+{% if elementsUserHaveContributed|length > 0 %}
+<h2>{{ 'my_contributions.element_contributed'|trans }}</h2>
+  <table class="bordered">
+    <thead>
+      <tr>
+          <th>{{ 'my_contributions.element'|trans }}</th>
+          <th class="status">{{ 'my_contributions.status'|trans }}</th>
+          <th class="owner">{{ 'my_contributions.owner'|trans }}</th>
+          <th class="action">{{ 'my_contributions.action'|trans }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for element in elementsUserHaveContributed %}
+        <tr>
+          <td>
+            <a href="{{ path('gogo_directory_showElement', {'id': element.id, 'name': element.name}) | replace({"%23":'#'}) }}">{{ element.name }}</a>
+          </td>
+          <td>{{ ('elements.fields.status_choices.' ~ element.status)|trans({}, 'admin') }}</td>
+          <td>
+            {% if element.userOwnerEmail %}
+              {{ element.userOwnerEmail == app.user.email ? 'my_contributions.me'|trans : element.userOwnerEmail }}
+            {% elseif element.isValid %}
+              <a href="#" class="" onclick="openConfModal('{{ element.id }}')">{{ 'my_contributions.become_owner'|trans }}</a>
+            {% endif %}
+          </td>
+          <td>
+            {% if app.user.isAdmin
+                  or app.user.hasRole('ROLE_DIRECTMODERATION_EDIT_OWN_CONTRIB') and (element.isValid or element.isPending) %}
+              <a href="{{ path('gogo_element_edit', {'id': element.id}) }}">
+                <button class="btn-gogo btn-secondary small waves-light waves-effect btn">{{ 'my_contributions.edit'|trans }}</button>
+              </a>
+            {% elseif element.isValid or element.isPending %}
+              <a href="{{ path('gogo_directory_showElement', {'id': element.id, 'name': element.name}) | replace({"%23":'#'}) }}">
+                <button class="btn-gogo btn-primary small waves-light waves-effect btn">{{ 'my_contributions.show'|trans }}</button>
+              </a>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+<!-- Modal Structure -->
+<div id="become-owner-confirmation-modal" class="modal">
+  <div class="modal-content">
+    <h4>{{ 'my_contributions.confirmation'|trans }}</h4>
+    <p>{{ 'my_contributions.confirmation_hint'|trans }}</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" id="become-owner-confirmation-btn" class="modal-action modal-close waves-effect waves-green btn btn-primary">{{ 'my_contributions.confirmation_button'|trans }}</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" style="color: inherit;">{{ 'my_contributions.confirmation_cancel'|trans }}</a>
+  </div>
+</div>
+
+<script>
+  function openConfModal(id) {
+    var url = "{{ path('gogo_user_become_owner', {'id' : 'ID'}) }}";
+    var elementUrl = url.replace('ID', id);
+    $('#become-owner-confirmation-btn').attr('href', elementUrl);
+    $('#become-owner-confirmation-modal').openModal();
+  }
+</script>

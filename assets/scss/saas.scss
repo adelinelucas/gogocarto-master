@@ -1,0 +1,110 @@
+@import 'partials/base';
+
+@import 'sass/home';
+@import 'sass/create';
+
+body.saas-layout
+{
+  height: auto;
+  min-height: 100%;
+  @include flexbox();
+
+  &:not(.home) {
+    background-image: url("../img/background2-small.png");
+    background-attachment: fixed;
+  }  
+}
+
+.btn.btn-primary-neutral:hover {
+  opacity: 1 !important;
+}
+
+#page-container
+{
+  width: 100%;
+
+  &:not(.home) {
+    #page-content {
+      background-color: white;
+      padding-top: 1px;
+      padding-bottom: 1rem;
+      border-radius: 10px;
+    }
+  }
+
+  .btn {
+    border-radius: 10px !important;
+    line-height: 2rem;
+
+    &[type="submit"] {
+      font-size: 1.7rem;
+      font-weight: bold;
+      padding: 0 4rem;
+    }
+  }
+
+  #page-content
+  {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0rem;
+    background-color: transparent;
+
+    h1 {
+      text-align: center;
+      margin-bottom: 35px;
+      font-weight: bold;
+
+      @media screen and (max-width: 900px)
+      {
+        font-size: 3rem;
+      }
+    }
+
+    @media screen and (min-width: 900px)
+    {
+      max-width: 900px;
+      width:80%;
+      &:not(.home) { margin: 60px auto; }
+    }
+
+    section {
+      position: relative;
+      text-align: center;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      @media screen and (max-width: 900px) {
+        border-radius: 0;
+        padding: 0;
+        &.video {
+          padding: 1rem 2rem;
+        }
+        &.projects {
+          padding-top: 3rem;
+          h2 img {
+            display: block;
+            margin: -4rem auto 3rem auto;
+          }
+        }
+      }
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+
+      .overlay-content {
+        position: absolute;
+        top: 40%; left: 0; right: 0;
+        text-align: center;
+
+        .message { margin-bottom: 2.5rem; }
+      }
+
+    }
+  }
+}
+

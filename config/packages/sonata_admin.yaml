@@ -1,0 +1,54 @@
+sonata_admin:
+    security:
+        handler: App\Application\Sonata\UserBundle\Security\CustomRoleSecurityHandler # sonata.admin.security.handler.role
+        information:
+            LIST: LIST
+            CREATE: CREATE
+            EDIT: EDIT
+            DELETE: DELETE
+            EXPORT: EXPORT
+
+    options:
+        confirm_exit: false
+    title: GoGoCarto Admin
+    title_logo: /img/gogo-bot.png
+    templates:
+        # default global templates
+        layout:  "bundles/SonataAdminBundle/layout.html.twig"
+        edit:    "admin/core_custom/base_edit.html.twig"
+    dashboard:
+        blocks:
+            # display a dashboard block
+            - { position: left, type: gogo.block.recent_elements, settings: { title: charts.collabValidated, filterStatus: 2, class: box-success}}
+            - { position: right, type: gogo.block.recent_elements, settings: { title: charts.collabRefused, filterStatus: -3 , class: box-danger}}
+            - { position: top, class: col-md-12, type: gogo.block.service.monitoring}
+            - { position: top, class: col-md-12, type: gogo.block.service.charts}
+        groups:
+            contents:
+                label: dashboard.menu.contents
+                label_catalogue: admin
+                icon: <i class='fa fa-file-text'></i>
+            data:
+                label: dashboard.menu.data
+                label_catalogue: admin
+                icon: <i class='fa fa-database'></i>
+            custom:
+                label: dashboard.menu.custom
+                label_catalogue: admin
+                icon: <i class='fa fa-paint-brush'></i>
+            emailing:
+                label: dashboard.menu.emailing
+                label_catalogue: admin
+                icon: <i class='fa fa-envelope'></i>
+            other_config:
+                label: dashboard.menu.other_config
+                label_catalogue: admin
+                icon: <i class='fa fa-cogs'></i>
+            sonata_user:
+                label: dashboard.menu.users
+                label_catalogue: admin
+                icon: <i class='fa fa-users'></i>
+            saas:
+                label: dashboard.menu.saas
+                label_catalogue: admin
+                icon: <i class='fa fa-cogs saas-menu'></i>

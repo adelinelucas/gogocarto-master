@@ -1,0 +1,25 @@
+{% extends "page-layout.html.twig" %}
+
+{% set pageName = 'error' %}
+{% set pageTitle = 'error.title'|trans %}
+
+{# BODY CONTENT #}
+{% block body_content %}
+  <section>
+  	<h1 style="font-size: 2.5rem;">{{ 'error.header'|trans }}</h1>
+
+    <div>
+      <img src="https://media.giphy.com/media/P8WZZ0NYdbXAA/giphy.gif" width="200" height="200" /></br></br>
+
+      {{ 'error.generic.text'|trans({ email: contact_email }) }}
+      
+      <pre class="gogo-bg-background" style="padding: 1rem 1rem 0 1rem;border-radius: 5px;">
+{{ app.request.uri }}
+{{ status_code }} {{ status_text }}
+{{ exception.message }}
+{{ 'error.generic.file_line'|trans({ file: exception.file, line: exception.line })}}
+      </pre>
+    </div>
+  </section>
+{% endblock %}
+

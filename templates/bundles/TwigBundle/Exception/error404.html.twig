@@ -1,0 +1,15 @@
+{% extends "page-layout.html.twig" %}
+
+{% set pageName = 'error' %}
+{% set pageTitle = 'error.title'|trans %}
+
+{# BODY CONTENT #}
+{% block body_content %}
+
+	<h1 style="font-size: 2.5rem;">{{ 'error.header'|trans }}</h1>
+
+    <div>
+      {{ 'error.404.text'|trans }}
+    </div>
+
+{% endblock %}

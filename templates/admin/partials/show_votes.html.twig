@@ -1,0 +1,14 @@
+{% extends '@SonataAdmin/CRUD/base_show_field.html.twig' %}
+
+{% block field %}
+{% spaceless %}
+
+		{% for key, item in value %}
+			{% if item.value is defined %}
+				{% set labelClass = item.value >= 0 ? 'label-success' : 'label-danger' %}
+				{% include "admin/partials/display_vote_report_item.html.twig" %}
+			{% endif %}
+		{% endfor %}
+
+{% endspaceless %}
+{% endblock %}

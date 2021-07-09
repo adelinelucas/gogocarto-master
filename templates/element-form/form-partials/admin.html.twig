@@ -1,0 +1,43 @@
+{# Admin section #}
+<div id="section_admin">
+	<h2 id="admin-title">{{ "element.form.admin_section._label"|trans }}</h2>
+	
+	{% set emailFieldPresent = false %}
+	{% for field in config.getElementFormFields %}
+		{% if field.type == 'email' %}{% set emailFieldPresent = true %}{% endif %}
+	{% endfor %}
+
+	{% if emailFieldPresent %}
+		<div class="checkbox-container col s12">
+			<input type="checkbox" name="send_mail" id="send_mail" checked/>
+			<label for="send_mail">
+			{{ editMode ?
+				"element.form.admin_section.send_mail.modify"|trans({element: config.elementDisplayNameIndefinite}) :
+				"element.form.admin_section.send_mail.add"|trans({element: config.elementDisplayNameIndefinite})
+			}}
+			</label> 	
+		</div>
+	{% endif %}
+
+	{# if element is PendingModification #}
+	{% if editMode and element.isPending() %}
+	<div class="checkbox-container col s12">
+		<input type="checkbox" name="dont-validate" id="dont-validate"/>
+		<label for="dont-validate">{{ "element.form.admin_section.do_not_validate"|trans({element: config.elementDisplayNameDefinite}) }}</label>
+	</div>
+	{% endif %}
+
+	{% if not editMode %}
+	<div class="checkbox-container col s12">
+		<input type="checkbox" name="recopyInfo" id="recopy-info"/>
+		<label for="recopy-info">{{ "element.form.admin_section.recopy_info"|trans }}</label> 	
+	</div>
+	{% endif %}
+
+	{% if editMode %}
+		<div class="col s12">
+			<input type="text" name="admin-message" id="admin-message" placeholder="{{ 'element.form.admin_section.admin_message'|trans }}"/>
+		</div>
+	{% endif %}
+
+</div>

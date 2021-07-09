@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+{% set config = helper.config %}
+
+<html class="no-js gogo-load-css" lang="fr">
+  <head>
+    <title>{{ config.appName }}{% if pageTitle is defined %}{{ ' - ' ~ pageTitle }}{% endif %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    {# gogocarto contains materializeCss lib, so we load it for all pages #}
+    <link rel="stylesheet" href="{{ asset('css/gogocarto.css?ver=' ~ version) }}">
+
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% include 'custom-head.html.twig' %}
+
+    <meta name="robots" content="index, follow, all" />
+  </head>
+
+  <body class="gogo-theme-{{ config.theme }} {% if pageName is defined %}{{ pageName }}{% endif %} base-layout"> {# use this class to load the css vendors encapsulated inside gogocarto.css #}
+
+    {# Header with navigation links, login button... #}
+    {% if not hideHeader is defined %}
+      {% include 'header.html.twig' %}
+    {% endif %}
+
+    {% block body %}
+    {% endblock %}
+
+    {# Mains javascripts libs #}
+    <script src="{{ asset('js/gogocarto.js?ver=' ~ version) }}"></script>
+
+    <script>gogoLocale = "{{ config.locale }}"</script>
+    
+    {# Block to add custom javascript to each page #}
+    {% block javascripts %}
+    {% endblock %}
+
+    {% block modals %}
+    {% endblock %}
+  </body>
+</html>
+

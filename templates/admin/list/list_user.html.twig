@@ -1,0 +1,7 @@
+{% extends "admin/list/base_list_custom_batch.html.twig" %}
+{% trans_default_domain 'admin' %}
+
+{% block list_header %}
+  <div><a class="btn btn-primary btn-sm pull-right" style="margin: 10px;"
+          href={{ path('gogo_bulk_actions_update_gamification') }}>{{ 'bulk.update_gamification'|trans }}</a></div>
+{% endblock %}

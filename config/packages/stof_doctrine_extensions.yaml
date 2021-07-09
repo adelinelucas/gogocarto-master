@@ -1,0 +1,18 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/StofDoctrineExtensionsBundle/index.html
+# See the official DoctrineExtensions documentation for more details: https://github.com/Atlantic18/DoctrineExtensions/tree/master/doc/
+stof_doctrine_extensions:
+    default_locale: fr
+    mongodb:
+        default:
+            sortable: true
+            loggable: true
+            sluggable: true
+            timestampable: true
+
+services:
+  gedmo.listener.sortable:
+    class: Gedmo\Sortable\SortableListener
+    calls:
+        - [setAnnotationReader, ['@annotation_reader']]
+    tags:
+        - { name: doctrine.event_subscriber, connection: default }

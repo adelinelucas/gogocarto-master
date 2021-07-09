@@ -1,0 +1,79 @@
+/*
+* @Author: Sebastian Castro
+* @Date:   2017-04-03 13:36:02
+* @Last Modified by:   Sebastian Castro
+* @Last Modified time: 2018-03-18 13:46:56
+*/
+#page-content.register
+{
+  @media #{$small-only} { padding-top: 10px; }
+  max-width: 600px !important;
+  background-color: transparent !important;
+
+  .form-actions {
+    text-align: center;
+    margin-top: 1rem;
+    height: 2rem;
+    @media #{$medium-and-up} { margin-top: 2rem; }
+    .btn { width: 100%; }
+  }
+
+  h2.optional {
+    margin: 0;
+  }
+}
+
+form.gogo_user_profile, form.fos_user_registration_register
+{
+  #input-range {
+    box-shadow: none !important;
+    border: 0 !important;
+  }
+
+  .range-field {
+    margin-left: 3rem;
+  }
+
+  .range-icon-prefix {
+    float: left;
+    width: 3rem;
+    color: #707680;
+    font-size: 2rem;
+    font-size: 24px;
+    padding-left: 4px;
+    padding-top: 4px;
+    line-height: 3rem;
+  }
+
+  .error ul {
+    margin-bottom: 20px;
+    margin-top: 0;
+    li {
+      margin-left: 3rem;
+    }
+  }
+
+  .newsletter-explanation {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-style: italic;
+  }
+
+  #select-newsletterFrequency {
+    padding-left: 3px;
+    label {
+      &:not(:last-child) { margin-right: 40px; }
+      padding-left: 40px;
+      @media #{$small-only} {
+        display: block;
+        margin-bottom: 15px;
+      }
+    }
+  }
+  .divider {
+    border:none;
+  }
+
+  h2 { text-align: center !important; }
+}

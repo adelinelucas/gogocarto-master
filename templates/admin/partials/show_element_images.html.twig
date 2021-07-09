@@ -1,0 +1,18 @@
+{% extends "admin/core_custom/show_choice_base.html.twig" %}
+
+{% block display_value %}
+    {% for key, item in value %}
+      {% set imagePath = item.fileUrl ? item.fileUrl : item.externalImageUrl %}
+      {% if imagePath %}
+        <img src="{{ imagePath }}" class="thumbnail"/>
+      {% endif %}
+    {% endfor %}
+
+    <style>
+      .thumbnail {
+        width: 100px;
+        display: inline-block;
+        margin-right: 10px;
+      }
+    </style>
+{% endblock %}

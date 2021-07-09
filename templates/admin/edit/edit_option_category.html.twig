@@ -1,0 +1,113 @@
+{% extends '@SonataAdmin/CRUD/base_edit.html.twig' %}
+{% trans_default_domain 'admin' %}
+
+{% block title %}
+    {% if admin.id(object) is not null %}
+        {{ "title_edit"|trans({'%name%': admin.toString(object) }, 'SonataAdminBundle') }}
+    {% else %}
+        {{ "title_create"|trans({}, 'SonataAdminBundle') }}
+    {% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+    {% if admin.id(object) is not null %}
+        {% set currNode = object %}
+        {% set isRootCategory = attribute(currNode, "isRootCategory") is defined ? currNode.isRootCategory : false %}
+
+        <li class="active"><a href="#">{{ currNode.name }}</a></li>
+        {% for i in 0..3 if not isRootCategory %}
+            {% set currNode = currNode.parent %}
+            {% set is_category = attribute(currNode, "isRootCategory") is defined %}
+            {% set route_name = is_category ? 'admin_app_category_edit' : 'admin_app_option_edit' %}
+            <li><a href={{ path(route_name, { id: currNode.id }) }}>{{ currNode.name }}</a></li>
+            {% set isRootCategory = is_category ? currNode.isRootCategory : false %}
+        {% endfor %}
+        <li><a href={{ admin.generateUrl('list') }}>{{ 'categories.list.title'|trans }}</a></li>
+
+    {% endif %}
+
+    <style>
+        .breadcrumb>li {
+            float: right;
+        }
+        .breadcrumb>li+li:before { content: ""; padding: 0;}
+        .breadcrumb>li+li:after {
+            padding: 0 5px;
+            color: #ccc;
+            content: "/\00a0";
+        }
+    </style>
+{% endblock %}
+
+{% block form %}
+    {# If Create, don't display sub options and sub categories creation #}
+    {% if admin.id(object) is null %}
+        <style>
+            .sub-categories-container, .sub-options-container { display: none; }
+        </style>
+    {% endif %}
+    <style>
+        .sonata-collection-row:not(:first-child) .form-group label { display: none; }
+        .sonata-collection-row .sonata-ba-field > div:first-child { display: flex; }
+        .sonata-collection-row .sonata-ba-field .form-group { margin-right: 10px; }
+        .sonata-collection-row .sp-replacer { order: -1; }
+        .sonata-collection-row .input-group .input-group-addon {
+            width: 40px;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sonata-collection-row .sonata-ba-field .form-group:nth-child(2) { width: 60px; }
+        .sonata-collection-row .sonata-ba-field .form-group:nth-child(3) .input-container { margin-left: 8px; }
+        .sonata-collection-row .sonata-ba-field .form-group:nth-child(3) .gogo-color-picker { margin-left: -15px; width: 120%; }
+        .sonata-collection-row .sonata-ba-field .form-group:last-child { width: 120px; }
+    </style>
+    {{ parent() }}
+{% endblock %}
+
+{% block sonata_form_actions %}
+    {% if app.request.isxmlhttprequest %}
+        {% if admin.id(object) is not null %}
+            <button type="submit" class="btn btn-success" name="btn_update"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_update'|trans({}, 'SonataAdminBundle') }}</button>
+        {% else %}
+            <button type="submit" class="btn btn-success" name="btn_create"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ 'btn_create'|trans({}, 'SonataAdminBundle') }}</button>
+        {% endif %}
+    {% else %}
+        {% if admin.supportsPreviewMode %}
+            <button class="btn btn-info persist-preview" name="btn_preview" type="submit">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                {{ 'btn_preview'|trans({}, 'SonataAdminBundle') }}
+            </button>
+        {% endif %}
+        {% if admin.id(object) is not null %}
+            <button type="submit" class="btn btn-success" name="btn_update_and_edit"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_update_and_edit_again'|trans({}, 'SonataAdminBundle') }}</button>
+
+            <a href="{{ admin.generateUrl('list') }}" class="btn btn-primary" title="{{ 'options.fields.return_to_list'|trans }}">
+               <i class="fa fa-list" aria-hidden="true"></i>
+                 {{ 'options.fields.return_to_list'|trans }}
+            </a>
+
+            {% if admin.hasroute('delete') and admin.isGranted('DELETE', object) %}
+                {{ 'delete_or'|trans({}, 'SonataAdminBundle') }}
+                <a class="btn btn-danger" href="{{ admin.generateObjectUrl('delete', object) }}"><i class="fa fa-minus-circle" aria-hidden="true"></i> {{ 'link_delete'|trans({}, 'SonataAdminBundle') }}</a>
+            {% endif %}
+        {% else %}
+            {% if admin.hasroute('edit') and admin.isGranted('EDIT') %}
+                <button class="btn btn-success" type="submit" name="btn_create_and_edit"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_create_and_edit_again'|trans({}, 'SonataAdminBundle') }}</button>
+            {% endif %}
+
+            <a href="{{ admin.generateUrl('list') }}" class="btn btn-primary" title="{{ 'options.fields.return_to_list'|trans }}">
+               <i class="fa fa-list" aria-hidden="true"></i>
+                 {{ 'options.fields.return_to_list'|trans }}
+            </a>
+
+            <button class="btn btn-success" type="submit" name="btn_create_and_create"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ 'btn_create_and_create_a_new_one'|trans({}, 'SonataAdminBundle') }}</button>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+
+
+
+

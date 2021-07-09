@@ -1,0 +1,30 @@
+.daterangepicker {
+    select { display: inline-block; }
+    .prev, .next {
+        background: none;
+    }
+    th, td {
+        padding: 3px;
+    }
+    th {
+        margin-bottom: 5px;
+    }
+    .drp-buttons .btn {
+        margin-left: 8px;
+        font-size: 1rem;
+        font-weight: bold;
+        padding: 0 1rem;
+        height: 30px;
+        line-height: 30px;
+    }
+    .calendar-time {
+        margin: .5rem auto;
+        select {
+            font-size: 1rem;
+            height: 2rem;
+        }
+    }
+    select.monthselect, select.yearselect {
+        font-size: 1rem;
+    }
+}

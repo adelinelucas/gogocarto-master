@@ -1,0 +1,163 @@
+{% extends sonata_block.templates.block_base %}
+{% trans_default_domain 'admin' %}
+
+{% block block %}
+		{% if messages|length %}
+		<div class="sonata-block-logs box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">{{ 'monitoring.title'|trans }}</h3>
+        </div>
+
+        <div class="box-body" style="max-height: 500px; overflow: auto">
+        	{% include 'admin/core_custom/custom-fields/display-logs.html.twig' with { logs: messages, dismissLog: is_granted('ROLE_SUPER_ADMIN') } %}
+        </div>
+
+        {% if messages|length > 4 and is_granted('ROLE_SUPER_ADMIN') %}
+          <div class="box-footer">
+             <a href="{{ path('gogo_api_message_hide_all') }}" class="btn btn-default btn-block"><i class="fa fa-list"></i> {{ 'monitoring.delete'|trans }}</a>
+          </div>
+        {% endif %}
+    </div>
+		{% endif %}
+
+		{% if errors|length and is_granted('ROLE_ADMIN') %}
+		<div class="sonata-block-logs box box-danger">
+        <div class="box-header with-border">
+            <h3 class="box-title">{{ 'monitoring.error'|trans }}</h3>
+        </div>
+
+        <div class="box-body" style="max-height: 500px; overflow: auto">
+        	{% include 'admin/core_custom/custom-fields/display-logs.html.twig' with { logs: errors, dismissLog: true } %}
+
+        </div>
+
+        {% if errors|length > 4 and is_granted('ROLE_ADMIN')%}
+        	<div class="box-footer">
+             <a href="{{ path('gogo_api_log_hide_all') }}" class="btn btn-default btn-block"><i class="fa fa-list"></i> {{ 'monitoring.delete'|trans }}</a>
+        	</div>
+        {% endif %}
+    </div>
+		{% endif %}
+
+    {% if is_granted('ROLE_ADMIN_ELEMENTS_LIST') %}
+  	<div class="row">
+		<div class="col-xs-6 col-md-3">
+			<!-- small box -->
+			<div class="small-box bg-green">
+				<div class="inner">
+					{% set externalCount = allVisibleCount - visibleNonImportedCount %}
+					<h3>
+						{{ visibleNonImportedCount }}
+						{% if externalCount > 0 %} + {{ externalCount}}<span style="font-size:1.3rem">externes</span>{% endif %}
+					</h3>
+					<p>{{ 'monitoring.all_elements'|trans }}</p>
+				</div>
+				<div class="icon">
+					<i class="fa fa-map-marker"></i>
+				</div>
+				<a href="{{ path('admin_app_element_list')}}?filter[valide][value]=1" class="small-box-footer">
+					{{ 'monitoring.display_all'|trans }} <i class="fa fa-arrow-circle-right"></i>
+				</a>
+			</div>
+		</div>
+
+        <div class="col-xs-6 col-md-3">
+      			<!-- small box -->
+  			    <div class="small-box bg-red">
+  			        <div class="inner">
+  			            <h3>{{ moderationNeededCount }}</h3>
+  			            <p>{{ 'monitoring.moderationNeeded'|trans }}</p>
+  			        </div>
+  			        <div class="icon">
+  			            <i class="fa fa-wrench"></i>
+  			        </div>
+  			        <a href="{{ path('admin_app_element_list') }}?filter[moderationNeeded][value]=1" class="small-box-footer">
+  			            {{ 'monitoring.display_all'|trans }} <i class="fa fa-arrow-circle-right"></i>
+  			        </a>
+  			    </div>
+  		  </div>
+
+		<div class="col-xs-6 col-md-3">
+			<!-- small box -->
+			<div class="small-box bg-yellow">
+				<div class="inner">
+					<h3>{{ duplicatesCount }}</h3>
+					<p>{{ 'monitoring.duplicates'|trans }}</p>
+				</div>
+				<div class="icon">
+					<i class="fa fa-code-fork"></i>
+				</div>
+				{% if duplicatesCount > 0 %}
+					<a href="{{ path('gogo_duplicates_index') }}" class="small-box-footer">
+						{{ 'monitoring.manageDuplicates'|trans }} <i class="fa fa-arrow-circle-right"></i>
+					</a>
+				{% else %}
+					<a href="{{ path('gogo_core_bundle_config_duplicates_admin_classname_list') }}" class="small-box-footer">
+						{{ 'monitoring.detectDuplicates'|trans }} <i class="fa fa-arrow-circle-right"></i>
+					</a>					
+				{% endif %}
+			</div>
+		</div>
+
+
+        <div class="col-xs-6 col-md-3">
+			<!-- small box -->
+			<div class="small-box" style="background-color: #9E9E9E;color: #ffffff;">
+				<div class="inner">
+					<h3>{{ pendingCount }}</h3>
+					<p>{{ 'monitoring.pending'|trans }}</p>
+				</div>
+				<div class="icon">
+					<i class="fa fa-exclamation-triangle"></i>
+				</div>
+				<a href="{{ path('admin_app_element_list') }}?filter[pending][value]=1" class="small-box-footer">
+					{{ 'monitoring.display'|trans }} <i class="fa fa-arrow-circle-right"></i>
+				</a>
+			</div>
+		</div>
+
+
+        
+		
+		  </div>
+		  <div class="row">
+		  	<div class="col-xs-6 col-md-3 col-md-offset-3">
+    			<!-- small box -->
+			    <div class="small-box bg-purple">
+			        <div class="inner">
+		            <h3>
+		            	{{ activeUsersCount }}
+		            </h3>
+		            <p>{{ 'monitoring.users'|trans }}</p>
+			        </div>
+			        <div class="icon">
+			            <i class="fa fa-user-circle"></i>
+			        </div>
+			        <a href="{{ path('admin_app_user_list')}}?filters=reset" class="small-box-footer">
+			            {{ 'monitoring.display'|trans }} <i class="fa fa-arrow-circle-right"></i>
+			        </a>
+			    </div>
+		  	</div>
+
+		  	<div class="col-xs-6 col-md-3">
+    			<!-- small box -->
+			    <div class="small-box bg-purple">
+			        <div class="inner">
+		            <h3>
+		            	{{ activeUsersNewsletterCount }}
+		            </h3>
+		            <p>{{ 'monitoring.activeUsersNewsletter'|trans }}</p>
+			        </div>
+			        <div class="icon">
+			            <i class="fa fa-envelope"></i>
+			        </div>
+			        <a href="{{ path('admin_app_user_list')}}?filter[newsletterFrequency][value]=1" class="small-box-footer">
+			            {{ 'monitoring.display'|trans }} <i class="fa fa-arrow-circle-right"></i>
+			        </a>
+			    </div>
+		  	</div>
+
+		  </div>
+      {% endif %}
+
+{% endblock %}

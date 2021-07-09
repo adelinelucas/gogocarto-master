@@ -1,0 +1,26 @@
+<div class="input-field select-input {{ field.required|default(false) ? 'required' : '' }}">
+  {% if field.icon is defined %}
+    <i class="material-icons {{ field.icon }} prefix"></i>
+  {% endif %}
+
+  <select name="data[{{ field.name }}]" {% if field.multiple is defined %}multiple{% endif %}>
+    {% if field.placeholder is defined %}
+      <option value="" disabled selected>{{ field.placeholder|raw }}</option>
+    {% else %}
+      {# Use label as placeholder, so the select input looks the same than the text input #}
+      <option value="" disabled selected class="to-html">{{ field.label|raw }}</option>
+    {% endif %}
+
+    {% for option in field.values %}
+      <option value="{{ option.value }}"
+        {# or not elementValue and option.selected is defined and not field.placeholder is defined #}
+        {% if elementValue == option.value %}selected{% endif %}>{{ option.label|raw }}</option>
+    {% endfor %}
+  </select>
+
+  {% set errorMsg = fields.errorMsg|default('commons.choose_one_option'|trans) %}
+
+  {% if field.label is defined and field.label != "undefined" %}
+    <label><span class="to-html">{{ field.label|raw }}</span>{% if field.required|default(false) %}<span class="mandatory-asterisk"></span>{% endif %}<span class="error">{{ errorMsg }}</span></label>
+  {% endif %}
+</div>

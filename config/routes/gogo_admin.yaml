@@ -1,0 +1,67 @@
+gogo_mail_draft_automated:
+    path: /test-emails/automated/{mailType}
+    defaults: { _controller: App\Controller\MailTestController::draftAutomatedAction }
+
+gogo_mail_send_test_automated:
+    path: /test-emails/automated/send/{mailType}
+    defaults: { _controller: App\Controller\MailTestController::sentTestAutomatedAction }
+
+gogo_core_help:
+    path: /help
+    defaults: { _controller: App\Controller\CoreController::helpAction }
+
+# BULK ACTIONS
+gogo_bulk_actions_index:
+    path: /admin/bulkActions/index
+    defaults: { _controller: App\Controller\Admin\BulkActions\BulkCoreController::indexAction }
+
+gogo_bulk_actions_delete_element_reported:
+    path: /admin/bulkActions/deleteElementReportedAsNoMoreExisting
+    defaults: { _controller: App\Controller\Admin\BulkActions\ModerationActionsController::deleteElementReportedAsNoMoreExistingAction }
+
+gogo_bulk_actions_update_gamification:
+    path: /admin/bulkActions/updateGamification
+    defaults: { _controller: App\Controller\Admin\BulkActions\DataUpdateActionsController::updateGamificationAction }
+
+gogo_bulk_actions_detect_duplicates:
+    path: /admin/bulkActions/detectDuplicates
+    defaults: { _controller: App\Controller\Admin\BulkActions\DuplicatesDetectionController::detectDuplicatesAction }
+
+# DUPLICATES
+gogo_duplicates_index:
+    path: /duplicates
+    defaults: { _controller: App\Controller\DuplicatesManagementController::indexAction }
+
+gogo_merge_element:
+    path: /duplicates/merge
+    defaults: { _controller: App\Controller\DuplicatesManagementController::mergeDuplicateAction }
+    requirements:
+        methods: POST
+        
+gogo_mark_as_non_duplicate:
+    path: /duplicates/mark-as-non-duplicate
+    defaults: { _controller: App\Controller\DuplicatesManagementController::markAsNonDuplicateAction }
+    requirements:
+        methods: POST
+
+# IMPORT
+gogo_element_import_available_options:
+    path:     /admin/import/available-options
+    defaults: { _controller: App\Controller\ImportController::availableOptionsAction }
+
+gogo_import_state:
+    path:     /admin/import/{id}/state
+    defaults: { _controller: App\Controller\ImportController::currStateAction }
+    requirements:
+        methods: GET
+
+gogo_element_generate:
+    path:     /generate/{nombre}/{generateVotes}
+    controller: App\Controller\ImportController::generateRandomAction
+    defaults:
+        nombre: '1'
+        generateVotes: '0'
+
+gogo_element_test_export:
+    path: /elements/{id}/test-export
+    controller: App\Controller\ImportController::testElementExportAction

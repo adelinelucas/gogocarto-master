@@ -1,0 +1,39 @@
+/web/css/*
+/web/js/*
+/web/sw.js
+/node_modules/
+/npm-debug.log
+/TODO
+.sass-cache
+*.DS_Store
+ssh_password
+/web/uploads/**
+!/web/uploads/**/.gitkeep
+*.csv
+*~
+.idea
+/web/matomo/
+docker-compose.local.yml
+/custom/
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/web/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php_cs
+/.php_cs.cache
+###< friendsofphp/php-cs-fixer ###
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/web/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###

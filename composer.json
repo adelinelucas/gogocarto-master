@@ -1,0 +1,109 @@
+{
+    "name": "pixelhumain/gogocarto",
+    "description": "Create friendly collaborative maps",
+    "license": "AGPL-3",
+    "type": "project",
+    "require": {
+        "php": "^7.3",
+        "alcaeus/mongo-php-adapter": "^1.1",
+        "doctrine/data-fixtures": "^1.4",
+        "doctrine/doctrine-bundle": "2.0.7",
+        "doctrine/doctrine-cache-bundle": "^1.4",
+        "doctrine/mongodb-odm": "^1.3.6@dev",
+        "doctrine/mongodb-odm-bundle": "^3.6.1",
+        "friendsofsymfony/user-bundle": "^2.1",
+        "geocoder-php/google-maps-provider": "^4.4",
+        "geocoder-php/mapbox-provider": "^1.3",
+        "geocoder-php/nominatim-provider": "^5.4",
+        "guzzlehttp/guzzle": "^6.0",
+        "hwi/oauth-bundle": "^0.6",
+        "intervention/image": "^2.4",
+        "jms/serializer-bundle": "^2.4",
+        "joshtronic/php-loremipsum": "^1.0",
+        "knplabs/knp-menu": "~2.3",
+        "knplabs/knp-menu-bundle": "^2.2",
+        "ob/highcharts-bundle": "^1.6",
+        "ozdemirburak/iris": "^1.2",
+        "pear/http_request2": "^2.3",
+        "php-http/httplug-bundle": "^1.15",
+        "pixassociates/sortable-behavior-bundle": "^1.2",
+        "sensio/framework-extra-bundle": "^5.5",
+        "sentry/sentry-symfony": "^3.4",
+        "sonata-project/admin-bundle": "^3.5",
+        "sonata-project/block-bundle": "^3.11",
+        "sonata-project/doctrine-mongodb-admin-bundle": "^3.3",
+        "sonata-project/easy-extends-bundle": "^2.2",
+        "sonata-project/exporter": "^1.7",
+        "sonata-project/formatter-bundle": "^4.1",
+        "sonata-project/user-bundle": "^4.5",
+        "stof/doctrine-extensions-bundle": "^1.3@dev",
+        "symfony/apache-pack": "^1.0",
+        "symfony/asset": "^4.4",
+        "symfony/console": "^4.4",
+        "symfony/doctrine-bridge": "^4.3",
+        "symfony/flex": "^1.6",
+        "symfony/form": "^4.4",
+        "symfony/framework-bundle": "^4.4",
+        "symfony/mailer": "^4.4",
+        "symfony/monolog-bundle": "^3.5",
+        "symfony/process": "^4.4",
+        "symfony/security-bundle": "^4.4",
+        "symfony/swiftmailer-bundle": "^3.4",
+        "symfony/translation": "4.4.*",
+        "symfony/twig-pack": "^1.0",
+        "symfony/validator": "^4.4",
+        "symfony/webpack-encore-bundle": "^1.8",
+        "symfony/yaml": "^4.4",
+        "twig/twig": "^2.10",
+        "vich/uploader-bundle": "^1.4",
+        "willdurand/geocoder-bundle": "^5.0",
+        "zoonru/services-openstreetmap": "dev-master"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "symfony/debug-pack": "^1.0",
+        "symfony/dotenv": "^4.4",
+        "symfony/profiler-pack": "^1.0"
+    },
+    "repositories": [
+        { "type": "git", "url": "https://github.com/seballot/mongodb-odm.git" },
+        { "type": "git", "url": "https://github.com/zoonru/Services_Openstreetmap.git" }
+    ],
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "auto-scripts": {
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "4.4.*"
+        },
+        "public-dir": "web/"
+    }
+}

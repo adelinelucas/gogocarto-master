@@ -1,0 +1,145 @@
+<input type="hidden" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}"/>
+{# container where the filter bulder will be rendered #}
+<div id="filters-builder-container"></div>
+
+<script src="{{ asset('js/form-builder.min.js') }}" type="text/javascript"></script>
+<link rel="stylesheet" href="{{ asset('fonts/fontawesome-5/css/all.css') }}" />
+
+{% set filtersData = form.vars.sonata_admin.admin.subject.menu.filtersJson|default('[]') %}
+
+<script>
+  var formBuilder;
+  var allFields = "{{ form.vars.attr.dataproperties|raw }}".split(',');
+  var fieldsChoices = { "": ""}
+  for (var i = 0; i < allFields.length; i++) {
+    fieldsChoices[allFields[i]] = allFields[i];
+  }
+  if (!formBuilderInitialized) {
+    formBuilderInitialized = true;
+    jQuery(function($) {
+      var fields = [
+        { label:t('js.filters_builder.taxonomy'), name: "taxonomy", attrs: { type: 'taxonomy' }, icon: '*' },
+        { label:t('js.filters_builder.gogo_date'), name: "gogo_date", attrs: { type: 'gogo_date' }, icon: ' ' },
+        { label:t('js.filters_builder.gogo_number'), name: "gogo_number", attrs: { type: 'gogo_number' }, icon: ' ' },
+];
+
+      var displayFilter = function(fieldData) {
+        result = fieldData.field ? t('js.filters_builder.used_field', {field: fieldData.field})  : t('js.filters_builder.choose_field')
+        return { field: result };
+      }
+      var templates = {
+        taxonomy: function(fieldData) { return { field: t('js.filters_builder.customize_field') }; },
+        gogo_date: displayFilter,
+        gogo_number: displayFilter,
+      };
+      var fieldAttr = { label: t('js.filters_builder.field_name'), options: fieldsChoices}
+      var contractedAttr = { label: t('js.filters_builder.contracted_field'), type: 'checkbox'}
+      var dateViews = { "day": t('js.filters_builder.date_views.day'),
+                        "week": t('js.filters_builder.date_views.week'),
+                        "month": t('js.filters_builder.date_views.month'),
+                        "year": t('js.filters_builder.date_views.year'),
+                        "range": t('js.filters_builder.date_views.range')
+                      }
+
+      var fieldsAttrs = {
+        taxonomy: {},
+        gogo_date: {
+          field: fieldAttr,
+          fieldEnd: { label: t('js.filters_builder.field_end'), options: fieldsChoices},
+          contracted: contractedAttr,
+          multiday: { label: t('js.filters_builder.multiday'), type: 'checkbox' },
+          views: { label: "Hidden Views" },
+          select_views: { label: t('js.filters_builder.select_views'), options: dateViews, multiple: "multiple" },
+          defaultView: { label: t('js.filters_builder.default_view'), options: dateViews },
+        },
+        gogo_number: {
+          field: fieldAttr,
+          contracted: contractedAttr,
+          min: {label: t('js.filters_builder.min'), type: "number", required: "true", value: "0"},
+          max: {label: t('js.filters_builder.max'), type: "number", required: "true", value: "100"},
+          step: {label: t('js.filters_builder.step'), type: "number", required: "true", value: "1"},
+          subtype: {label: t('js.filters_builder.type'), options: {
+            'slider': t('js.filters_builder.options.slider'),
+            'value': t('js.filters_builderoptions.value')
+          }}
+        }
+      };
+
+      formBuilder = $("#filters-builder-container").formBuilder({
+        showActionButtons: false,
+        dataType: "json",
+        fields: fields,
+        templates: templates,
+        // i18n: {
+        //   locale: 'fr-FR',
+        //   location: '{{ asset("assets/js/") }}'
+        // },
+        disableFields: ['hidden', 'file', 'button', 'autocomplete', 'checkbox', 'text', 'select', 'checkbox-group', 'radio-group', 'textarea', 'date', 'number'],
+        controlOrder: ['taxonomy', 'gogo_date', 'gogo_number', 'header', 'paragraph'],
+        disabledAttrs: ['required', 'name', 'access', 'placeholder', 'value', 'className', 'inline', 'toggle', 'description', 'other', 'multiple'],
+        formData: {{ filtersData|json_encode|raw }},
+        roles: { 1: t('js.form_builder.roles.1') },
+        typeUserAttrs: fieldsAttrs
+      });
+
+      $(document).ready(function() {
+        setTimeout(function() {
+          $('.form-field:not(.paragraph-field) .fld-label').each(function() {
+            $(this).text($(this).html())
+          });
+          $('input[type="checkbox"][value="true"]').prop('checked', true);
+
+          $('[name=views]').each(function() {
+            $(this).closest('.form-elements').find('[name=select_views]').val($(this).val().split(' '));
+          })
+        }, 0);
+
+      });
+
+      setInterval(function() {
+        // prevent adding two of those fields
+        $('.input-control[data-type=taxonomy]').toggle($('.taxonomy-field').length == 0);
+
+        $('[name=select_views]:not(.gogo-initialized)').change(function() {
+          $(this).closest('.form-elements').find('[name=views]').val($(this).val().join(' '));
+        })
+        $('[name=select_views').addClass('gogo-initialized')
+
+        var data = formBuilder.actions.getData()
+        $('#{{ form.vars.id }}').val(JSON.stringify(data));
+
+        // Changes icons and icones helpers
+        $('a[type=remove].icon-cancel').removeClass('icon-cancel').addClass('fa fa-trash-alt');
+        $('a[type=copy].icon-copy').attr('title', t('form_builder.copy_icon'));
+        $('a[type=edit].icon-pencil').attr('title', t('form_builder.edit_icon'));
+      }, 300);
+    });
+  }
+
+
+</script>
+
+<style>
+  .fld-views.form-control { height: auto; }
+  .form-wrap.form-builder .frmb .form-elements .false-label:first-child,
+  .form-wrap.form-builder .frmb .form-elements label:first-child {
+    width: 35%;
+  }
+  .form-wrap.form-builder .frmb .form-elements .input-wrap {
+    width: 59%;
+  }
+
+  .taxonomy-field .field-actions .toggle-form.btn, .taxonomy-field .field-actions .copy-button {
+    display: none !important;
+  }
+  .gogo_date-field .views-wrap { display: none; }
+
+  .form-wrap.form-builder .frmb .field-label {
+    color: inherit;
+    font-weight: 600;
+  }
+
+  select[name=select_views] {
+    height: 110px !important;
+  }
+</style>

@@ -1,0 +1,26 @@
+# See the docs at https://github.com/geocoder-php/BazingaGeocoderBundle
+bazinga_geocoder:
+    # The local IP (127.0.0.1) will be replaced by the fake_ip
+    # see https://github.com/geocoder-php/BazingaGeocoderBundle/blob/5.0.0/Resources/doc/index.md#fake-local-ip
+    fake_ip: 123.123.123.123
+    providers:
+        # See https://github.com/geocoder-php/BazingaGeocoderBundle/blob/master/Resources/doc/services.md
+        google_maps:
+            locale: '%locale%'
+            factory: Bazinga\GeocoderBundle\ProviderFactory\GoogleMapsFactory
+            options:
+                # httplug_client: '@httplug.client' # When using HTTPlugBundle
+                # region: 'Sweden'
+                api_key: 'AIzaSyBgah9u8A21CdN6O_fN80Op-4zcLJ0EwXk'
+        mapbox:
+            locale: '%locale%'
+            factory: Bazinga\GeocoderBundle\ProviderFactory\MapboxFactory
+            options:
+                # httplug_client: '@httplug.client' # When using HTTPlugBundle
+                # country: 'France'
+                api_key: 'pk.eyJ1IjoiZ29nb2NhcnRvIiwiYSI6ImNqYnhxeHUxZzJ3cG4zMnIyNmZiajF6dmwifQ.2G5IM4roIgpU_fvPBOpssw'
+        nominatim:
+            locale: '%locale%'
+            factory: Bazinga\GeocoderBundle\ProviderFactory\NominatimFactory
+            options:
+                root_url: 'https://nominatim.openstreetmap.org'

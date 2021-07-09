@@ -1,0 +1,65 @@
+{% extends "page-layout.html.twig" %}
+
+{# BODY CONTENT #}
+{% block body_content %}
+
+  {% block body_user_before_content %}
+  {% endblock %}
+
+  {% if is_user_allowed('add') or is_user_allowed('edit') or is_user_allowed('vote') or is_user_allowed('report') %}
+    <i class="gogo-icon-menu menu-user-button" onclick="showMenu()"></i>
+    <div id="menu-overlay" onclick="hideMenu()"></div>
+
+    <div id="menu-user" class="menu-user side-nav">
+      <ul>
+        <li class="title">{{ 'commons.menu'|trans }}</li>
+
+        <a href="{{ path('gogo_user_profile') }}">
+          <li><i class="gogo-icon-filters-1"></i>{{ "my_parameters._label"|trans }}</li>
+        </a>
+
+        {% if is_user_allowed('add') or is_user_allowed('edit') %}
+          <a href="{{ path('gogo_user_contributions') }}">
+            <li><i class="gogo-icon-edit"></i>{{ "my_contributions._label"|trans }}</li>
+          </a>
+        {% endif %}
+
+        {% if is_user_allowed('vote') %}
+          <a href="{{ path('gogo_user_votes') }}">
+            <li><i class="gogo-icon-vote"></i>{{ 'my_contributions.my_votes'|trans }}</li>
+          </a>
+        {% endif %}
+
+        {% if is_user_allowed('report') %}
+          <a href="{{ path('gogo_user_reports') }}">
+            <li><i class="gogo-icon-exclamation-1"></i>{{ 'my_contributions.my_reports'|trans }}</li>
+          </a>
+        {% endif %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <section>
+    {% block body_user_content %}
+    {% endblock %}
+  </section>
+
+{% endblock %}
+
+{% block page_javascripts %}
+  <script>
+    function showMenu() {
+      $('#menu-user').show();
+      $('#menu-overlay').fadeIn();
+    }
+
+    function hideMenu() {
+      $('#menu-user').hide();
+      $('#menu-overlay').fadeOut();
+    }
+  </script>
+
+  {% block user_page_javascripts %}
+  {% endblock %}
+
+{% endblock %}

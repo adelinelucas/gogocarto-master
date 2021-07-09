@@ -1,0 +1,77 @@
+{% extends "page-layout.html.twig" %}
+
+{% set pageName = 'check-for-duplicates' %}
+{% set pageTitle = 'duplicates.title'|trans %}
+
+{# Stylessheets #}
+{% block page_stylesheets %}
+ 	<link rel="stylesheet" href="{{ asset('css/element-form.css?ver=' ~ version) }}">
+{% endblock %}
+
+{# BODY CONTENT #}
+{% block body_content %}
+
+  {{ form_start(duplicateForm) }}
+
+  <h1>{{ 'duplicates.title'|trans }}</h1>
+
+  <h2>{{ 'duplicates.subtitle'|trans }}</h2>
+
+	<div class="duplicate-list">
+	  {% for key, element in duplicatesElements %}
+
+	  	<div class="element row">
+	  		<div class="col s9 m10">
+			  	{# Name #}
+		  		<div class="name">
+				  {{ element.name | capitalize }} 
+				  {% if element.osmId is defined %}
+				  	<a href={{ config.osm.getFormattedOsmHost ~ element.osmId }} target="_blank">{{ 'duplicates.see_on_map'|trans }}</a>
+				  {% endif %}
+				</div>
+				{# Description #}
+				{% set description = element.description ?? element.data.description ?? null %}
+		  		{% if description %}
+				  <div class="description">{{ description | capitalize }}</div>
+				{% endif %}
+				{# Address #}
+		  		{% if element.address is defined %}
+					{% set address = element.address.streetAddress is defined and element.address.streetAddress ? element.address.streetAddress ~ ', ' : '' %}
+					{% set postalCode = element.address.postalCode is defined ? (element.address.postalCode ~ ' ') : '' %}
+					{% set city = element.address.addressLocality is defined ? element.address.addressLocality : '' %}
+					<div class="address">{{ address ~ postalCode ~ city | capitalize }}</div>
+		  		{% endif %}
+			</div>
+
+			<div class="col s3 m2 right-align">
+				{% if element.osmId is defined %}
+					<button type="submit" name="osm[{{ element.osmId }}]" class="btn-gogo btn-secondary small waves-light waves-effect btn">
+						{{ 'duplicates.duplicated_element'|trans }}
+					</button>
+				{% else %}
+					{% set url = path('gogo_element_edit', {'id': element.id }) %}
+					<a href="{{ url }}"><button type="button" class="btn-gogo btn-secondary small waves-light waves-effect btn">
+						{{ 'duplicates.duplicated_element'|trans }}
+					</button></a>
+				{% endif %}					
+			</div>
+	  	</div>
+
+	  {% endfor %}
+  	</div>	
+
+	<center>
+		<button type="submit" class="btn-gogo btn-primary waves-light waves-effect btn">{{ 'duplicates.new_element'|trans }}</button>
+	</center>
+
+	{{ form_rest(duplicateForm) }}
+
+
+{# Fermeture de la balise <form> du formulaire HTML #}
+{{ form_end(duplicateForm) }}
+
+{% endblock %}
+
+{% block page_javascripts %}
+    <script src="{{ asset('js/element-form.js?ver=' ~ version) }}"></script>
+{% endblock %}

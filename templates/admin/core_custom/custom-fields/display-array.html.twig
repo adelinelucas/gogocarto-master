@@ -1,0 +1,3 @@
+{% for id in form.vars.sonata_admin.admin.subject.idsToIgnore %}
+  {{ id }}{% if not loop.last %}, {% endif %}
+{% endfor %}

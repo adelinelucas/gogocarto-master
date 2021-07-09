@@ -1,0 +1,10 @@
+{
+    "i18n-ally.localesPaths": [
+        "translations"
+    ],
+    "i18n-ally.pathMatcher": "**/*.{locale}.{ext}",
+    "i18n-ally.enabledParsers": ["yaml"],
+    "i18n-ally.sourceLanguage": "fr",
+    "i18n-ally.displayLanguage": "fr",
+    "i18n-ally.keystyle": "nested",    
+}

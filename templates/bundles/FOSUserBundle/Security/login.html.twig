@@ -1,0 +1,16 @@
+{% extends "bundles/FOSUserBundle/layout.html.twig" %}
+
+{% block fos_user_content %}
+
+{% endblock fos_user_content %}
+
+{% block page_javascripts %}    
+    <script>
+        jQuery(document).ready(function()
+        {
+            $("#popup-login").openModal({
+                dismissible: true,
+            });
+        });
+    </script>
+{% endblock page_javascripts %}

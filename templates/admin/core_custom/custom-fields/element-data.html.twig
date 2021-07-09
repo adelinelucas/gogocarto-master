@@ -1,0 +1,75 @@
+{% trans_default_domain 'admin' %}
+
+{% set element = form.vars.sonata_admin.admin.subject %}
+{% set config = form.vars.sonata_admin.admin.config %}
+
+{% if element.isFromOsm %}
+  	<a href={{ element.getOsmUrl(config)  }} target="_blank">{{ 'elements.form.groups.seeOnOSM'|trans }}</a>
+{% endif %}
+
+{% if element.duplicateOf %}
+  	{{ 'elements.form.duplicateOf'|trans }}
+    <a href={{ path('admin_app_element_showEdit', {'id': element.duplicateOf})  }} target="_blank">
+      {{ 'elements.form.seeDuplicate'|trans }}
+    </a>
+{% endif %}
+
+<h4 style="margin-top: 25px;">{{ 'elements.form.groups.customFields'|trans }}</h4>
+<div class="table-responsive no-padding element-data-fields">
+  <table class="table">
+  <tbody>
+    {% for key, value in element.sortedData %}
+      <tr class="sonata-ba-view-container">
+        <th>{{ key }}</th>
+        <td>
+          {% set type = "text" %}
+          {% set readonly = false %}
+          {% if not is_string(value) and not is_numeric(value) %}
+            {% set readonly = true %}
+            {% set value = value|json_encode %}
+          {% endif %}
+          {% if key matches '/^osm_/' %}
+            {% set readonly = true %}
+          {% endif %}
+          <input type="{{ type }}" class="form-control" {{ readonly ? 'readonly="readonly"' : '' }}
+                    name="{{ 'data[' ~ key ~ ']'}}" value="{{ value }}" />
+        </td>
+        <td><i class="btn-remove-field fa fa-times" onclick="$(this).closest('tr').remove()"></i></td>
+      </tr>
+    {% endfor %}
+    <tr class="sonata-ba-view-container" v-for="(field, key) in newFields" :key="key">
+      <th>
+        <input type="text" class="select-field-key" v-model="newFields[key]"/>
+      </th>
+      <td>
+        <input type="text" class="form-control" :name="`data[${field}]`"/>
+      </td>
+      <td><i class="btn-remove-field fa fa-times" onclick="$(this).closest('tr').remove()"></i></td>
+    </tr>
+  </tbody>
+  </table>
+  <button type="button" class="btn btn-add-field btn-default btn-sm" @click="addField()">
+    {{ 'elements.form.addCustomField'|trans }}
+  </button>
+</div>
+<h4>{{ 'elements.form.groups.specialFields'|trans }}</h4>
+
+<style>
+  .element-data-fields th {
+      text-transform: none !important;
+  }
+  .select-field-key {
+      width: 100%;
+  }
+  .btn-add-field {
+    margin: -15px 0 15px 0;
+  }
+  .btn-remove-field {
+    padding-top: 8px;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  var existingProps = {{ form.vars.attr["data-props"]|raw }};
+</script>

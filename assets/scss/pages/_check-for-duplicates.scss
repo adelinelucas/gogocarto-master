@@ -1,0 +1,33 @@
+/*
+* @Author: Sebastian Castro
+* @Date:   2017-05-10 15:43:00
+* @Last Modified by:   Sebastian Castro
+* @Last Modified time: 2017-07-28 16:15:27
+*/
+#page-content.check-for-duplicates
+{
+
+  padding: 1rem 1rem 2rem 1rem;
+
+  @media #{$medium-and-up}
+  {
+    padding: 3rem;
+  }
+
+  .duplicate-list
+  {
+  	margin: 2rem 0;
+  }
+
+  .element
+  {
+  	padding-bottom: 1rem;
+    border-bottom: 1px dashed grey;
+    line-height: 1.5rem;
+
+    .name { font-weight: bold; }
+    .description { font-style: italic; color: #5f5f5f;}
+  }
+
+
+}

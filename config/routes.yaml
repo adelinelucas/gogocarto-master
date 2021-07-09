@@ -1,0 +1,147 @@
+# ------------------------------------------------------
+# OTHERS ROUTES CAN BE FOUND INSIDE routes/gogo_**.yaml
+# ------------------------------------------------------
+gogo_homepage:
+    path:     /
+    defaults: { _controller: App\Controller\CoreController::homeAction }
+
+gogo_homepage_force:
+    path:     /home
+    controller: App\Controller\CoreController::homeAction
+    defaults:
+        force: true
+
+gogo_sitemap:
+    path: /sitemap.{_format}
+    defaults: { _controller: App\Controller\CoreController::siteMapAction, _format: 'xml' }
+
+gogo_sitemap_core:
+    path: /sitemap_core.{_format}
+    defaults: { _controller: App\Controller\CoreController::siteMapCoreAction, _format: 'xml' }
+
+gogo_sitemap_elements:
+    path: /sitemap_elements_{skip}.{_format}
+    defaults: { _controller: App\Controller\CoreController::siteMapElementsAction, _format: 'xml' }
+
+gogo_directory:
+    path:     /annuaire
+    defaults: { _controller: App\Controller\DirectoryController::renderAction, elementId: null }
+
+gogo_directory_showElement:
+    path:     /annuaire#/fiche/element/{id}
+    defaults: { _controller: App\Controller\DirectoryController::renderAction }
+
+gogo_directory_show_element_for_sitemap:
+    path:     /map/{elementId}
+    defaults: { _controller: App\Controller\DirectoryController::renderAction }
+
+gogo_app_shell:
+    path:     /appli
+    defaults: { _controller: App\Controller\DirectoryController::appShell }
+
+gogo_partners:
+    path: /qui-sommes-nous
+    defaults: { _controller: App\Controller\CoreController::partnersAction }
+
+# ELEMENT CRUD
+gogo_element_add:
+    path:     /elements/add
+    defaults: { _controller: App\Controller\ElementFormController::addAction }
+
+gogo_element_edit:
+    path:     /elements/edit/{id}
+    defaults: { _controller: App\Controller\ElementFormController::editAction }
+
+gogo_element_check_duplicate:
+    path:     /elements/check-doublons
+    defaults: { _controller: App\Controller\ElementFormController::checkDuplicatesAction }
+
+# ELEMENT INTERACTIONS
+gogo_vote_for_element:
+    path:     /interact/vote
+    defaults: { _controller: App\Controller\ElementInteractionController::voteAction }
+    requirements:
+        methods: POST
+
+gogo_report_error_for_element:
+    path:     /interact/report
+    defaults: { _controller: App\Controller\ElementInteractionController::reportErrorAction }
+    requirements:
+        methods: POST
+
+gogo_delete_element:
+    path:     /interact/delete
+    defaults: { _controller: App\Controller\ElementInteractionController::deleteAction }
+    requirements:
+        methods: POST
+
+gogo_resolve_reports_element:
+    path:     /interact/resolve-reports
+    defaults: { _controller: App\Controller\ElementInteractionController::resolveReportsAction }
+    requirements:
+        methods: POST
+
+gogo_element_send_mail:
+    path:     /interact/sendMail
+    defaults: { _controller: App\Controller\ElementInteractionController::sendMailAction }
+    requirements:
+        methods: POST
+
+gogo_element_send_edit_link:
+    path:     /interact/sendEditLink/{elementId}
+    defaults: { _controller: App\Controller\ElementInteractionController::sendEditLinkAction }
+    requirements:
+        methods: GET
+
+gogo_element_stamp:
+    path:     /interact/stamp
+    defaults: { _controller: App\Controller\ElementInteractionController::stampAction }
+    requirements:
+        methods: POST
+
+# USERS
+gogo_user_space:
+    path: /user/mon-espace
+    defaults: { _controller: App\Controller\UserController::userSpaceAction }
+
+gogo_user_profile:
+    path: /user/profile
+    defaults: { _controller: App\Controller\UserController::profileAction }
+
+gogo_user_contributions:
+    path: /user/contributions
+    defaults: { _controller: App\Controller\UserController::contributionsAction }
+
+gogo_user_votes:
+    path: /user/votes
+    defaults: { _controller: App\Controller\UserController::votesAction }
+
+gogo_user_reports:
+    path: /user/reports
+    defaults: { _controller: App\Controller\UserController::reportsAction }
+
+gogo_user_become_owner:
+    path: /user/become-owner/{id}
+    defaults: { _controller: App\Controller\UserController::becomeOwnerAction }
+
+# SAAS
+gogo_saas_new_project:
+    path: project/new
+    defaults: { _controller: App\Controller\ProjectController::createAction }
+
+gogo_saas_initialize_project:
+    path: project/initialize
+    defaults: { _controller: App\Controller\ProjectController::initializeAction }
+
+gogo_saas_home:
+    path: projects
+    defaults: { _controller: App\Controller\ProjectController::homeAction }
+
+gogo_project_delete_my_project:
+    path: admin/delete-my-project
+    defaults: { _controller: App\Controller\ProjectController::deleteCurrProjectAction }
+
+# HANDLE BAD URLS
+other:
+    path: /{arg1}/{arg2}/{arg3}/{arg4}/{arg5}/{arg6}
+    defaults: { _controller: App\Controller\CoreController::homeAction, arg1: '', arg2: '', arg3: '', arg4: '', arg5: '', arg6: '' }

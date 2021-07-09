@@ -1,0 +1,32 @@
+{% trans_default_domain 'admin' %}
+
+<script>
+  var url = "{{ path('gogo_api_log_hide', {'id': 'ID'}) }}";
+
+  function hideLog($logId) {
+    $.ajax({
+      method : 'post',
+      url         : url.replace("ID", $logId),
+      complete     : function(data, status, object) {
+        $('.sonata-block-logs').each(function() {
+          if ($(this).find('.alert').length == 0) $(this).hide();
+        })
+
+      },
+    });
+  }
+</script>
+
+{% set logs = logs is defined ? logs : form.vars.sonata_admin.admin.subject.logs %}
+
+{% for log in logs %}
+  <div class="alert alert-{{ log.level }}">
+    {% if dismissLog is defined %}
+      <button type="button" class="close" data-dismiss="alert" aria-label="{{ 'importService.close'|trans }}" onclick="hideLog({{log.id}})"><span aria-hidden="true" style="font-size: 1.6rem">{{ 'importService.dismissLog'|trans }}</span></button>
+    {% endif %}
+    {% if log.displayTimestamp %}<strong>{{ log.createdAt|date('commons.date_time_format'|trans) }}</strong> - {% endif %}
+    {{ log.displayMessage(helper.translator)|raw }}
+  </div>
+{% endfor %}
+
+

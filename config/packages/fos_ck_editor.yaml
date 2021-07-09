@@ -1,0 +1,14 @@
+fos_ck_editor:
+    default_config: full
+    configs:
+        full:
+            toolbar:
+            - [ - , NumberedList, BulletedList, -, Outdent, Indent ]
+            - [ Image, Link, Unlink, Table , Blockquote, HorizontalRule, Iframe ]
+            - -
+            - [ Cut, Copy, Paste, PasteText, PasteFromWord, -, Undo, Redo ]
+            - [ -,Maximize, ShowBlocks, Source ]
+            - /
+            - [ Bold, Italic, Underline, Strike, -, RemoveFormat ]
+            - [ -, Styles,Format,Font,FontSize, TextColor, BGColor]
+            - [ -, JustifyLeft,JustifyCenter,JustifyRight,JustifyBlock]

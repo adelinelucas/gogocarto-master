@@ -1,0 +1,36 @@
+{% extends "user/contributions-layout.html.twig" %}
+{% set pageTitle = 'votes._label'|trans %}
+
+{% block contribution_page %}
+
+  <h1 style="margin-bottom: 3rem;">{{ 'votes._label'|trans }}</h1>
+  {% if votes|length > 0 %}
+    <table class="bordered">
+      <thead>
+        <tr>
+            <th>{{ 'votes.element'|trans }}</th>
+            <th class="vote">{{ 'votes.vote'|trans }}</th>
+            <th class="date">{{ 'votes.date'|trans }}</th>
+            <th class="status">{{ 'votes.status'|trans }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for vote in votes %}
+            <tr class="">
+              <td>
+                <a href="{{ path('gogo_directory_showElement', {'id': vote.element.id, 'name': vote.element.name}) | replace({"%23":'#'}) }}">{{ vote.element.name }}</a>
+              </td>
+              <td>{{ ('elements.fields.voteValues_choices.' ~ vote.value)|trans({}, 'admin') }}</td>
+              <td>{{ vote.createdAt|date('commons.date_format'|trans({}, 'admin'))}}</td>
+              <td>{{ ('elements.fields.status_choices.' ~ vote.element.status)|trans({}, 'admin') }}</td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="empty-secton-message">
+      {{ 'votes.empty'|trans }}
+    </p>
+  {% endif %}
+
+{% endblock %}

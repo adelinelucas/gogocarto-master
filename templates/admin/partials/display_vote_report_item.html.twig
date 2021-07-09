@@ -1,0 +1,32 @@
+{% trans_default_domain 'admin' %}
+
+<div {% if not loop.last and not itemContainer|default(true) %}class="item-container"{% endif %}>
+	<div style="margin-bottom:5px">
+    <span class="label {{ labelClass }}">{{ ('elements.fields.itemValues_choices' ~ item.value)|trans }}</span> 
+    <div style="float:right">{{ item.createdAt|date('commons.date_time_format'|trans)}}</div>
+    {% if smallWidth|default(false) %}
+      </br>
+      <span style="display:block;padding-top: 5px;">
+    {% else %}
+      <span style="margin:0 5px">
+    {% endif %}    
+      Par : <u>{{ item.userEmail ? item.userEmail : 'commons.anonymous'|trans }}</u>
+      <span class="label label-default" style="margin-left:5px">{{ ('elements.fields.userRoles_choices.' ~ item.userRole)|trans({}, 'admin') }}</span> 
+    </span> 
+    {{ item.resolvedMessage }}
+  </div>   	
+	<div>
+    <i>{{ item.comment|capitalize }}</i>	  
+  </div>
+
+</div>
+
+	
+<style>
+.item-container
+{
+	border-bottom: 1px dashed grey;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+</style>

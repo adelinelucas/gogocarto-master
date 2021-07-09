@@ -1,0 +1,11 @@
+{% extends 'admin/edit/edit_configuration.html.twig' %}
+{% trans_default_domain 'admin' %}
+
+{% block other_actions %}
+  <a class="btn btn-primary" href={{ path('gogo_bulk_actions_detect_duplicates') }}>{{ 'config_duplicates.fields.gogo_bulk_actions_detect_duplicates'|trans }}</a>
+  <a class="btn btn-primary" href={{ path('gogo_duplicates_index') }}>{{ 'config_duplicates.fields.gogo_duplicates_index'|trans }}</a>
+{% endblock %}
+
+
+
+

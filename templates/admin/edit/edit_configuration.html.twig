@@ -1,0 +1,16 @@
+{% extends 'admin/core_custom/base_edit.html.twig' %}
+{% trans_default_domain 'admin' %}
+
+{% block actions %}
+{% endblock %}
+
+{% block sonata_form_actions %}
+  {% if admin.hasroute('edit') and admin.isGranted('EDIT') %}
+      <button class="btn btn-success" type="submit" name="btn_update_and_edit"><i class="fa fa-save" aria-hidden="true"></i>{{ 'commons.btn_update_and_edit'|trans }}</button>
+  {% endif %}
+  {% block other_actions %}{% endblock %}
+{% endblock %}
+
+
+
+

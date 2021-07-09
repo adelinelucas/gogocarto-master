@@ -1,0 +1,12 @@
+{% extends "user/contributions-layout.html.twig" %}
+
+{% set pageTitle = "my_contributions._label"|trans %}
+
+{% block contribution_page %}
+  <h1>{{ "my_contributions._label"|trans }}</h1>
+
+  {% include 'user/contributions/elements-owned.html.twig' %}
+  {% include 'user/contributions/elements-contributed.html.twig' %}
+  {% include 'user/contributions/pending-contributions.html.twig' %}
+  {#{% include 'user/contributions/all-contributions.html.twig' %}#}
+{% endblock %}

@@ -1,0 +1,154 @@
+@import 'partials/base';
+
+body.gogo-load-css
+{
+  height: auto;
+  min-height: 100%;
+  @include flexbox();
+  @include flex-direction(column);
+}
+
+.gogo-load-css
+{
+
+  @import 'partials/header';
+  @import 'partials/flash-messages';
+
+  @import 'pages/partner';
+  @import 'pages/contributor-login';
+  @import 'pages/element-form';
+  @import 'pages/check-for-duplicates';
+  @import 'pages/register';
+  @import 'pages/error';
+  @import 'pages/directory';
+  @import 'pages/user/user-contributions';
+  @import 'pages/user/user-menu';
+  @import 'pages/user/user-profile';
+  @import 'pages/user/user-space';
+
+  @import 'components/wysiwyg-content';
+  @import 'components/slider';
+  
+  header
+  {
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+
+  #page-container
+  {
+    &.with-sidebar {
+      @media only screen and (min-width : 900px) and (max-width : 1400px) {
+        padding-left: 215px;
+      }
+    }
+  }
+
+  #page-content
+  {
+  	position:relative;
+    margin-top: 0;
+  	margin-left: auto;
+    margin-right: auto;
+  	width:100%;
+    padding: 0rem;
+
+    @media screen and (min-width: 900px)
+  	{
+  	   margin-top: 30px;
+  	   max-width: 900px;
+  	   width:80%;
+  	}
+
+    &.with-sidebar {
+      @media only screen and (min-width : 900px) and (max-width : 1400px) {
+        width: auto;
+        margin: 0 20px;
+        margin-top: 30px;
+      }
+    }
+  }
+
+  section
+  {
+    padding: 1rem;
+    background-color : transparent;
+
+    @media screen and (min-width: 600px)
+    {
+      padding: 2rem 3.5rem 2rem 2.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  #page-content.with-section {
+    background-color: transparent;
+    section {
+      border-radius: 5px;
+    }
+  }
+
+  .divider
+  {
+      overflow: hidden;
+      border-bottom: 2px dashed;
+      overflow: hidden;
+      background-color: transparent;
+      margin-bottom: 1rem;
+
+      @media screen and (min-width: 600px)
+      {
+        display:none,
+        // height: 1rem;
+        // border-bottom: none;
+        // margin: 0
+      }
+  }
+
+  // ---------------------------------------
+  //          MISE EN PAGE GENERALE
+  // ---------------------------------------
+  h1
+  {
+    font-size: 2.5rem;
+    text-align: center;
+    padding-top: .5rem;
+    margin-top: 0;
+
+     @media screen and (min-width: 600px) { font-size: 3.5rem; }
+  }
+
+  h2
+  {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 0.5rem 0 1.3rem 0;
+    // text-transform: uppercase;
+    text-align: center;
+  }
+
+
+  h2.error, h1.error
+  {
+    font-weight: normal;
+  }
+
+  h2.no-margin-bottom
+  {
+    margin-bottom: 0;
+  }
+
+  .btn-gogo
+  {
+    &.small
+    {
+      font-size: .85rem;
+      line-height: 2rem;
+      height: 2rem;
+      padding: 0 15px;
+    }
+
+    height: auto
+  }
+}

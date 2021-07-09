@@ -1,0 +1,141 @@
+{% extends "saas/sass-layout.html.twig" %}
+
+{% set pageName = 'project-create' %}
+
+{% block body %}
+  <h1><img src="{{ asset('img/plane.png') }}"/>{{ 'projects.form._label'|trans }}</h1>
+
+  <div class="top-form-message">
+    {{ config.saas.newProjectInstructions|raw }}
+  </div>
+
+  <section class="project-create">
+
+    {{ form_start(form, {'id': 'project-form'}) }}
+
+    <div class="row">
+      <h2>{{ 'projects.form.project_name'|trans }}</h2>
+      {# NAME #}
+      {{ form_errors(form.name) }}
+      <div class="input-field col s12">
+        <i class="material-icons gogo-icon-description prefix"></i>
+        {{ form_widget(form.name, {'id': 'input-name',
+                                   'attr': {'class': 'validate required', 'length':'80'}}) }}
+        <label for="input-name" class="gogo-form-label" data-error="{{ 'projects.form.data-error'|trans }}">{{ 'projects.form.project_name'|trans }}</label>
+      </div>
+
+      {# DOMAIN #}
+      {{ form_errors(form.domainName, {'class': 'form-error'}) }}
+      <div class="input-field col s12">
+        <i class="material-icons gogo-icon-internet prefix"></i>
+        {{ form_widget(form.domainName, {'id': 'input-domain',
+                                   'attr': {'class': 'validate required', 'length':'80'}}) }}
+        <label for="input-domain" class="gogo-form-label" data-error="">{{ 'projects.form.domaine_name'|trans }} <i>( ****.{{ base_url }} )</i></label>
+      </div>
+
+      <div class="col s12 contrib-config-section">
+        {# CONTRIBUTION_CONFIG #}
+        <h2>{{ 'projects.form.contrib'|trans }}</h2>
+        <p id="please-choose-contribution" class="error-label" style="display:none">{{ 'commons.choose_one_option'|trans }}</p>
+        {% set contribOptions = [
+            ['open', 'projects.form.contribOptions.open'|trans, 'projects.form.contribHints.open'|trans],
+            ['intermediate', 'projects.form.contribOptions.intermediate'|trans, 'projects.form.contribHints.intermediate'|trans],
+            ['closed', 'projects.form.contribOptions.closed'|trans, 'projects.form.contribHints.closed'|trans],
+            ['inherit', 'projects.form.contribOptions.inherit'|trans, 'projects.form.contribHints.inherit'|trans({base_url: base_url})]
+          ]
+        %}
+        {% for option in contribOptions %}
+           <p>
+            <input name="contrib" type="radio" id="contribOption{{ loop.index }}" value="{{option[0]}}" />
+            <label class="contrib-option" for="contribOption{{ loop.index }}">{{ option[1] }} <span class="hint">- {{ option[2] }}</span></label>
+          </p>
+        {% endfor %}
+      </div>
+
+      {% if config.saas.endUserLicenceAgreement %}
+        <div class="col s12 cgu-config-section">
+          {# CONTRIBUTION_CONFIG #}
+          <h2>{{ 'projects.form.cgu'|trans }}</h2>
+          <div class="cgu-content">
+            {{ config.saas.endUserLicenceAgreement|raw}}
+          </div>
+          <p class="cgu-checkbox-container">
+            <input name="accept-cgu" type="checkbox" id="accept-cgu" class="required" />
+            <label for="accept-cgu">{{ 'projects.form.accept_cgu'|trans }}</label>
+          </p>
+        </div>
+      {% endif %}
+    </div>
+
+    <button class="btn btn-primary-neutral" type="submit" onclick="performSubmit(event);">{{ 'action.create'|trans }}</button>
+
+    <div class="overlay">
+      <div class="overlay-content">
+        <div class="message">{{ 'projects.form.message'|trans }}</div>
+        {% include 'directory/components/spinner-loader.html.twig' with {'id': 'create-project-loader' }%}
+      </div>
+    </div>
+
+    {{ form_rest(form) }}
+
+    {{ form_end(form) }}
+  </section>
+{% endblock %}
+
+{% block javascripts %}
+  <script>
+    var timer;
+    $('#input-domain').on("keyup", function(e) {
+      clearTimeout(timer);
+      timer = setTimeout(function() { slugifyDomain(); }, 200);
+    });
+
+    function performSubmit(e) {
+      $('.required').each(function() {
+        if (!$(this).val()) $(this).addClass('error');
+        else $(this).removeClass('error');
+      });
+
+      $('label[for="accept-cgu"]').toggleClass('error-label', !$('#accept-cgu').is(':checked'));
+
+      if ($('input[name=contrib]:checked').length == 0) {
+        $('#please-choose-contribution').show();
+        e.preventDefault();
+      } else if ($('.error').length == 0) {
+        showWaitingMessage();
+        slugifyDomain();
+        $('form').submit();
+      }
+    }
+
+    function showWaitingMessage() {
+      $("button[type=submit]").prop('disabled', true);
+      $('.overlay').show();
+    }
+
+    function slugifyDomain() { $('#input-domain').val(slugify($('#input-domain').val())); }
+
+    function slugify(text)
+    {
+      if (!text) return '';
+      var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+      var to   = "aaaaaeeeeeiiiiooooouuuunc------"; 
+      for (var i = 0, len = from.length; i < len; i++)
+      {
+        text = text.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+      }
+      var result = text
+          .toString()                     // Cast to string
+          .toLowerCase()                  // Convert the string to lowercase letters
+          .trim()                         // Remove whitespace from both sides of a string
+          .replace(/\s+/g, '-')           // Replace spaces with -
+          .replace(/&/g, 'et')            // Replace & with 'and'
+          .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+          .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+          .replace(/^-|-$/g, '');        // Remove beginning and ending -
+       if ($.inArray(result, ['dev', 'test', 'demo', 'carto', 'carto-dev', 'www', 'gogocarto_default']) !== -1) result += "_1";
+       result = result.slice(0,30); // limit number of characters
+       return result;
+    }
+  </script>
+{% endblock %}

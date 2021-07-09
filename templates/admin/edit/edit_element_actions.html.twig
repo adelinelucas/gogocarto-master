@@ -1,0 +1,86 @@
+{% trans_default_domain 'admin' %}
+
+<div class="sonata-ba-form-actions well well-small form-actions fixed" style="line-height: 4rem;">
+    {% block sonata_form_actions %}                    
+           
+            {% if admin.id(object) is not null %}
+                
+                <div style="position:relative;margin-top: -10px;">
+                    {% if not object.isPending %}
+                        <span style="width:30%; margin-right: 15px;">
+                            <input type="checkbox" name="send_mail" id="send_mail" checked/>
+                            <label for="send_mail">{{ 'elements.action.edit.send_mail'|trans }}</label>
+                        </span>
+                    {% endif %}
+                    {% set placeholder = object.isPending() ? 'elements.action.edit.isPending'|trans : 
+                                         object.havePendingReports ? 'elements.action.edit.havePendingReports'|trans %}
+                    <input type="text" name="custom_message" id="custom_message" class="form-control" 
+                           style="display:inline-block;width:55%"
+                           placeholder="{{placeholder}}"/>                       
+                </div>                
+
+                {% if object.isPending %}
+                    <button type="submit" class="btn btn-success" name="submit_accept" value="submit_accept"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                     {{ 'elements.action.edit.submit_accept'|trans }}</button>
+
+                    <button type="submit" class="btn btn-danger" name="submit_refuse" value="submit_refuse"><i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                     {{ 'elements.action.edit.submit_refuse'|trans }}</button>
+                {% elseif not object.isVisible %}
+
+                    <button type="submit" class="btn btn-success" name="submit_restore" value="submit_restore"><i class="fa fa-save" aria-hidden="true"></i>
+                     {{ 'elements.action.edit.submit_restore'|trans }}</button>
+
+                {% else %}
+                    <button type="submit" class="btn btn-success" name="submit"><i class="fa fa-save" aria-hidden="true"></i>
+                     {{ (object.havePendingReports ? 'elements.action.edit.submit_resolve' : 'elements.action.edit.submit')|trans }}</button>
+
+                    {% if not object.havePendingReports %} 
+                    <button type="submit" class="btn btn-success" name="submit_redirect" value="submit_redirect"><i class="fa fa-save"></i> <i class="fa fa-list" aria-hidden="true"></i>
+                     {{ 'elements.action.edit.submit_redirect'|trans }}</button>
+                    {% endif %}
+
+                    <button type="submit" class="btn btn-danger" name="submit_delete" value="submit_delete"><i class="fa fa-trash"></i>
+                     {{ 'elements.action.edit.submit_delete'|trans }}</button>
+                {% endif %}                
+
+                <a href="{{ admin.generateObjectUrl('redirectShow', object) }}" class="btn btn-warning" target="_blank">
+                    <i class="fa fa-external-link" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i>
+                    {{ 'elements.action.edit.showOnSite'|trans }}
+                </a>
+
+                <a href="{{ admin.generateObjectUrl('redirectEdit', object) }}" class="btn btn-warning" target="_blank">
+                   <i class="fa fa-external-link" aria-hidden="true"></i><i class="fa fa-pencil" aria-hidden="true"></i>
+                     {{ 'elements.action.edit.editOnSite'|trans }}
+                </a>
+
+                <a href="{{ admin.generateUrl('list') }}" class="btn btn-primary" title="{{ 'elements.action.edit.returnToList'|trans }}">
+                   <i class="fa fa-list" aria-hidden="true"></i>
+                     {{ 'elements.action.edit.returnToList'|trans }}
+                </a>
+
+                <button type="submit" class="btn btn-default" name="submit_update_json" value="submit_update_json"><i class="fa fa-refresh" aria-hidden="true"></i>
+                     {{ 'elements.action.edit.updateJSON'|trans }}</button>
+               
+            {% else %}
+                {% if admin.hasroute('edit') and admin.isGranted('EDIT') %}
+                    <button class="btn btn-success" type="submit" name="btn_create_and_edit"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_create_and_edit_again'|trans({}, 'SonataAdminBundle') }}</button>
+                {% endif %}
+                {% if admin.hasroute('list') and admin.isGranted('LIST') %}
+                    <button type="submit" class="btn btn-success" name="btn_create_and_list"><i class="fa fa-save"></i> <i class="fa fa-list" aria-hidden="true"></i> {{ 'btn_create_and_return_to_list'|trans({}, 'SonataAdminBundle') }}</button>
+                {% endif %}
+                <button class="btn btn-success" type="submit" name="btn_create_and_create"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ 'btn_create_and_create_a_new_one'|trans({}, 'SonataAdminBundle') }}</button>
+            {% endif %}
+    {% endblock sonata_form_actions %}        
+</div>
+
+<style>
+.form-actions.fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-left: -15px;
+    margin-bottom: 0;
+    z-index: 5;
+    border-radius: 0;
+}
+</style>

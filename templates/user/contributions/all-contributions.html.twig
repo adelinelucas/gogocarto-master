@@ -1,0 +1,30 @@
+<h2>{{ 'my_contributions.history'|trans }}</h2>
+{% if allContributions|length > 0 %}
+  <table class="bordered">
+    <thead>
+      <tr>
+          <th>{{ 'my_contributions.name'|trans }}</th>
+          <th class="type">{{ 'my_contributions.type'|trans }}</th>
+          <th class="date">{{ 'my_contributions.date'|trans }}</th>
+          <th class="small-status">{{ 'my_contributions.status'|trans }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for contribution in allContributions %}
+        {% set element = contribution.element %}
+        <tr class="">
+          <td>
+            <a href="{{ path('gogo_directory_showElement', {'id': element.id, 'name': element.name}) | replace({"%23":'#'}) }}">{{ element.name }}</a>
+          </td>
+          <td>{{ ('elements.fields.contributionType_choices.' ~ contribution.type)|trans({}, 'admin') }}</td>
+          <td>{{ contribution.createdAt|date('commons.date_format'|trans({}, 'admin'))}}</td>
+          <td>{{ ('elements.fields.status_choices.' ~ contribution.status)|trans({}, 'admin') }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p class="empty-secton-message">
+    {{ 'my_contributions.none'|trans }}
+  </p>
+{% endif %}

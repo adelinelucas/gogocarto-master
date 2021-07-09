@@ -1,0 +1,38 @@
+{% extends sonata_block.templates.block_base %}
+{% trans_default_domain 'admin' %}
+
+{% block block %}
+
+    <div class="sonata-news-block-recent-element box {{ settings.class }}">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                {{ settings.title|trans }}
+            </h3>
+        </div>
+
+        <div class="box-body">
+
+            <div class="sonata-blog-element-container list-group">
+                {% for element in results %}
+                    <a class="list-group-item" href="{{ path('admin_app_element_showEdit', { 'id': element.id }) }}">
+                        <span>{{ element.name|capitalize }}</span>
+                        <span style="position: absolute;right: 1.5rem;z-index: 5;background-color: white;padding-left: 10px;">
+                            {{ element.updatedAt|date('commons.date_time_format'|trans) }}
+                        </span>
+                    </a>
+                {% else %}
+                    <a class="list-group-item" href="#">{{ 'charts.empty'|trans }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% if is_granted('ROLE_ADMIN_ELEMENTS_LIST') %}
+        <div class="box-footer">
+                <a href="{{ path('admin_app_element_list') }}?filter[status][type]=1&filter[status][value]={{settings.filterStatus}}&filter[_page]=1&filter[_sort_by]=updatedAt&filter[_sort_order]=DESC&filter[_per_page]=32" class="btn btn-primary btn-block">
+                    <i class="fa fa-list"></i> {{ 'charts.showAll'|trans }}
+                </a>
+        </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

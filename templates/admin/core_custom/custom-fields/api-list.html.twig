@@ -1,0 +1,53 @@
+{% import _self as self %}
+{% trans_default_domain 'admin' %}
+
+{% macro apiLink(name, url) %}
+  <tr class="sonata-ba-view-container">
+    <th style="width: 400px; max-width: 40%;">{{ name }}</th>
+    <td>
+      <a href="{{ url }}" target="_blank">{{ url }}</a>
+    </td>
+  </tr>
+{% endmacro %}
+
+<h5>{{ 'config_api.elements'|trans }}</h5>
+<div class="box-body table-responsive no-padding table-box">
+  <table class="table">
+  <tbody>
+    {{ self.apiLink('config_api.fields.gogo_api_ui'|trans, url('gogo_api_ui')) }}
+    {{ self.apiLink('config_api.fields.gogo_api_elements_from_text'|trans, url('gogo_api_elements_from_text', { 'text': 'config_api.fields.text'|trans})) }}
+    {{ self.apiLink('config_api.fields.gogo_api_element_get'|trans, url('gogo_api_element_get', { 'id': 'ID'})) }}
+  </tbody>
+  </table>
+</div>
+
+<h5>{{ 'config_api.taxonomy'|trans }}</h5>
+<div class="box-body table-responsive no-padding table-box">
+  <table class="table">
+  <tbody>
+    {{ self.apiLink('config_api.fields.gogo_api_taxonomy'|trans, url('gogo_api_taxonomy')) }}
+    {{ self.apiLink('config_api.fields.gogo_api_semanatic_taxonomy'|trans, url('gogo_api_taxonomy', { '_format': 'jsonld'})) }}
+    {{ self.apiLink('config_api.fields.gogo_api_taxonomy_show'|trans, url('gogo_api_taxonomy_show', { 'id': 'ID'})) }}
+    {{ self.apiLink('config_api.fields.gogo_element_import_available_options'|trans, url('gogo_element_import_available_options')) }}
+    {{ self.apiLink('config_api.fields.gogo_api_taxonomy_mapping'|trans, url('gogo_api_taxonomy_mapping')) }}
+  </tbody>
+  </table>
+</div>
+
+<h5>{{ 'config_api.config'|trans }}</h5>
+<div class="box-body table-responsive no-padding table-box">
+  <table class="table">
+  <tbody>
+    {{ self.apiLink('config_api.fields.gogo_api_gogocartojs_configuration'|trans, url('gogo_api_gogocartojs_configuration')) }}
+    {{ self.apiLink('config_api.fields.gogo_api_configuration'|trans, url('gogo_api_configuration')) }}
+  </tbody>
+  </table>
+</div>
+
+<style>
+.box-body.table-box {
+  margin-bottom: 30px;
+  border-top: 3px solid #e4e4e4;
+  border-radius: 4px;
+}
+</style>

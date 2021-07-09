@@ -1,0 +1,368 @@
+<style>
+  {# --------------------#}
+  {#     GENERAL         #}
+  {# ------------------- #}
+
+  .gogo-load-css .btn
+  {
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 0 3rem;
+  }
+  .gogo-load-css .btn:hover { box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0), 0 3px 11px 0 rgba(0, 0, 0, 0.15); }
+
+  .gogo-load-css h2 { line-height: 2rem;}
+
+  .gogo-load-css #page-content { box-shadow: none !important; border-radius: 5px; }
+
+  .gogo-load-css h1:not(.element-title), .gogo-load-css h2 { color: {{ textSoft }}; }
+
+  .gogo-load-css .modal.page-modal h1 { color: white !important; }
+  .gogo-load-css .modal.page-modal .btn {  color: {{ text }}; }
+
+  .gogo-load-css #menu #btn-login, #submit-login, .btn.btn-primary, .modal .btn { background-color: {{ primary }}; }
+  .gogo-load-css #menu #btn-login:hover, #submit-login:hover, .btn.btn-primary:hover, .modal .btn:hover { background-color: {{ primary }}; }
+  .gogo-load-css #menu #btn-login:focus, #submit-login:focus, .btn.btn-primary:focus, .modal .btn:focus { background-color: {{ primary }}; }
+
+  .gogo-load-css #page-content.contributor-login .login-section .oauth-section .oauth-btn.instance-login { color: {{ secondary }}; }
+
+  {# --------------------#}
+  {#     DIRECTORY       #}
+  {# ------------------- #}
+  .gogo-load-css #page-content.directory .flash-messages-container .flash-message { background: none; background-color: {{ secondary }} !important; }
+  .gogo-load-css #menu-home .small-logo .header-icon {  background-color: {{ textSoft }} };
+
+
+  {# --------------------#}
+  {#     ELEMENT FORM    #}
+  {# ------------------- #}
+
+  .gogo-load-css #element-form-submit-btn { width: 100%; }
+
+  .gogo-load-css #page-content.element-form section { border-radius: 5px; }
+  .gogo-load-css #page-content.element-form .categories-info { font-weight: bold; }
+  .gogo-load-css #page-content.element-form input[type=checkbox] + label:before
+  {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    margin-top: 4px;
+  }
+  .gogo-load-css #page-content.element-form input[type=checkbox]:checked + label:before
+  {
+    width: 11px;
+    height: 16px;
+    margin-top: 6px;
+    border-radius: 0;
+  }
+  .gogo-load-css #page-content.element-form #element-form-title
+  {
+    background-color: transparent;
+    margin-bottom: 2rem !important;
+    padding-top: 1.5rem;
+  }
+  .gogo-load-css #page-content.element-form h2 .optional {
+    position: absolute;
+    right: 3rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: normal;
+  }
+  .gogo-load-css #page-content.element-form .open-hours-container
+  {
+    padding: .2rem 0 .2rem .5rem;
+    background-color: {{ contentBgdSoft }} !important;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    position: relative;
+  }
+  .gogo-load-css .open-hours-container .day-col,.open-hours-container .copy-hours-col, .open-hours-container .new-slot-col, .open-hours-container .clear-slot-col{ color: {{ contentBgd }} !important; z-index:2; }
+  .gogo-load-css .gogo-icon-icon-copy-hours, .gogo-load-css .gogo-icon-add-circle, .gogo-load-css .gogo-icon-clear { color: {{ contentBgdSoft }}; }
+  .gogo-icon-icon-copy-hours:hover, .gogo-icon-add-circle:hover, .gogo-load-css .gogo-icon-clear:hover { color: {{ contentBgd }}; }
+  .gogo-load-css i.material-icons.openhours-icons { line-height: 2.8rem; }
+  .gogo-load-css .second-line-slot:before
+  {
+    content: "";
+    background-color: {{ textSoft }};
+    position: absolute;
+    width: 8.33%;
+    min-height: 3rem;
+    right: 0;
+    border-radius: 0 5px 5px 0;
+  }
+  .gogo-load-css #page-content.element-form .open-hours-container:before
+  {
+    content: "";
+    background-color: {{ textSoft }};
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 5px 0 0 5px;
+  }
+  .gogo-load-css #page-content.element-form .open-hours-container:after
+  {
+    content: "";
+    background-color: {{ textSoft }};
+    position: absolute;
+    width: 8.33%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    border-radius: 0 5px 5px 0;
+  }
+
+  .gogo-load-css .flash-message
+  {
+    background-color: transparent !important;
+    font-weight: bold;
+    padding-bottom: 1.5rem;
+    background-image: linear-gradient(to right, {{ textSoft }} 33%, rgba(255,255,255,0) 0%);
+    background-position: bottom;
+    background-size: 6px 2px;
+    background-repeat: repeat-x;
+    margin-bottom: .5rem;
+    color: {{ textSoft }};
+  }
+
+  .gogo-load-css .flash-message.success
+  {
+    background-color: {{ primary }} !important;
+    background: none;
+    border-radius: 5px;
+    padding: .8rem;
+    color: white;
+  }
+
+  .gogo-load-css .flash-message.success a:not(.validation-process)
+  {
+    color: {{ text }};
+    text-transform: uppercase;
+    font-size: .9rem;
+  }
+
+  .gogo-load-css .flash-message.success a.validation-process
+  {
+    text-decoration: none;
+    cursor: help;
+    color: {{ secondary }};
+  }
+
+  .gogo-load-css .flash-message a, #label-agree a { color: {{ secondary }}; text-decoration: underline; }
+  /*.gogo-load-css .flash-message a:hover, #label-agree a:hover { color: #a02973 !important; }*/
+
+  .gogo-load-css #page-container .flash-messages-container:last-child { margin-bottom: 1rem; }
+
+  @media screen and (max-width: 600px)
+  {
+    .gogo-load-css #element-form-content .divider { border: none; }
+    .gogo-load-css #element-form-content .section { border-radius: 0; }
+    .gogo-load-css #element-form-content .categories-info {
+      font-size: .9rem;
+      text-align: center;
+      margin-top: 5px;
+    }
+  }
+
+
+
+
+
+  {# --------------------#}
+  {#        HOME         #}
+  {# ------------------- #}
+
+  /*.gogo-load-css #home-main-wrapper { background-color: {{ primary }} !important; }*/
+
+  .gogo-load-css section#home-main-container #search-geolocalize { right: 14rem !important; }
+
+  .gogo-load-css section#home-main-container h1 {
+    text-shadow: none;
+    position: relative;
+    top: 0 !important;
+
+  }
+
+  @media screen and (max-width: 600px)
+  {
+    .gogo-load-css #home-main-wrapper { background-color: white !important; }
+    .gogo-load-css #bottom-more-info { color: {{ textSoft }} !important; }
+
+    .gogo-load-css section#home-main-container { box-shadow: none !important; }
+    .gogo-load-css #home-main-wrapper #bottom-more-info:before { background-color: transparent !important; }
+    .gogo-load-css .bottom-section .content { padding-top: 0 !important; }
+    .gogo-load-css #section-credits { font-size: 1rem !important; }
+    .gogo-load-css #show-directory-menu-button { display:none; }
+    .gogo-load-css #map-gogo-controls .show-as-list-button { left: 15px !important; }
+  }
+  .gogo-load-css #bottom-more-info .text { font-family: {{ config.titleFont }}; text-transform: none; font-weight: normal; }
+  @media screen and (min-width: 600px) {
+    .gogo-load-css #bottom-more-info .text { font-size: 1.3rem; }
+  }
+  @media screen and (min-width: 1200px) { .gogo-load-css #bottom-more-info .text { font-size: 1.4rem; } }
+  @media screen and (max-height: 450px) { body { background-image: none !important; } }
+  .gogo-load-css #home-main-wrapper #bottom-more-info
+  {
+    background-color: transparent;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .gogo-load-css #home-main-wrapper #bottom-more-info:hover { background-color: transparent; }
+  .gogo-load-css #home-main-wrapper #bottom-more-info:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    background-color: {{ contentBgd }};
+    border-radius: 50% 50% 0 0;
+    height: 100px;
+    width: 100%;
+    left: 0;
+    right: 0;
+
+  }
+  .gogo-load-css #home-main-wrapper #bottom-more-info:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    background-color: {{ homeBgd }};
+    height: 100px;
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+  .gogo-load-css section#home-main-container .category-field-select .select-wrapper { max-width: 100%; }
+  .gogo-load-css #home-main-container { font-size: 1.1rem; }
+  .gogo-load-css #home-main-wrapper label { color: inherit !important; font-weight: bold; font-size: inherit; }
+  .gogo-load-css #home-main-wrapper h2 { text-transform: uppercase; font-weight: bold; font-size: 1.1rem !important; margin-top: 0 !important; line-height: 3.5rem; }
+  .gogo-load-css #home-main-wrapper .btn { width: 100%; }
+  @media screen and (min-width: 700px) { .gogo-load-css #home-main-wrapper .btn { font-size: 1rem !important; width: 350px !important; padding: 4px 3rem; height: auto;} }
+  @media screen and (min-width: 700px) { .gogo-load-css #home-main-wrapper .contribution-text { font-weight: bold; font-size: 1.2rem !important;} }
+  .gogo-load-css #home-main-wrapper .divider {
+    background-image: linear-gradient(to right, {{ textSoft }} 33%, rgba(255,255,255,0) 0%);
+    background-position: bottom;
+    background-size: 6px 2px;
+    background-repeat: repeat-x;
+    height: 2px;
+    background-color: transparent;
+    border: none !important;
+    display: block;
+  }
+  .gogo-load-css section#home-main-container .category-field-select .select-wrapper {  background-color: {{ textSoft }}; max-width: 500px; border-radius: 5px;}
+  @media screen and (min-width: 700px) { .gogo-load-css #home-main-wrapper .divider { margin: 0 3rem; } }
+  .gogo-load-css #home-main-wrapper #search-bar { text-transform: uppercase; font-weight: bold; font-size: .85rem;}
+
+
+  .gogo-load-css #home-main-wrapper #search-bar-icon {
+    right: 0;
+    left: auto !important;
+    padding: 0 1.8rem 0 2.8rem;
+    background-color: {{ primary }};
+    color: {{ contentBgd }} !important;
+    height: 3rem;
+    line-height: 3rem !important;
+    border-radius: 0 10px 10px 0;
+  }
+  .gogo-load-css #home-main-wrapper #search-bar-icon #search-spinner-loader {
+    left: 1.2rem !important;
+  }
+  .gogo-load-css #home-main-wrapper #search-bar-icon .spinner-layer {
+    border-color: {{ contentBgd }} !important;
+  }
+  .gogo-load-css #home-main-wrapper #search-bar-icon:after {
+    content: "Rechercher";
+    text-transform: uppercase;
+    font-weight: bold;
+    color: {{ contentBgd }};
+    font-size: 1.1rem;
+    margin-left: 10px;
+  }
+  .gogo-load-css #home-main-wrapper #search-bar-icon:before {
+    position: absolute;
+    line-height: 3rem;
+    left: 1.2rem;
+  }
+  @media screen and (min-width: 600px) {
+    .gogo-load-css #home-main-wrapper #btn-directory { display: none; }
+    .gogo-load-css #home-main-wrapper .btn-secondary {
+      padding: 0 4rem;
+      line-height: 2.8rem;
+      height: 2.6rem;
+      width: auto !important;
+      background-color: {{ secondary }};
+    }
+    .gogo-load-css #home-main-container #search-bar {
+      text-align: left !important;
+      padding: 0 .5rem 0 2rem !important;
+      width: calc(100% - 2rem) !important;
+    }
+    .gogo-load-css #home-main-container { padding: 1rem 3rem 2rem 3rem !important; }
+  }
+  .gogo-load-css #home-main-wrapper .divider { margin: 0; }
+  .gogo-load-css #home-main-wrapper #search-bar-container { width: 100% !important; }
+
+  .gogo-load-css section.bottom-section .content
+  {
+    background-image: linear-gradient(to right, {{ textSoft }} 33%, rgba(255,255,255,0) 0%);
+    background-position: bottom;
+    background-size: 6px 2px;
+    background-repeat: repeat-x;
+    color: {{ textSoft }};
+  }
+  @media screen and (min-width: 900px) { .gogo-load-css section.bottom-section .content { padding: 3rem 5rem 4rem 5rem; } }
+
+  .gogo-load-css section.bottom-section h2 { font-family: '{{ config.titleFont }}';letter-spacing: -.5px;font-size: 2.5rem !important; line-height:2.5rem; }
+  @media screen and (min-width: 900px) { .gogo-load-css section.bottom-section h2 { font-size: 3.5rem !important;  line-height: 3rem;} }
+
+  .gogo-load-css section.bottom-section:last-child .content { background: none; }
+  .gogo-load-css section.bottom-section:first-child .content {padding-top: 5rem; }
+  .gogo-load-css #section-credits { text-transform: uppercase; color: {{ textSoft }}; font-size: 1.4rem; letter-spacing: 1.5px; }
+  .gogo-load-css #section-credits strong { color: {{ textSoft }}; }
+
+
+  {# --------------------#}
+  {#        HEADER       #}
+  {# ------------------- #}
+
+  .gogo-load-css #menu .menu-item
+  {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: .85rem !important;
+  }
+
+
+
+  {# --------------------#}
+  {#       PARTNERS      #}
+  {# ------------------- #}
+
+  .gogo-load-css #page-content.partners { background-color: transparent !important; }
+  .gogo-load-css #page-content.partners h1 { margin-bottom: 3rem; }
+  @media screen and (max-width: 600px) { .gogo-load-css #page-content.partners h1 { margin-bottom: 2rem;margin-top: 1rem; } }
+  .gogo-load-css #page-content.partners section { padding-top: 0; }
+  .gogo-load-css #page-content.partners .image-container { width: 100%; float:none; padding: 0; text-align: center;}
+  .gogo-load-css #page-content.partners .partner-text { width: 100%; float:none; text-align: center; margin-top: 0;}
+  .gogo-load-css #page-content.partners .partner-logo { max-width: 300px; margin-top: 2rem;}
+  .gogo-load-css #page-content.partners .partner-title.with-logo { display:none; }
+  .gogo-load-css #page-content.partners .partner-title { text-align: center !important; }
+  .gogo-load-css #page-content.partners .partner-description { text-align: justify; margin-bottom: 1.7rem; color: {{ textSoft }};}
+  .gogo-load-css #page-content.partners .partner-url {
+    background-color: {{ secondary }};
+    color: white;
+    padding: .4rem 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  .gogo-load-css #page-content.partners .partner-item
+  {
+    background-image: linear-gradient(to right, #a6b5cc 33%, rgba(255,255,255,0) 0%);
+    background-position: top;
+    background-size: 6px 2px;
+    background-repeat: repeat-x;
+    padding-bottom: 1.5rem;
+    margin-bottom: 0;
+  }
+</style>

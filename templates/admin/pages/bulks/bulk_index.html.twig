@@ -1,0 +1,17 @@
+{% extends 'admin/pages/page_layout.html.twig' %}
+{% trans_default_domain 'admin' %}
+
+{% block page_title %}{{ 'bulk._label'|trans }}{% endblock %}
+
+{% block page_content %}  
+  <div><a class="btn btn-danger" href={{ path('gogo_bulk_actions_delete_element_reported') }}>{{ 'bulk.delete'|trans }}</a></div>
+
+  <style>
+  .btn { margin-bottom: 10px; }
+  </style>
+{% endblock %}
+
+
+
+
+

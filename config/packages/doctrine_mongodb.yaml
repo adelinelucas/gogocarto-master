@@ -1,0 +1,24 @@
+doctrine_mongodb:
+    auto_generate_proxy_classes: true
+    auto_generate_hydrator_classes: true
+    connections:
+        default:
+            server: '%env(resolve:MONGODB_URL)%'
+            options: {}
+    default_database: "use_as_saas=%env(resolve:USE_AS_SAAS)%/%env(resolve:DATABASE_NAME)%"
+    document_managers:
+        default:
+            auto_mapping: true
+            mappings:
+                App:
+                    is_bundle: false
+                    type: annotation
+                    dir: '%kernel.project_dir%/src/Document'
+                    prefix: 'App\Document'
+                    alias: App
+                gedmo_loggable:
+                    type: annotation
+                    prefix: Gedmo\Loggable\Document
+                    dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Document"
+                    alias: GedmoLoggable # (optional) it will default to the name set for the mappingmapping
+                    is_bundle: false

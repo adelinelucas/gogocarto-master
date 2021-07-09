@@ -1,0 +1,214 @@
+{% set config = helper.config %}
+{% set listAbouts = helper.listAbouts %}
+
+{% block modals %}
+  {% include 'modals/headerModals.html.twig' %}
+  {% include 'modals/loginModal.html.twig' %}
+{% endblock %}
+
+{% set noheader = app.request.get('noheader') %}
+<header {% if noheader %}class="hidden" style="display:none"{% endif %}>
+<nav>
+	<div id="menu" class="row">
+
+    {% set iframe = app.request.get('iframe') %}
+
+		<div class="col menu-item" id="menu-home" >
+			<a href="{{ path('gogo_homepage') }}" {% if iframe %}target="_blank"{% endif %} class="small-logo">
+        {% set logo = config.favicon ? config.favicon : config.logo %}
+        {% if logo %}<img src="{{ logo.imageUrl }}"/>{% endif %}
+      </a>
+			<a href="{{ path('gogo_homepage') }}" {% if iframe %}target="_blank"{% endif %} class="large-logo">
+        {% set logo = config.logoInline ? config.logoInline : config.logo %}
+        {% if logo %}
+          <img src="{{ logo.imageUrl }}" id="logo-inline"/>
+        {% else %}
+          {{ config.appName }}
+        {% endif %}
+      </a>
+		</div>
+
+    <h1 id="nav-page-title">{{ pageTitle|default(config.appName) }}</h1>
+    <span id="nav-btn-dropdown" onclick="toggleNavDropdown()"><i class="gogo-icon-ellipsis"></i></span>
+
+		<div id="menu-actions">
+      <div class="nav-overlay" onclick="hideNavDropdown()"></div>
+      {% if not iframe %}
+  			<div class="col menu-item">
+  			  <a href="{{ path('gogo_directory') }}"><span class="header-icon gogo-icon-map"></span><span class="text">{{"directory._label"|trans }}</span></a>
+  			</div>
+      {% endif %}
+
+      {% if config.addFeature.active and (not config.addFeature.isOnlyAllowedForAdmin() or is_granted('ROLE_ADMIN')) %}
+			<div class="col menu-item">
+				<a href="{{ path('gogo_element_add') }}" {% if iframe %}target="_blank"{% endif %}>
+          <span class="header-icon gogo-icon-user-plus"></span><span class="text">{{ "element.form.title_add"|trans({element: config.elementDisplayNameIndefinite}) }}</span>
+        </a>
+			</div>
+      {% endif %}
+
+      {% if config.activatePartnersPage and helper.countPartners %}
+  			<div class="col menu-item">
+  				<a href="{{ path('gogo_partners') }}" {% if iframe %}target="_blank"{% endif %}>
+            <span class="header-icon gogo-icon-partner-3"></span><span class="text">{{ config.partnerPageTitle }}</span>
+          </a>
+  			</div>
+      {% endif %}
+
+      {% if config.activateAbouts and listAbouts.count %}
+        <div class="col menu-item dropdown-button" data-activates='listAbout'>
+          <a id='btn-about'><span class="header-icon gogo-icon-info"></span><span class="text">{{ config.aboutHeaderTitle }}</span></a>
+          <div class="arrow-after"></div>
+        </div>
+        <ul id='listAbout' class='dropdown-content'>
+          {% for about in listAbouts %}
+          	{% if not loop.first %}<li class="item-divider"></li>{% endif %}
+            <li class="name"><a class="about-title-item" id='modal{{about.id}}' onclick="$('#popup-{{about.id}}').openModal()">{{about.name}}</a></li>
+        	{% endfor %}
+        </ul>
+      {% endif %}
+
+      {# no loggin in iframe #}
+      {% if not iframe %}
+        {% set userName =  app.user ? app.user.username : app.session.get('userEmail') ?  app.session.get('userEmail') : null %}
+        <div {{ userName ? '' : 'style="display:none"' }} class="col menu-item btn-login dropdown-button" data-activates='listUserActions' id="btn-logout">
+          <span class="text username">{{ userName }}</span>
+          <div class="arrow-after"></div>
+        </div>
+        <ul id='listUserActions' class='dropdown-content'>
+            <li class="name only-for-admin" {{ is_granted('ROLE_SONATA_ADMIN') ? '' : 'style="display:none"' }}>
+              <a class="about-title-item waves-effect waves-light" href="{{ path('sonata_admin_dashboard') }}">{{ "home.admin_interface"|trans }}</a></li>
+            <li class="item-divider"></li>
+            <li class="name only-for-user" {{ app.user ? '' : 'style="display:none"' }}>
+              <a class="about-title-item waves-effect waves-light" href="{{ path('gogo_user_space') }}">{{ "home.my_space"|trans }}</a></li>
+            <li class="item-divider"></li>
+            <li class="name">
+              <a class="about-title-item waves-effect waves-light" onclick="logout()">{{ "home.logout"|trans }}</a></li>
+        </ul>
+
+      	<button {{ userName ? 'style="display:none"' : '' }}
+  				onclick="$('#popup-login').openModal()" id="btn-login"
+  				class="btn btn-login">
+          <span class="text">{{ "login._label"|trans }}</span>
+  			</button>
+      {% endif %}
+
+    </div>
+	</div>
+</nav>
+</header>
+
+<script>
+
+function toggleNavDropdown()
+{
+  var overlay = $('#menu-actions .nav-overlay');
+  if (overlay.is(":visible")) overlay.slideUp(300);
+  else overlay.show();
+  $('#menu-actions').slideToggle(300);
+}
+
+function hideNavDropdown()
+{
+  var menuActions = $('#menu-actions');
+  console.log("click",menuActions.attr('position'));
+  if (menuActions.css('position') == "absolute")
+  {
+    $('#menu-actions .nav-overlay').slideUp(300);
+    menuActions.slideUp(300);
+  }
+}
+
+function toggleMenu()
+{
+  carto.showDirectoryMenu()
+}
+
+function logout()
+{
+  console.log("logout");
+  $.ajax({
+      method : 'post',
+      url         : "{{ path('fos_user_security_logout') }}",
+      success     : function(data, status, object) {
+          console.log("success logout");
+          displayLoginButton(true);
+          handleLogin(false, [], '');
+      },
+      error: function(data, status, object){
+          console.log(data.message);
+      }
+  });
+}
+
+function submitAjaxLogin()
+{
+  $('.error-message').hide();
+  var datatSerialized = "_username=" + $('#username').val() + "&_password=" + $('#password').val();
+  $.ajax({
+      method : 'post',
+      url         : '{{ path("fos_user_security_check") }}',
+      data        : datatSerialized,
+      dataType    : "json",
+      success     : function(data, status, object) {
+          if (data.success)
+          {
+            if (data.redirectionUrl) { window.location = data.redirectionUrl; return; }
+            $('#popup-login').closeModal();
+            console.log("login success",data);
+            handleLogin(true, data.roles, data.email);
+            $('#btn-logout .username').text(data.username);
+            displayLoginButton(false);
+          }
+          else
+          {
+            $('.error-message').text(t('js.login.wrong_id')).show();
+          }
+      },
+      error: function(data, status, object){
+          $('.error-message').text(t('js.login.exception')).show();
+      }
+  });
+}
+
+function handleLogin(bool, rolesObject, mail)
+{
+  var roles = Object.keys(rolesObject).map(function (key) { return rolesObject[key]; });
+
+  console.log("handle login", bool, "roles", roles);
+  if (bool) $('#btn-login').trigger('login');
+  else $('#btn-login').trigger('logout');
+
+  $('#listUserActions li.only-for-admin').hide();
+  $('#listUserActions li.only-for-user').hide();
+
+  if ($.inArray('ROLE_SONATA_ADMIN', roles) > -1 || $.inArray('ROLE_SUPER_ADMIN', roles) > -1) $('#listUserActions li.only-for-admin').show();
+  if ($.inArray('ROLE_USER', roles) > -1) $('#listUserActions li.only-for-user').show();
+
+  // carto is the GoGoCartoJs instance, defined in GeoDirectory/directoy.html.twig
+  if (typeof carto !== 'undefined')
+  {
+    if ($.inArray('ROLE_ADMIN', roles) > -1 || $.inArray('ROLE_SUPER_ADMIN', roles) > -1) carto.setUserRole('admin');
+    else if ($.inArray('ROLE_USER', roles) > -1) carto.setUserRole('user');
+    else carto.setUserRole('anonymous');
+
+    carto.setUserEmail(mail);
+  }
+}
+
+function displayLoginButton(bool)
+{
+	if (bool)
+	{
+		$('#btn-logout').hide();
+    $('#listUserActions').hide();
+		$('#btn-login').show();
+	}
+	else
+	{
+		$('#btn-logout').show();
+		$('#btn-login').hide();
+	}
+}
+</script>
+

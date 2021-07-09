@@ -1,0 +1,86 @@
+{% set displayInline = not category.enableDescription and not category.singleOption %}
+{% if displayInline %}
+	{% for option in category.options %}
+	{#{% if option.enableDescription %}
+		{% set displayInline = false %}
+	{% endif %}#}
+    {% if option.displayChildrenInForm %}
+      {% for subcategory in option.subcategories %}
+        {% if subcategory.displayInForm %} {% set displayInline = false %} {% endif %}
+      {% endfor %}
+    {% endif %}
+	{% endfor %}
+{% endif %}
+
+{% if category.displayInForm %}
+  {% set categoryDepth = parentDepth is defined ? parentDepth + 1 : 0 %}
+  <div class="category-field {{ displayInline ? 'inline' : ''}} {{ category.isMandatory ? 'mandatory' : '' }}" 
+       data-id="{{ category.id }}"
+	   data-custom-id="{{ category.customId }}"
+	   data-error-msg="{{ 'commons.choose_one_option'|trans }}">
+
+  	<span class="category-field-select input-field" data-picking-text='{{ category.pickingOptionText }}'>
+      <select id="category-field-{{category.id}}" class="category-select keep-title-option depth-{{ categoryDepth }}"
+              data-id="{{category.id}}" name="category-field-{{category.id}}"
+              data-single-option="{{category.singleOption}}">
+     	
+		<option disabled selected>{{ 'commons.choose_category'|trans({cat: category.pickingOptionText}) }} {{ category.isMandatory ? '' : 'commons.optional'|trans }}</option>
+        {% for key, option in category.options %}
+        	{% if option.displayInForm %}
+				<option value="{{option.id}}" data-custom-id="{{option.customId}}">
+					{{ option.name }} {% if (option.textHelper is defined and option.textHelper) %} ({{ option.textHelper }}) {% endif %}
+				</option>
+          	{% endif %}
+        {% endfor %}
+      </select>
+    </span>
+
+  	{% for key, option in category.options %}
+
+  		{% set displayOption = false %}
+  		{% set curr_description = '' %}
+  		{% set curr_index = 0 %}
+
+  		{% for optionValue in element.optionValues %}
+  			{% if optionValue.optionId == option.id %}
+  				{% set displayOption = true %}
+  				{% set curr_description = optionValue.description %}
+  				{% set curr_index = optionValue.index %}
+  			{% endif %}
+  		{% endfor %}
+
+  		<div class="option-field depth-{{ categoryDepth }} {{ displayInline and not option.enableDescription ? 'inline' : ''}} {{ displayOption ? 'selected' : '' }}" 
+		     id="option-field-{{option.id}}"
+  			 data-id="{{option.id}}" data-custom-id="{{option.customId}}" data-index={{curr_index}}>
+
+  			<div class="option-field-value {{ (option.enableDescription or category.enableDescription) ? "with-description" : "" }}">
+
+  				<span class="option-field-name">
+					{% set iconClass = (option.icon is defined and option.icon) ?  option.icon : 'icon-angle-right' %}
+					{% set iconColorId = '' %}
+					{% if iconClass %}
+						<span class="icon {{ iconClass }} colorAs depth-{{ categoryDepth }}" option-id='{{ iconColorId }}' ></span>
+					{% endif %}
+					{{ option.name }}
+  				</span>
+
+  				{% if category.enableDescription or option.enableDescription %}
+    				<div class="input-field option-field-description">
+  				  		<input placeholder="{{ option.descriptionLabel|default(category.descriptionLabel|default('commons.category_placeholder'|trans)) }}" id="option-fields-description-{{ option.id }}" class="option-field-description-input" data-id="{{option.id}}" type="text" length="80" value="{{curr_description}}">
+    				</div>
+  				{% endif %}
+
+  				<span class="option-field-delete" data-id={{option.id}}><i class="material-icons gogo-icon-clear" data-id={{option.id}}></i></span>
+  			</div>
+
+        {% if option.displayChildrenInForm %}
+    	  	<div class="subcategories-wrapper ">
+    		    {% for subkey, subcategory in option.subcategories %}
+					{% include 'element-form/form-partials/taxonomy-field.html.twig' with {'category': subcategory, 'parentDepth': categoryDepth } %}
+				{% endfor %}
+    			</div>
+        {% endif %}
+  		</div>
+  	{% endfor %}
+  </div>
+{% endif %}

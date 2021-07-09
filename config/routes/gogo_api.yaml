@@ -1,0 +1,101 @@
+# ELEMENTS
+gogo_api_ui:
+    path: /api
+    defaults: { _controller: App\Controller\APIController::apiUiAction }
+
+gogo_api_elements_from_text:
+    path:     /api/elements/search
+    defaults: { _controller: App\Controller\APIController::getElementsFromTextAction }
+    requirements:
+        methods: GET
+
+gogo_api_element_names_from_text:
+    path:     /api/element_names/search
+    defaults: { _controller: App\Controller\APIController::getElementNamesFromTextAction }
+    requirements:
+        methods: GET
+
+gogo_api_element_get:
+    path:     /api/elements/{id}.{_format}
+    defaults: { _controller: App\Controller\APIController::getElementsAction, id: null, _format: json }
+    requirements:
+        methods: GET
+        _format: json|jsonld
+
+gogo_api_elements_index:
+    path:     /api/elements.{_format}
+    defaults: { _controller: App\Controller\APIController::getElementsAction, id: null, _format: json }
+    requirements:
+        methods: GET
+        _format: json|jsonld
+
+# TAXONOMY
+gogo_api_taxonomy_show:
+    path:     /api/taxonomy/{id}.{_format}
+    defaults: { _controller: App\Controller\APIController::getTaxonomyAction, id: null, _format: json }
+    requirements:
+        methods: GET
+        _format: json|jsonld
+    options:
+        expose: true
+
+gogo_api_taxonomy:
+    path:     /api/taxonomy.{_format}
+    defaults: { _controller: App\Controller\APIController::getTaxonomyAction, id: null, _format: json }
+    requirements:
+        methods: GET
+        _format: json|jsonld
+    options:
+        expose: true
+
+gogo_api_taxonomy_mapping:
+    path:     /api/taxonomy-mapping
+    defaults: { _controller: App\Controller\APIController::getTaxonomyMappingAction, id: null, _format: json }
+    requirements:
+        methods: GET
+        _format: json
+
+# CONFIGURATION / INFOS
+gogo_api_manifest:
+    path:     /api/manifest.{_format}
+    defaults: { _controller: App\Controller\APIController::getManifestAction, _format: json }
+    requirements:
+        methods: GET
+        _format: json
+
+gogo_api_project_info:
+    path:     /api/project-info.json
+    defaults: { _controller: App\Controller\APIController::getProjectInfoAction }
+    requirements:
+        methods: GET
+
+gogo_api_configuration:
+    path:     /api/configuration.json
+    defaults: { _controller: App\Controller\APIController::getConfigurationAction }
+    requirements:
+        methods: GET
+
+gogo_api_gogocartojs_configuration:
+    path:     /api/gogocartojs-conf.json
+    defaults: { _controller: App\Controller\APIController::getGoGoCartoJsConfigurationAction }
+    requirements:
+        methods: GET
+
+# LOGS
+gogo_api_log_hide:
+    path:     /api/log/{id}/hide
+    defaults: { _controller: App\Controller\APIController::hideLogAction }
+    requirements:
+        methods: POST
+
+gogo_api_log_hide_all:
+    path:     /api/logs/hide-all
+    defaults: { _controller: App\Controller\APIController::hideAllLogsAction }
+    requirements:
+        methods: GET
+
+gogo_api_message_hide_all:
+    path:     /api/messages/hide-all
+    defaults: { _controller: App\Controller\APIController::hideAllMessagesAction }
+    requirements:
+        methods: GET

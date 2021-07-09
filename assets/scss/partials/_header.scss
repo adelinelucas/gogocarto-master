@@ -1,0 +1,305 @@
+@import 'header-about-modal';
+@import 'header-login-modal';
+
+header 
+{	
+	color: white ;
+	@media only screen and (max-width : 701px) { margin-bottom: -1px; }
+	//@extend .z-depth-2;	
+
+	#menu
+	{
+		margin: 0 ; 
+	  font-size: .85rem ;
+		padding: 0 .5rem;
+		height: 3rem;
+		width: 100%;
+
+		@media only screen and (min-width : 701px)
+		{
+			font-size:1rem;
+			margin-bottom: 0px ;
+			padding: 0;	
+			height: 3.5rem;
+		}
+
+		#menu-home
+		{
+	    display: inline-block;
+	    font-weight: bold;
+	    font-size: 1.4rem;
+	    line-height: 3rem;
+	    margin-right: 0;
+
+			.small-logo { 
+				display: inline-block; 
+				height: 100%;
+		    padding: 6px 0;
+		    margin-left: -5px;
+		    img { height: 100% }
+			}
+			.large-logo { display: none; }
+
+			#logo-inline
+			{
+				height: 2.5rem;
+		    position: absolute;
+		    top: .3rem;
+			}
+
+	    .small-logo .header-icon
+	    {
+	    	font-size: 1.8rem;
+		    padding-top: 3px;
+		    color: #ffffff;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    height: 3rem;
+		    border-radius: 0 18px 18px 0;
+		    margin: 0;
+		    padding: 0 1.3rem 0 1rem;
+		    padding-top: 3px;
+	    }
+
+	    @media screen and (min-width: 900px)
+			{
+				.small-logo { display: none; }
+				.large-logo { display: inline-block; }			
+			}
+
+			@media screen and (min-width: 701px)
+			{				
+				margin-left: .7rem;
+		    font-size: 1.6rem;
+		    line-height: 3.5rem;
+		    #logo-inline { top: .5rem; }
+		  }
+
+	    @media screen and (max-width: 700px) { line-height: 3rem; height: 3rem; padding: 0;}
+		}
+
+		#btn-nav-open-menu
+		{
+			font-size: 2rem;
+	    margin-top: 5px;
+	    float: left;
+	    padding: 0 .5rem 0 .7rem;
+
+	    @media screen and (min-width: 701px) { display:none !important; }
+		}
+		
+		#nav-page-title
+		{
+			font-size: 1.5rem;
+			display: inline-block;
+			padding-left: 1rem;
+			line-height: 2.1rem;
+
+	    @media screen and (min-width: 701px) { display:none }
+		}
+
+		#nav-btn-dropdown
+		{
+			float: right;
+	    margin-top: 6px;
+	    font-size: 1.8rem;
+	    padding: 0 .5rem 0 1rem;
+
+	    @media screen and (min-width: 701px) { display:none }
+		}
+
+		#menu-actions
+		{			
+			@media screen and (max-width: 700px)
+			{
+				display: none;
+				line-height: 2.5rem;
+				position: absolute;
+				padding: .5rem 0;
+				left: 0;
+				right: 0;
+				top: 3rem;
+				padding-bottom: 1rem;
+				text-align: center;
+				background-color: inherit;
+				z-index: 500;
+			}		
+	    
+
+			@media screen and (min-width: 701px) { 
+				display:inline-block !important;
+				line-height: 3rem; 
+				float : right;
+				line-height: 3.5rem;
+				position: relative;
+			}
+
+			.nav-overlay
+			{
+				position: fixed;
+		    top: 0;
+		    z-index: -1;
+		    bottom: 0;
+		    right: 0;
+		    left: 0;
+		    background-color: rgba(0, 0, 0, 0.17);
+
+		    @media screen and (min-width: 701px) { display:none !important; }
+			}
+		}
+		
+		.menu-item 
+		{ 
+			@media only screen and (max-width : 700px)
+			{
+				text-align:center;
+
+				&:not(#menu-home) { 
+					width: 100%;
+					padding: 0 !important;
+					margin: 0; 
+				}			
+					
+				padding: 0 .5rem !important;
+
+				font-size: inherit ;
+				
+			}
+
+			@include transition(all .2s);
+			padding: 0 .75rem !important;				
+
+			@media only screen and (min-width : 701px)
+			{
+				margin-right: .5rem;
+				float: none;
+				height:100%;
+				display:inline-block;			
+				//line-height: 2.8rem;
+				width: auto;	
+			}
+
+			@media only screen and (min-width : 1000px)
+			{
+				margin-right: 2rem;
+			}
+
+			&:hover { cursor: pointer; }		
+
+			a 
+			{ 
+				color: inherit; 
+				cursor: pointer;
+				font-size: inherit ;
+				width:100%;
+				border-radius: 0; 
+				border: none;
+				background-color: transparent;
+
+	    	.header-icon
+	    	{
+	    		display:none;
+	    		font-size: 1.2rem;
+	    		margin-left: .5rem;
+	    		padding-top: 6px;   			  
+   			  color: #eaeaea
+	    	}
+
+	    	 @media only screen and (min-width : 801px) 
+	    	 { 
+	    	 	.header-icon {display:none}
+	    	 	.text {display:inline}
+	    	 }
+			}			
+		}
+
+		.arrow-after
+		{
+			display: inline-block;
+	    
+	    border: solid 5px;
+  	 	margin-left: 5px;
+    	margin-bottom: -3px;
+    	margin-right: 0px;
+	  }
+
+		.btn-login
+		{
+			
+			margin: 0;
+	    height: 2rem;
+	    line-height: 2.5rem;
+	    padding: 0 10px !important;
+	    font-size: .85rem;	  
+	    text-transform: uppercase;  
+			border-radius: 2px;
+			margin: 0;
+    	line-height: 2.3rem;
+
+    	@media only screen and (min-width : 701px) 
+    	{
+    		margin-right: 1rem;
+    	}
+
+
+			@media only screen and (min-width : 801px) 
+			{ 				
+				padding: 0 1.5rem;
+				margin-right: 2rem;
+				margin-top: 0px;
+				line-height: 2rem;
+			}
+		}
+
+		#btn-logout
+		{
+			padding: 0 1rem 0 0rem !important;
+			@media only screen and (min-width : 801px) { padding: 0 3rem 0 1rem !important; }			
+    	margin-right: 0;
+    	font-weight: bold;
+		}
+
+		ul#listUserActions 
+		{
+	    top: 100% !important;
+	    right: 0 !important;
+	    min-width: 140px !important;
+	    left: initial !important;
+	    opacity: 1;
+	    margin: 0 !important;
+
+	    .about-title-item { text-align: center; }
+		}
+
+		.dropdown-content
+		{
+			margin-top:2.3rem;
+			margin-right:2rem;			
+
+			li { color: inherit !important; }
+			li:hover { background-color: transparent;}
+			li a { @include transition(all .2s); }	
+
+	    @media screen and (max-width: 500px) { margin-top: 2.5rem; }
+	    @media only screen and (min-width : 701px) { margin-top: 3.5rem;width: auto !important; }
+			
+			.about-title-item 
+			{
+		    font-size: .9rem;
+		    text-align: center;
+		    color: inherit;
+		    @media screen and (min-width: 700px) { text-align: left; }
+			}  
+
+			.item-divider
+			{
+				height: 1px;
+		    overflow: hidden;
+			}			
+		}			
+	}
+
+	
+}
+

@@ -1,0 +1,1228 @@
+abouts:
+  _label: Popups
+  fields:
+    content: Inhalt
+    name: Name
+
+bulk:
+  _label: Bulk-Bearbeitung
+  analyse: Analysiere Elemente von {first} bis {last}
+  automaticMerge: Automatische Zusammenführung
+  batchDone: Alle Elemente erfolgreich behandelt
+  continue: Weiter zum nächsten Element (noch {count} übrig)
+  delete: Lösche als "nicht mehr existierend" gemeldete Elemente
+  deleteElement: ''
+  detectDuplicatesAction: Dublettenerkennung
+  done: Alle Elemente erfolgreich bearbeitet
+  duplicateDeleted: Dublette gelöscht
+  duplicateKept: Dublette behalten
+  errorElement: >-
+    Fehler bei der Bearbeitung des Elements {id} : {error} DATEI {file} LINIE
+    {line}
+  isDuplicateAction: Dublettenerkennung
+  managed: Erkannte Dubletten bearbeiten
+  manualMerge: Mögliche Dubletten erkannt
+  results: Ergebnisse
+  return: Zurück zur Dublettenbearbeitung
+  updateUser: ''
+  update_gamification: >-
+    Werte aktualisieren (Zahl der Stimmen, Beiträge, und Gesamtwert pro
+    Benutzer:in)
+
+categories:
+  _label: Kategorien
+  fields:
+    customId: persönliche ID
+    descriptionLabel: Label für Beschreibungsfeld
+    displayInForm: Im Formular
+    displayInForm_help: Weder die Gruppe noch die Kategorien werden im Formular angezeigt
+    displayInInfoBar: In der Detailansicht
+    displayInInfoBar_help: Kategorien werden angezeigt, der Name der Gruppe nicht
+    displayInMenu: Im Menu
+    displayInMenu_help: Kategorien werden angezeigt, der Name der Gruppe nicht
+    displaySuboptionsInline: Unterkategorien in einer Zeile anzeigen
+    enableDescription: Beschreibung der Kategorien aktivieren
+    enableDescription_help: >-
+      Ermöglicht, der Kategorie eine Beschreibung hinzuzufügen, beispielsweise
+      der Kategorie Landwirtschaft ein "Gärtnerei, SoLaWi, ..."
+    index: Position
+    isMandatory: Pflichtfeld
+    isMandatory_help: Eine Kategorie dieser Gruppe muss ausgewählt werden
+    name: Name der Gruppe
+    nameShort: Name (Kurzversion)
+    nameShort_help: Die Kurzversion wird im Menu angezeigt, da hier oft der Platz fehlt
+    option:
+      color: Farbe
+      icon: Icon
+      id: Weitere Optionen
+      index: Position
+      name: Name
+    parent: Elternkategorie
+    parent_placeholder: Wurzel
+    pickingOptionText: 'Text zur Anzeige im Formular: Auswählen…'
+    showExpanded: ''
+    singleOption: ''
+    singleOption_help: Nur eine Kategorie kann gleichzeitig gewählt werden
+    unexpandable: Diese Kategoriengruppe nicht ausklappbar machen
+    unexpandable_help: In diesem Menu sollen die Kategorien dieser Gruppe immer angezeigt werden
+  form:
+    groups:
+      categories: Kategorien dieser Gruppe
+      display: Diese Gruppe anzeigen
+      primary: Haupteinstellungen
+      secondary: Zweitrangige Anzeigeeinstellungen
+  list:
+    addCategories: Kategoriengruppe hinzufügen
+    addCategory: Kategorie hinzufügen
+    categoriesDescription: Kategorienbeschreibung
+    empty: >-
+      Kein Kategorien vorhanden. Erstelle eine neue Kategoriengruppe und die
+      dazugehörigen Kategorien. Kategorien sind ein wesentliches Element in
+      GoGoCarto. Deine Karte funktioniert möglicherweise nicht richtig ohne
+      verfügbare Kategorien
+    help: Einige hilfreiche Hinweise
+    help_description: ''
+    multiple: Mehrere
+    title: Liste der Kategorien
+    unique: Einmalig
+
+charts:
+  collabRefused: Letzte kollaborativen Ablehnungen
+  collabResolve:
+    axisTitle: kollaborative Validierungen/Ablehnungen
+    refused: kollaborative Ablehnungen
+    title: kollaborative Validierungen/Ablehnungen
+    validate: kollaborative Validierungen
+  collabValidated: Letzte kollaborative Validierungen
+  contribsResolved:
+    added: Gelöste Neueinträge
+    edited: Gelöste Änderungen
+    resolved: Erledigte Beiträge
+  empty: Kein Element gefunden
+  showAll: Alle anzeigen
+  userInteract:
+    added: Neue Beiträge
+    modified: Änderungen
+    reported: Gemeldete Elemente
+    subtitle: Klicken & Ziehen um eine Periode zu fokussieren
+    title: Nutzungsstatistiken
+    voted: Stimmen
+
+commons:
+  actual_file: 'Aktuelle Datei:'
+  anonymous: Anonym
+  btn_update_and_edit: Aktualisieren
+  date_format: d.m.Y
+  date_time_format: d.m.Y à H:i
+  default: Standard
+  send: Abschicken
+
+config_api:
+  _label: APIs
+  config: Konfiguration
+  elements: Elemente
+  fields:
+    api.publicApiPrivateProperties: Liste der privaten Felder, die ihr nicht teilen wollt
+    apilist: null
+    gogo_api_configuration: GoGoCarto Konfiguration
+    gogo_api_element_get: Ein Element (ID mit der id des Elements ersetzen)
+    gogo_api_elements_from_text: Element suchen
+    gogo_api_gogocartojs_configuration: GoGoCartoJs-Konfiguration
+    gogo_api_semanatic_taxonomy: Semantische Taxonomie
+    gogo_api_taxonomy: Taxonomie
+    gogo_api_taxonomy_mapping: Liste der Optionen mit korrespondierender ID
+    gogo_api_taxonomy_show: Eine Kategorie (ID mit der id der Kategorie ersetzen)
+    gogo_api_ui: Grafische Schnittstelle zur Erstellung einer API
+    gogo_element_import_available_options: Liste der Optionen
+    text: ihre_sucheingabe
+  form:
+    groups:
+      apis: Liste der verfügbaren APIs
+      config: Konfiguration
+      config_description: ''
+  taxonomy: Taxonomie / Kategorien
+
+config_contributions:
+  _label: Wer kann beitragen?
+  fields:
+    collaborativeModerationExplanations: Erklärungen zur kollaborativen Moderation
+    maxDaysLeavingAnElementPending: >-
+      Zahl der Tage, bevor ein noch nicht validiertes Element als
+      moderierungsbedürftig markiert wird
+    maxOppositeVoteTolerated: Zahl der erlaubten Gegenstimmen
+    minDayBetweenContributionAndCollaborativeValidation: ''
+    minVoteToChangeStatus: ''
+    minVoteToForceChangeStatus: ''
+  form:
+    groups:
+      addFeature: ''
+      collaborativeModerationFeature: ''
+      collaborativeModerationParameters: ''
+      deleteFeature: ''
+      directModerationFeature: ''
+      editFeature: ''
+      text: ''
+
+config_custom_js_css:
+  _label: ''
+  fields:
+    customCSS: ''
+    customJavascript: ''
+  form:
+    groups:
+      custom_javascript: ''
+      custom_javascript_hint: ''
+      custom_style: ''
+      custom_style_hint: ''
+
+config_duplicates:
+  _label: ''
+  fields:
+    duplicates:
+      automaticMergeIfPerfectMatch: ''
+      detectAfterImport: ''
+      detectAfterImport_help: ''
+      fieldsToBeUsedForComparaison: ''
+      fieldsToBeUsedForComparaison_help: ''
+      rangeInMeters: Maximale Distanz (in Metern) zwischen zwei Dubletten
+      sourcePriorityInAutomaticMerge: ''
+      sourcesToDetectFrom: ''
+      sourcesToDetectWith: ''
+      useGlobalSearch: ''
+      useGlobalSearch_help: ''
+    gogo_bulk_actions_detect_duplicates: ''
+    gogo_duplicates_index: ''
+  form:
+    groups:
+      configuration: ''
+      fusion: ''
+      manualDetection: ''
+
+config_emails:
+  _label: ''
+  form:
+    groups:
+      add: ''
+      delete: ''
+      edit: ''
+      infosContributors: ''
+      infosContributors_description: ''
+      infosElements: ''
+      infosElements_description: ''
+      infosNewletter: ''
+      infosNewletter_description: ''
+      mailForContributors: ''
+      mailForElements: ''
+      newsletter: ''
+      newsletters: ''
+      refusal: ''
+      report: ''
+      validation: ''
+
+config_features:
+  fields:
+    active: ''
+    activeInIframe: ''
+    allow_role_admin: ''
+    allow_role_anonymous: ''
+    allow_role_user: ''
+
+config_form:
+  _label: ''
+  fields:
+    elementFormGeocodingHelp: ''
+    elementFormIntroText: ''
+    elementFormIntroText_placeholder: ''
+    elementFormOwningText: ''
+    elementFormOwningText_placeholder: ''
+    elementFormValidationText: ''
+    elementFormValidationText_placeholder: ''
+  form:
+    groups:
+      config: ''
+      config_description: ''
+      form: ''
+      other: ''
+
+config_general:
+  _label: ''
+  cannot_delete: ''
+  downloadImage: ''
+  fields:
+    aboutHeaderTitle: ''
+    activateAbouts: ''
+    activatePartnersPage: ''
+    appBaseline: ''
+    appName: ''
+    appTags: ''
+    customDomain: ''
+    customDomain_help: ''
+    dataLicenseUrl: ''
+    elementDisplayName: ''
+    elementDisplayNameDefinite: ''
+    elementDisplayNameIndefinite: ''
+    elementDisplayNamePlural: ''
+    favicon: ''
+    locale: ''
+    logo: ''
+    logoInline: ''
+    partnerPageTitle: ''
+    publishOnSaasPage: ''
+    socialShareImage: ''
+  form:
+    groups:
+      images: ''
+      main: ''
+      main_description: ''
+      pages: ''
+      text: ''
+
+config_home:
+  _label: ''
+  fields:
+    activateHomePage: ''
+    backgroundImage: ''
+    backgroundImage_placeholder: ''
+    home:
+      addElementHintText: ''
+      addElementHintText_placeholder: ''
+      displayCategoriesToPick: ''
+      seeMoreButtonText: ''
+      seeMoreButtonText_placeholder: ''
+
+config_infobar:
+  _label: ''
+  fields:
+    description:
+      _label: ''
+      categories: ''
+      categoriesFull: ''
+      colorOptionId: ''
+      createdAt: ''
+      distance: ''
+      images: ''
+      isDeleted: ''
+      isPending: ''
+      originalAddress: ''
+      sourceKey: ''
+      status: ''
+      updatedAt: ''
+    example:
+      categories: ''
+      categoriesFull: ''
+      colorOptionId: ''
+      createdAt: ''
+      distance: ''
+      images: ''
+      isDeleted: ''
+      isPending: ''
+      originalAddress: ''
+      sourceKey: ''
+      status: ''
+      updatedAt: ''
+    exemple: ''
+    infobar:
+      bodyTemplate: ''
+      bodyTemplateUseMarkdown: ''
+      headerTemplate: ''
+      headerTemplateUseMarkdown: ''
+      width: ''
+    label: ''
+    name: ''
+    type: ''
+    usage: ''
+  fields_list:
+    form: ''
+    other: ''
+    system: ''
+  form:
+    groups:
+      automatic_emails: ''
+      automatic_emails_description: ''
+      field_list: ''
+      filter_list: ''
+      infobar_content: ''
+      infobar_content_description: ''
+      infobar_param: ''
+
+config_map:
+  _label: ''
+  fields:
+    customPopupId: ''
+    customPopupShowOnlyOnce: ''
+    customPopupText: ''
+    defaultTileLayer: ''
+    saveTileLayerInCookies: ''
+    saveViewportInCookies: ''
+    viewport_picker: ''
+  form:
+    groups:
+      cookies: ''
+      directionsFeature: ''
+      exportIframeFeature: ''
+      favoriteFeature: ''
+      features: ''
+      layersFeature: ''
+      listModeFeature: ''
+      map: ''
+      mapDefaultViewFeature: ''
+      message_config: ''
+      messages: ''
+      params: ''
+      pendingFeature: ''
+      reportFeature: ''
+      shareFeature: ''
+      stampFeature: ''
+
+config_marker:
+  _label: ''
+  fields:
+    marker.displayPopup: ''
+    marker.popupAlwaysVisible: ''
+    marker.popupTemplate: ''
+    marker.popupTemplateUseMarkdown: ''
+    marker.useClusters: ''
+  form:
+    groups:
+      cluster: ''
+      cluster_description: ''
+      popup: ''
+      popup_description: ''
+
+config_menu:
+  _label: ''
+  fields:
+    box: ''
+    box_description: ''
+    menu:
+      displayNumberOfElementForEachCategory: ''
+      displayNumberOfElementRoundResults: ''
+      displayNumberOfElementRoundResults_help: ''
+      showCheckboxForMainFilterPane: ''
+      showCheckboxForSubFilterPane: ''
+      showCheckboxForSubFilterPane_help: ''
+      showOnePanePerMainOption: ''
+      smallWidthStyle: ''
+      smallWidthStyle_help: ''
+      width: ''
+      width_placeholder: ''
+    searchCategoriesFeature: ''
+    searchElementsFeature: ''
+    searchExcludingWords: ''
+    searchExcludingWords_title: ''
+    searchGeolocateFeature: ''
+    searchPlaceFeature: ''
+  form:
+    groups:
+      custom: ''
+      general: ''
+      menu: ''
+      search: ''
+
+config_mobile:
+  _label: ''
+  fields:
+    appNameShort: ''
+    hideHeaderInPwa: ''
+    packageName: ''
+    sha256CertFingerprints: ''
+  form:
+    groups:
+      progressive: ''
+      progressive_description: ''
+      trusted: ''
+      trusted_description: ''
+
+config_osm:
+  _label: ''
+  fields.osm:
+    osmHost: ''
+    osmPassword: ''
+    osmUsername: ''
+  form:
+    groups:
+      account: ''
+      account_description: ''
+      host_description: ''
+
+config_saas:
+  _label: ''
+  fields:
+    saas:
+      donationUrl: ''
+      endUserLicenceAgreement: ''
+      newProjectInstructions: ''
+
+config_style:
+  _label: ''
+  fields:
+    backgroundColor: ''
+    choose_color: ''
+    contentBackgroundColor: ''
+    contentBackgroundElementBodyColor: ''
+    disableColor: ''
+    errorColor: ''
+    fontImport: ''
+    headerColor: ''
+    headerHoverColor: ''
+    headerTextColor: ''
+    homeBackgroundColor: ''
+    iconImport: ''
+    interactiveSectionColor: ''
+    mainFont: ''
+    pendingColor: ''
+    primaryColor: ''
+    searchBarColor: ''
+    secondaryColor: ''
+    textColor: ''
+    textDarkColor: ''
+    textDarkSoftColor: ''
+    textLightColor: ''
+    textLightSoftColor: ''
+    theme: ''
+    titleFont: ''
+  form:
+    groups:
+      advancedColor: ''
+      fontImport: ''
+      primaryColors: ''
+      secondaryColor: ''
+      theme: ''
+
+config_users:
+  _label: ''
+  fields:
+    user:
+      enableRegistration: ''
+      loginWithFacebook: ''
+      loginWithGoogle: ''
+      loginWithLesCommuns: ''
+      loginWithMonPrintemps: ''
+      sendConfirmationEmail: ''
+
+dashboard:
+  _label: ''
+  confirm: ''
+  delete: ''
+  errors: ''
+  menu:
+    contents: ''
+    custom: ''
+    data: ''
+    emailing: ''
+    other_config: ''
+    saas: ''
+    users: ''
+  messages: ''
+  sidebar:
+    gogo_directory: ''
+    gogo_element_add: ''
+    gogo_homepage: ''
+    gogo_partners: ''
+  welcome: ''
+
+duplicates:
+  index:
+    leftDuplicatesToProceedCount: ''
+    merge: ''
+    none: ''
+    return: ''
+    title: ''
+    wantMore: ''
+  node:
+    address: ''
+    deleted: ''
+    merge: ''
+    merge_title: ''
+    non-duplicates: ''
+    non-duplicates_title: ''
+
+dynamic_imports:
+  _label: ''
+  fields: &ref_1
+    customCode: ''
+    customCodeForExport: ''
+    deletedCount: ''
+    elementsCreatedCount: ''
+    elementsDeletedCount: ''
+    elementsErrorsCount: ''
+    elementsMissingGeoCount: ''
+    elementsMissingTaxoCount: ''
+    elementsNothingToDoCount: ''
+    elementsPreventImportedNoTaxo: ''
+    elementsUpdatedCount: ''
+    fieldToCheckElementHaveBeenUpdated: ''
+    fieldToCheckElementHaveBeenUpdated_help: ''
+    file: ''
+    geocodeIfNecessary: ''
+    idsToIgnore: ''
+    idsToIgnore_help: ''
+    isSynchronized: ''
+    isSynchronized_help: ''
+    lastRefresh: ''
+    logs: ''
+    manualRefresh: ''
+    moderateElements: ''
+    moderateElements_help: ''
+    needToHaveOptionsOtherThanTheOnesAddedToEachElements: ''
+    needToHaveOptionsOtherThanTheOnesAddedToEachElements_help: ''
+    newOntologyToMap: ''
+    newTaxonomyToMap: ''
+    optionsToAddToEachElement: ''
+    parameters: ''
+    preventImportIfNoCategories: ''
+    preventImportIfNoCategories_help: ''
+    refreshFrequency: ''
+    refreshFrequencyInDays: ''
+    refreshFrequencyInDays_help: ''
+    sourceName: ''
+    sourceType: ''
+    submessage: ''
+    url: ''
+    usersToNotify: ''
+  form: &ref_2
+    groups:
+      Historic: ''
+      code: ''
+      code_description: ''
+      customCode: ''
+      customCodeForExportPanel: ''
+      customCodeForExportPanel_description: ''
+      customCodeForExportTab: ''
+      dynamicList: ''
+      general: ''
+      historic: ''
+      newCategories: ''
+      newFields: ''
+      ontologyMappingPanel: ''
+      ontologyMappingTab: ''
+      otherOptions: ''
+      staticList: ''
+      taxonomyMapping: ''
+      taxonomyMapping2: ''
+  list: &ref_3
+    idsToIgnore: ''
+    refreshFrequencyInDays: ''
+
+elements:
+  _label: ''
+  action:
+    batch:
+      delete: ''
+      editOptions: ''
+      params:
+        comment: ''
+        dont_send_mail: ''
+        from: ''
+        mail_content: ''
+        mail_subject: ''
+        optionsToAdd: ''
+        optionsToRemove: ''
+        send_to_element: ''
+        send_to_last_contributor: ''
+      refusal: ''
+      resolveReports: ''
+      restore: ''
+      sendMail: ''
+      softDelete: ''
+      validation: ''
+    edit:
+      editOnSite: ''
+      geocode: ''
+      havePendingReports: ''
+      isPending: ''
+      returnToList: ''
+      send_mail: ''
+      showEdit: ''
+      showOnSite: ''
+      submit: ''
+      submit_accept: ''
+      submit_delete: ''
+      submit_redirect: ''
+      submit_refuse: ''
+      submit_resolve: ''
+      submit_restore: ''
+      updateJSON: ''
+  fields:
+    address:
+      addressCountry: ''
+      addressLocality: ''
+      customFormatedAddress: ''
+      postalCode: ''
+      streetAddress: ''
+    contributionType_choices:
+      '-1': ''
+      '0': ''
+      '1': ''
+      '2': ''
+      '3': ''
+      '4': ''
+      '5': ''
+      '6': ''
+    createdAt: ''
+    email: ''
+    id: ''
+    itemValues_choices:
+      '0': ''
+      '1': ''
+      '2': ''
+      '4': ''
+    moderationState: ''
+    moderationState_choices:
+      '-1': ''
+      '-2': ''
+      '0': ''
+      '1': ''
+      '2': ''
+      '3': ''
+      '4': ''
+    name: ''
+    newsletterFrequency: ''
+    oldId: ''
+    optionIds: ''
+    optionsString: ''
+    randomHash: ''
+    reportValues_choices:
+      '0': ''
+      '1': ''
+      '2': ''
+      '4': ''
+    reports: ''
+    sourceKey: ''
+    sourceTypeJSON: ''
+    sourceType_choices:
+      csv: ''
+      json: ''
+      osm: ''
+    status: ''
+    status_choices:
+      '': ''
+      '-1': ''
+      '-2': ''
+      '-3': ''
+      '-4': ''
+      '-5': ''
+      '-6': ''
+      '0': ''
+      '1': ''
+      '2': ''
+      '3': ''
+      '4': ''
+      '5': ''
+      '6': ''
+      '7': ''
+    updatedAt: ''
+    userOwnerEmail: ''
+    userRoles_choices:
+      '0': ''
+      '1': ''
+      '2': ''
+      '3': ''
+      '4': ''
+      '5': ''
+    voteValues_choices:
+      '-1': ''
+      '-2': ''
+      '0': ''
+      '1': ''
+      '2': ''
+  filter:
+    departementCode: ''
+    moderationNeeded: ''
+    moderationState: ''
+    name: ''
+    optionValuesAll: ''
+    optionValuesIn: ''
+    optionValuesNotIn: ''
+    pending: ''
+    postalCode: ''
+    sourceKey: ''
+    valide: ''
+  form:
+    addCustomField: ''
+    duplicateOf: ''
+    groups:
+      customFields: ''
+      general: ''
+      localisation: ''
+      moderation: ''
+      otherInfos: ''
+      pending: ''
+      seeOnOSM: ''
+      show_contributions: ''
+      specialFields: ''
+    seeDuplicate: ''
+  proposedAt: ''
+  proposedBy: ''
+  recent_elements: ''
+
+emails:
+  service:
+    error: ''
+    inactive_config: ''
+    no_automatic_mail: ''
+    no_email: ''
+    no_specific_message: ''
+    no_subject_or_content: ''
+    success: ''
+    unknown: ''
+    unknown_config: ''
+  show_map: ''
+  template:
+    fields:
+      active: ''
+      content: ''
+      subject: ''
+  test:
+    _label: ''
+    custom_message_example: ''
+    done: ''
+    email: ''
+    missing_element: ''
+    missing_email: ''
+    subject: ''
+    submit: ''
+
+files:
+  _label: ''
+  fields:
+    file: ''
+    fileName: ''
+    fileUrl: ''
+  form:
+    customDirectory: ''
+    customDirectory_help: ''
+    customDirectory_placeholder: ''
+    fileName: ''
+    fileName_placeholder: ''
+
+help:
+  _label: ''
+  doc: ''
+
+images: &ref_0
+  _label: ''
+  fields:
+    externalImageUrl: ''
+    file: ''
+  placeholder: ''
+
+images_conf: *ref_0
+
+images_element: *ref_0
+
+images_partner: *ref_0
+
+importService:
+  automaticMergesCount: ''
+  close: ''
+  dismissLog: ''
+  elementsCreatedCount: ''
+  elementsDeletedCount: ''
+  elementsErrorsCount: ''
+  elementsMissingGeoCount: ''
+  elementsMissingTaxoCount: ''
+  elementsNothingToDoCount: ''
+  elementsPreventImportedNoTaxo: ''
+  elementsUpdatedCount: ''
+  inProgress: ''
+  logError: ''
+  logMessage: ''
+  potentialDuplicatesCount: ''
+  processing: ''
+  total: ''
+  x: ''
+
+imports:
+  _label: ''
+  dynamic: ''
+  edit:
+    clear-elements: ''
+    collect: ''
+    confirm: ''
+    delete: ''
+    import: ''
+    lastRefresh: ''
+    reimport: ''
+    saving: ''
+    submit: ''
+    test_export:
+      no_element: ''
+      see_osm_export: ''
+  fields: *ref_1
+  form: *ref_2
+  import: ''
+  last: null
+  list: *ref_3
+  progress:
+    inProgress: ''
+    return_to_import: ''
+    return_to_list: ''
+    title: ''
+  static: ''
+
+js:
+  api:
+    placeholder: ''
+  charts:
+    display: ''
+    field:
+      avg_time_on_page: ''
+      nb_visits: ''
+    last: ''
+    period:
+      day: ''
+      month: ''
+      week: ''
+      year: ''
+    reload: ''
+    title_visitors: ''
+  element_form:
+    geocode_error: ''
+    geocoded_marker_text: >-
+      Verschieben Sie mich, um die Position festzulegen</br>(in der Mitte des
+      Gebäudes)
+  filters_builder:
+    choose_field: ''
+    contracted_field: ''
+    customize_field: ''
+    date_views:
+      day: ''
+      month: ''
+      range: ''
+      week: ''
+      year: ''
+    default_view: ''
+    field_end: ''
+    field_name: ''
+    gogo_date: ''
+    gogo_number: ''
+    max: ''
+    min: ''
+    multiday: ''
+    options:
+      slider: ''
+      value: ''
+    select_views: ''
+    step: ''
+    taxonomy: ''
+    type: ''
+    used_field: ''
+  form_builder:
+    accept: ''
+    accept_placeholder: ''
+    addOption: ''
+    checkbox: ''
+    checkboxGroup: ''
+    checked_value: ''
+    class: ''
+    close: ''
+    content: ''
+    copy_icon: ''
+    dateField: ''
+    defaultvalue: ''
+    description: ''
+    edit_icon: ''
+    errorMsg: ''
+    errorMsg_placeholder: ''
+    fields:
+      address: ''
+      address_help: ''
+      checkbox: ''
+      elements: ''
+      email: ''
+      email_help: ''
+      files: ''
+      images: ''
+      openhours: ''
+      openhours_help: ''
+      separator: ''
+      taxonomy: ''
+      title: ''
+      title_help: ''
+    header: ''
+    icon: ''
+    icon_placeholder: ''
+    label: ''
+    limitRole: ''
+    mandatory: ''
+    maxlength: ''
+    multiple: ''
+    name: ''
+    number: ''
+    option: ''
+    optionLabelPlaceholder: ''
+    optionValuePlaceholder: ''
+    optional: ''
+    options:
+      filled: ''
+      'no': ''
+      normal: ''
+      'yes': ''
+    paragraph: ''
+    pattern: ''
+    pattern_placeholder: ''
+    placeholder: ''
+    placeholder_className: ''
+    placeholder_email: ''
+    placeholder_label: ''
+    placeholder_password: ''
+    placeholder_placeholder: ''
+    placeholder_text: ''
+    placeholder_textarea: ''
+    placeholder_value: ''
+    propNameOptions: ''
+    radio: ''
+    radioGroup: ''
+    range: ''
+    remove_icon: ''
+    required: ''
+    reversedBy: ''
+    reversedBy_placeholder: ''
+    richText: ''
+    roles: ''
+    roles_admin: ''
+    search: ''
+    searchWeigh: ''
+    select: ''
+    selectOptions: ''
+    style: ''
+    subtype: ''
+    subtype_options:
+      email: ''
+      tel: ''
+      text: ''
+      textarea: ''
+      url: ''
+      wysiwyg: ''
+    text: ''
+    textArea: ''
+    timepicker: ''
+    toggle: ''
+    value: ''
+  import:
+    source_this_map: ''
+  mapping_ontology:
+    addressCountry: ''
+    addressLocality: ''
+    categories: ''
+    coreData: ''
+    email: ''
+    files: ''
+    formData: ''
+    fullAddress: ''
+    id: ''
+    images: ''
+    importedData: ''
+    info: ''
+    info_title: ''
+    latitude: ''
+    longitude: ''
+    name: ''
+    openHours: ''
+    osm_opening_hours: ''
+    osm_source: ''
+    osm_timestamp: ''
+    osm_url: ''
+    osm_version: ''
+    otherData: ''
+    owner: ''
+    postalCode: ''
+    primary: ''
+    primary_title: ''
+    source: ''
+    specificData: ''
+    streetAddress: ''
+    streetNumber: ''
+  mapping_taxonomy:
+    createTerm: ''
+    selectCategory: ''
+  osm_query_builder:
+    title: ''
+
+mapping-ontology:
+  alert: ''
+  arrowTitle: ''
+  clearTitle: ''
+  displayMore: ''
+  mapped: ''
+  original: ''
+
+mapping-taxonomy:
+  alert: ''
+  arrowTitle: ''
+  category-group: ''
+  clearTitle: ''
+  collectedPercent: ''
+  create-missing-categories: ''
+  mapped: ''
+  moreInfos: ''
+  original: ''
+
+monitoring:
+  activeUsersNewsletter: ''
+  all_elements: ''
+  delete: ''
+  detectDuplicates: ''
+  display: ''
+  display_all: ''
+  duplicates: ''
+  error: ''
+  manageDuplicates: ''
+  moderationNeeded: ''
+  pending: ''
+  title: ''
+  users: ''
+
+news:
+  _label: ''
+  fields:
+    content: ''
+    publicationDate: ''
+    status: ''
+    status_choices:
+      draft: ''
+      published: ''
+    title: ''
+  form:
+    groups:
+      list_header: ''
+
+options:
+  _label: ''
+  fields:
+    add_a_tag: ''
+    color: ''
+    customId: ''
+    customId_help: ''
+    descriptionLabel: ''
+    displayChildrenInForm: ''
+    displayChildrenInInfoBar: ''
+    displayChildrenInMenu: ''
+    displayInForm: ''
+    displayInInfoBar: ''
+    displayInMenu: ''
+    enableDescription: ''
+    enableDescription_help: ''
+    icon: ''
+    index: ''
+    name: ''
+    nameShort: ''
+    nameShort_help: ''
+    osmTags: ''
+    osmTags_help: ''
+    parent: ''
+    pickingOptionText: ''
+    return_to_list: ''
+    showExpanded: ''
+    softColor: ''
+    softColor_help: ''
+    textHelper: ''
+    textHelper_help: ''
+    unexpandable: ''
+    unexpandable_help: ''
+    url: ''
+    url_help: ''
+    useColorForMarker: ''
+    useColorForMarker_help: ''
+    useIconForMarker: ''
+    useIconForMarker_help: ''
+  form:
+    groups:
+      advanced: ''
+      description: ''
+      display: ''
+      displayChildren: ''
+      main: ''
+      osm: ''
+      osm_help: ''
+      primary: ''
+      secondary: ''
+      subcategories: ''
+
+partners:
+  _label: ''
+  form:
+    content: ''
+    logo: ''
+    logo_placeholder: ''
+    name: ''
+    websiteUrl: ''
+
+projects:
+  _label: ''
+
+sonata.user.user:
+  _label: ''
+  batch:
+    error: ''
+    mailError: ''
+    sendmails: ''
+    tooMany: ''
+    usersWithoutEmail: ''
+  facebook_warning: ''
+  fields:
+    content: ''
+    contributionsCount: ''
+    createdAt: ''
+    email: ''
+    gamification: ''
+    groups: ''
+    impersonating: null
+    object: ''
+    reportsCount: ''
+    sendMail: ''
+    username: ''
+    votesCount: ''
+  forgottedPassword: ''
+  form:
+    allowedStamps: ''
+    credentialsExpired: null
+    enabled: ''
+    expired: ''
+    groups:
+      general: ''
+      roles: ''
+      security: ''
+      status: ''
+      user: ''
+    locked: ''
+    main-roles: ''
+    plainPassword: ''
+    watchModeration: ''
+    watchModerationOnlyWithOptions: ''
+    watchModerationOnlyWithPostCodes: ''
+    watchModerationOnlyWithPostCodes_help: ''
+    watchModerationOnlyWithPostCodes_placeholder: ''
+  role:
+    ROLE_ADMIN: ''
+    ROLE_DIRECTMODERATION_ADD: ''
+    ROLE_DIRECTMODERATION_EDIT_OWN_CONTRIB: ''
+    ROLE_SONATA_ADMIN: ''
+    ROLE_SUPER_ADMIN: ''
+
+stamps:
+  _label: ''
+  fields:
+    isPublic: ''
+    name: ''
+
+tile_layers:
+  _label: ''
+  fields: null
+  form:
+    groups: null
+
+webhooks:
+  _label: ''
+  fields:
+    format: ''
+    url: ''
+
+wrappers:
+  _label: ''
+  fields:
+    backgroundColor: ''
+    content: ''
+    rawContent: ''
+    textColor: ''

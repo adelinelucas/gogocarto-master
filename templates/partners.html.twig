@@ -1,0 +1,37 @@
+{% extends "page-layout.html.twig" %}
+
+{% set pageName = 'partners' %}
+{% set pageTitle = config.partnerPageTitle %}
+
+{# BODY CONTENT #}
+{% block body_content %}
+
+<section>
+
+<h1>{{ config.partnerPageTitle }}</h1>
+
+<div class="partners-container">
+  {% for partner in listPartners %}
+    {% set mailto = partner.websiteUrl|default('')|split('mailto') %}
+    {% set isMail = (mailto|length > 1) %}
+    <a class="partner-item row" href="{{ partner.websiteUrl }}" {% if not isMail %}target="_blank"{% endif %}>
+      {% set hasImage = partner.logo and partner.logo.imageUrl %}
+      {% if hasImage %}
+        <div class="image-container">
+          <img src="{{ partner.logo.imageUrl }}" alt="logo" class="partner-logo"/>
+        </div>
+      {% endif %}
+      <div class="partner-text">
+        <h2 class="partner-title {{ hasImage ? "with-logo" : 'no-logo' }}">{{ partner.name|capitalize }}</h2>
+        <div class="partner-description wysiwyg-content">{{ partner.content | raw }} </div>
+        {% if partner.websiteUrl %}          
+          <a class="partner-url" href="{{ partner.websiteUrl }}" {% if not isMail %}target="_blank"{% endif %}>{{ partner.websiteUrl | replace({'https://': "", 'http://': "", 'mailto:':""}) }}</a>
+        {% endif %}
+      </div>
+    </a>
+  {% endfor %}
+</div>
+
+</section>
+
+{% endblock %}

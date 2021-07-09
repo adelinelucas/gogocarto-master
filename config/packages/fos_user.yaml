@@ -1,0 +1,21 @@
+fos_user:
+    db_driver:      mongodb # can be orm or mongodb
+    firewall_name:  main
+    user_class:     App\Document\User
+    registration:
+        form:
+            type: App\Application\Sonata\UserBundle\Form\Type\RegistrationFormType
+        confirmation:
+            enabled: true
+
+    from_email:
+        address:        "%from_email%"
+        sender_name:    "%instance_name%"
+
+    group:
+        group_class:   App\Application\Sonata\UserBundle\Document\Group
+        group_manager: sonata.user.mongodb.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
+
+    service:
+        mailer: fos_user.mailer.twig_swift
+        user_manager: sonata.user.mongodb.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.user_manager for mongodb)

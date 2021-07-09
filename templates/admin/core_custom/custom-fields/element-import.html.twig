@@ -1,0 +1,45 @@
+{% trans_default_domain 'admin' %}
+
+{% set formName = form.vars.full_name|split('[')|first %}
+
+<div id="element-import">  
+    <select class="source-type form-control" data-sonata-select2="false" v-model="sourceType" name="sourceType">
+        <option></option>
+        {% for type in ['csv', 'json', 'osm'] %}
+            <option value="{{ type }}">{{ ('elements.fields.sourceType_choices.' ~ type)|trans }}</option>
+        {% endfor %}
+    </select>
+
+    <osm-query-builder v-if="sourceType == 'osm'"
+                       :osm-query-object.sync="osmQueriesJson"
+                       :form-name="formName"
+                       tile-layer="{{ form.vars.attr['data-title-layer'] }}"
+                       :default-bounds="{{ form.vars.attr['data-default-bounds'] | raw }}"
+                       @osm-url-changed="url = $event">
+    </osm-query-builder>
+
+    <!--Input to save OSM query as JSON  -->
+    <input type="hidden" :name="formName + '[osmQueriesJson]'" :value="osmQueryInputValue"/>
+
+    <div v-show="sourceType == 'csv'" class="file-container">
+        {# content is moved by javascript from another field into this div #}
+    </div>
+    
+    <div v-show="sourceType == 'json'">
+        <label>{{ 'elements.fields.sourceTypeJSON'|trans }}</label>
+        <input type="url" class="form-control" v-model="url" :name="`${formName}[url]`"/>
+    </div>
+</div>
+
+<script>
+    var importObject = {{ form.vars.sonata_admin.admin.subject|json_encode|raw }}
+    var sourceType = "{{ form.vars.sonata_admin.admin.subject.getSourceType() }}"
+    var formName = {{ form.vars.full_name|split('[')|first|json_encode|raw }}
+    // See element-import.js Vue Component
+</script>
+
+
+
+
+
+

@@ -1,0 +1,3 @@
+asset_links:
+    path: /.well-known/assetlinks.json
+    defaults: { _controller: App\Controller\WellKnownController::assetLinksAction }

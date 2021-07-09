@@ -1,0 +1,29 @@
+{% if elementsOwned|length > 0 %}
+<h2>{{ 'my_contributions.my_elements'|trans }}</h2>
+  <table class="bordered">
+    <thead>
+      <tr>
+          <th>{{ 'my_contributions.element'|trans }}</th>
+          <th class="status">{{ 'my_contributions.status'|trans }}</th>
+          <th class="action">{{ 'my_contributions.action'|trans }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for element in elementsOwned %}
+          <tr>
+            <td>
+              <a href="{{ path('gogo_directory_showElement', {'id': element.id, 'name': element.name}) | replace({"%23":'#'}) }}">{{ element.name }}</a>
+            </td>
+            <td>{{ ('elements.fields.status_choices.' ~ element.status)|trans({}, 'admin') }}</td>
+            <td>
+              {% if element.isValid() or element.isPending() and element.currContribution.userEmail != app.user.email %}
+                <a href="{{ path('gogo_element_edit', {'id': element.id, 'hash': element.randomHash}) }}">
+                  <button class="btn-gogo btn-secondary small waves-light waves-effect btn">{{ 'my_contributions.edit'|trans }}</button>
+                </a>
+              {% endif %}
+            </td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}

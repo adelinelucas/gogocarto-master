@@ -1,0 +1,49 @@
+{% extends "page-layout.html.twig" %}
+{% trans_default_domain 'admin' %}
+
+{% set pageName = 'duplicates' %}
+{% set pageTitle = 'duplicates.index.title'|trans %}
+
+{% block stylesheets %}
+
+  <link rel="stylesheet" href="{{ asset('css/pages.css?ver=' ~ version) }}">
+  <link rel="stylesheet" href="{{ asset('css/duplicates.css?ver=' ~ version) }}">
+
+{% endblock %}
+
+{# BODY CONTENT #}
+{% block body_content %}
+  <section>
+    
+    <center style="margin-bottom: 2rem"><a href="{{ path('gogo_core_bundle_config_duplicates_admin_classname_list')}}"><button class="btn btn-secondary">{{ 'duplicates.index.return'|trans }}</button></a></center>
+
+    {% if duplicatesNode|length == 0 %}
+      <h1>{{ 'duplicates.index.none'|trans }}</h1>
+      {% if leftDuplicatesToProceedCount > 0 %}
+        <center><p>{{ 'duplicates.index.leftDuplicatesToProceedCount'|trans({'%count%': leftDuplicatesToProceedCount}) }}</p>  </center>
+      {% endif %}
+    {% else %}
+      <h1>{{ 'duplicates.index.merge'|trans }}</h1>
+
+      {% for duplicateNode in duplicatesNode %}
+        {% include 'duplicates/duplicate-node.html.twig' with { 'duplicateNode' : duplicateNode, 'config' : config } %}
+      {% endfor %}
+
+      {% if leftDuplicatesToProceedCount > 0 %}
+        <center>        
+          <button class="btn btn-primary" onclick="window.location.reload()">{{ 'duplicates.index.wantMore'|trans({'%count%': leftDuplicatesToProceedCount}) }}</button>
+        </center>
+      {% endif %}
+    {% endif %}
+
+  </section>
+
+{% endblock %}
+
+{% block page_javascripts %}
+  <script src="{{ asset('js/external-pages.js?ver=' ~ version) }}"></script>
+  <script>
+    var apiMerge = "{{ path('gogo_merge_element') }}";
+    var apiMarkAsNonDuplicate = "{{ path('gogo_mark_as_non_duplicate') }}";
+  </script>
+{% endblock %}

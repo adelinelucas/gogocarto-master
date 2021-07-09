@@ -1,0 +1,83 @@
+{% extends "page-layout.html.twig" %}
+
+{% set pageName = 'api' %}
+{% set pageTitle = 'api_ui._label'|trans %}
+
+{% block stylesheets %}
+
+  <link rel="stylesheet" href="{{ asset('css/pages.css?ver=' ~ version) }}">
+  <link rel="stylesheet" href="{{ asset('css/api.css?ver=' ~ version) }}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+
+{% endblock %}
+
+{# BODY CONTENT #}
+{% block body_content %}
+  <section>
+    <h1>{{ 'api_ui.title'|trans }}</h1> 
+
+    {# FORMAT #}
+    <p class="format-container">
+      <span class="forma-label">{{ 'api_ui.format'|trans }}</span>
+      <input name="format" type="radio" id="format-json" data-value="json" checked class="url-update" />
+      <label for="format-json">{{ 'api_ui.json'|trans }}</label>
+
+      <input name="format" type="radio" id="format-jsonld"  data-value="jsonld" class="url-update" />
+      <label for="format-jsonld">{{ 'api_ui.jsonld'|trans }}</label>
+    </p>
+
+    {# CATEGORIES #}
+    <div class="col s12 option-container">
+      <input type="checkbox" name="use-categories" id="use-categories" checked class="url-update" />
+      <label id="label-use-categories" for="use-categories">{{ 'api_ui.use_categories'|trans }}</label>
+    </div>
+    <div class="select-categories-container">
+      <select class="select-categories browser-default url-update" multiple>
+       {% for option in options %}
+        <option value="{{ option.id }}">{{ option.name }}</option>
+      {% endfor %}
+      </select>
+    </div>
+
+    <div class="col s12 option-container">
+      <input type="checkbox" name="include-external" id="include-external" checked class="url-update" />
+      <label id="label-include-external" for="include-external">{{ 'api_ui.include_external'|trans }}</label>
+    </div>
+
+    {# BOUNDS #}
+    <div class="col s12 option-container">
+      <input type="checkbox" name="use-bounds" id="use-bounds" checked class="url-update" />
+      <label id="label-use-bounds" for="use-bounds">{{ 'api_ui.use_bounds'|trans }}</label>
+    </div>
+    <div id="map-bounds-select"></div>
+
+    {# LIMIT #}
+    <div class="col s12 option-container">
+      <input type="checkbox" name="use-limit" id="use-limit" class="url-update" checked/>
+      <label id="label-use-limit" for="use-limit">{{ 'api_ui.use_limit'|trans }}</label>
+      <input type="number" id="limit-input" class="url-update" value="100"/>
+    </div>
+
+    {# URL #}
+    <h2>{{ 'api_ui.api_url'|trans }}</h2>
+    <div class="col s12 input-field">
+      <input type="text" id="api-url" onClick="this.setSelectionRange(0, this.value.length)"/>
+    </div>
+
+    <button id="test-api" class="btn btn-primary">{{ 'api_ui.test'|trans }}</button>
+
+  </section>
+
+{% endblock %}
+
+{% block page_javascripts %}
+  <script src="{{ asset('js/external-pages.js?v=' ~ version) }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <script>
+    var defaultTileLayer = "{{ config.defaultTileLayer.url }}"
+    var defaultBounds = {{ config.getDefaultBounds | json_encode | raw }}
+
+    var apiUrlBase = "{{ url('gogo_api_elements_index') }}";
+  </script>
+{% endblock %}

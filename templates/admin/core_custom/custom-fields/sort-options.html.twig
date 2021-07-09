@@ -1,0 +1,43 @@
+<script>
+  function sortOptions() {
+    var inputs = $('#sort-options-btn').closest('.sonata-ba-collapsed-fields')
+                .find('.sonata-collection-row .sonata-ba-field .form-group:first-child input');
+    var values = [];
+    inputs.each(function() {
+      values.push({id: this.id, name: $(this).val()});
+    });
+    values.sort(dynamicSort("name"));
+    for (var i = 0; i < values.length; i++) {
+      value = values[i];
+      $('#' + value.id).closest('.sonata-collection-row-without-label').find('.form-group:nth-child(2) input').val(i);
+    }
+    console.log(values);
+  }
+
+  function dynamicSort(property) {
+    var sortOrder = 1;
+
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+
+    return function (a,b) {
+        if(sortOrder == -1){
+            return b[property].localeCompare(a[property]);
+        }else{
+            return a[property].localeCompare(b[property]);
+        }
+    }
+  }
+</script>
+
+<style>
+  #sort-options-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+</style>
+
+<span class="btn btn-sm btn-default" id="sort-options-btn" onClick="sortOptions()">{{ 'categories.list.sort_alpha'|trans({}, 'admin') }}</span>

@@ -1,0 +1,219 @@
+{% trans_default_domain 'admin' %}
+
+<input type="hidden" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}"/>
+
+{% set object = form.vars.sonata_admin.admin.subject %}
+{% set mapping = object.ontologyMapping %}
+
+{% if mapping|length == 0 %}
+  <div class="alert alert-info">{{ 'mapping-taxonomy.alert'|trans }}</div>
+{% else %}
+  <table class="table mapping-table mapping-ontology-table">
+    <thead>
+      <tr>
+        <th style="width:100px">{{ 'mapping-taxonomy.original'|trans }}</th>
+        <th style="width:20px"></th>
+        <th>{{ 'mapping-taxonomy.mapped'|trans }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="table-striped">
+      {% set percentThreshold = 10 %}
+      {% set displayMorePropsBtn = false %}
+      {% for originName, mappedObject in mapping %}
+        {% set moreInfos = '' %}
+        {% set rowClass = '' %}
+        {% if mappedObject.collectedPercent is defined %}
+          {% set moreInfos = moreInfos ~ 'mapping-taxonomy.collectedPercent'|trans({'%percent%': mappedObject.collectedPercent|number_format(0)}) %}
+          {% if mappedObject.collectedPercent < percentThreshold %}
+            {% set rowClass = rowClass ~ 'low-used ' %}
+            {% set displayMorePropsBtn = true %}
+          {% endif %}
+        {% endif %}
+        {% if mappedObject.collectedValues|length > 0 %}
+          {% set moreInfos = moreInfos ~ 'mapping-taxonomy.moreInfos'|trans({'%values%': mappedObject.collectedValues|join(', ')}) %}
+        {% endif %}  
+        {# For OSM import we only edit the tags, others attributes are automatically mapped #} 
+        {% if object.sourceType == 'osm' and not (originName starts with 'tags/') %}   
+            {% set rowClass = rowClass ~ 'hidden ' %}
+        {% endif %}    
+        <tr class="{{ rowClass }}">          
+          <td class="original" title="{{ moreInfos }}">{{originName}}</td>
+          <td><i class="arrow-icon fa fa-arrow-circle-right" title="{{ 'mapping-taxonomy.arrowTitle'|trans }}"></i></td>
+          <td class="mapped">
+            <input type="text" name="ontology[{{originName}}]" 
+                  class="form-control property-selector" value={{mappedObject.mappedProperty}} />
+          </td>
+          <td>
+            <span class="label field-info"></span>
+            <i class="clear-icon fa fa-ban" title="{{ 'mapping-taxonomy.clearTitle'|trans }}"></i>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% if displayMorePropsBtn %}
+      <center>
+        <button type="button" class="btn btn-default display-all-props"
+                onclick="$('.low-used').removeClass('low-used'); $(this).remove()">
+                {{ 'mapping-ontology.displayMore'|trans({'%percent%': percentThreshold}) }}
+        </button>
+      </center>
+  {% endif %}
+{% endif %}
+
+<style>
+  td.original { width: 30%; }
+  td.original[title] { cursor: help; }
+  td.original[title]:hover { font-weight: bold }
+  .arrow-icon { font-size: 17px; padding-top: 3px;}
+  .arrow-icon:hover { cursor: pointer; color: #3c8dbc; }
+  .clear-icon { margin-left: 4px; }
+  .clear-icon:hover { cursor: pointer; color: #dd4b39; }
+  .field-info { cursor: help }
+  td { vertical-align: middle !important; }
+  tr.low-used { display: none}
+  .mapping-table .select2-container .select2-choice, 
+  .mapping-table .select2-container .select2-choices { 
+    line-height: 1.8;
+  }
+  td.mapped {
+    padding-left: 0 !important;
+  }
+  .mapping-table .select2-container:not(.select2-container-active) .select2-choice,
+  .mapping-table .select2-container:not(.select2-container-active) .select2-choices { 
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+  .table>tbody>tr>th, .table>tbody>tr>td {
+    border-top: none;
+    padding: 0 8px
+  }
+  .table>tbody>tr>td:first-child, .table>thead>tr>th:first-child {
+    text-align: right;
+  }
+  .table>tbody>tr:first-child>td {
+    padding-top: 10px;
+  }
+</style>
+
+<script>
+  var importType = "{{ object.sourceType }}";
+  var importIsDynamic = "{{ object.isDynamicImport }}";
+
+  jQuery(document).ready(function() {
+    var formProperties = {{ form.vars.attr["data-form-props"]|raw }};
+    var dataProperties = {{ form.vars.attr["data-props"]|raw }};
+    var coreFields = ['id', 'name', 'categories', 'streetAddress', 'addressLocality', 'postalCode', 'addressCountry', 'latitude', 'longitude', 'images', 'files', 'owner', 'source', 'email', 'openhours', 'streetNumber', 'fullAddress'];
+    var coreData = [], specificData = [], allProperties = [], otherData = []; var importedData = [];
+    coreData.push({id: 'id', text: t('js.mapping_ontology.id')});
+    coreData.push({id: 'name', text: t('js.mapping_ontology.name')});
+    coreData.push({id: 'categories', text: t('js.mapping_ontology.categories')});
+    coreData.push({id: 'latitude', text: t('js.mapping_ontology.latitude')});
+    coreData.push({id: 'longitude', text: t('js.mapping_ontology.longitude')});
+    coreData.push({id: 'fullAddress', text: t('js.mapping_ontology.fullAddress')});
+    coreData.push({id: 'streetNumber', text: t('js.mapping_ontology.streetNumber')});
+    coreData.push({id: 'streetAddress', text: t('js.mapping_ontology.streetAddress')});
+    coreData.push({id: 'addressLocality', text: t('js.mapping_ontology.addressLocality')});
+    coreData.push({id: 'postalCode', text: t('js.mapping_ontology.postalCode')});
+    coreData.push({id: 'addressCountry', text: t('js.mapping_ontology.addressCountry')});
+    specificData.push({id: 'images', text: t('js.mapping_ontology.images')});
+    specificData.push({id: 'files', text: t('js.mapping_ontology.files')});
+    specificData.push({id: 'email', text: t('js.mapping_ontology.email')});
+    specificData.push({id: 'owner', text: t('js.mapping_ontology.owner')});
+    if (!importIsDynamic)
+      specificData.push({id: 'source', text: t('js.mapping_ontology.source')});
+    specificData.push({id: 'openHours', text: t('js.mapping_ontology.openHours')});
+    if (importType == 'osm') {
+      specificData.push({id: 'osm_source', text: t('js.mapping_ontology.osm_source')});
+      specificData.push({id: 'osm_opening_hours', text: t('js.mapping_ontology.osm_opening_hours')});
+      specificData.push({id: 'osm_version', text: t('js.mapping_ontology.osm_version')});
+      specificData.push({id: 'osm_timestamp', text: t('js.mapping_ontology.osm_timestamp')});
+      specificData.push({id: 'osm_url', text: t('js.mapping_ontology.osm_url')});
+    }    
+
+    allProperties = $.map(coreData.concat(specificData), function(el) { return el.id });
+
+    var formData = [];
+    for(var i = 0; i < formProperties.length; i++) {
+      var prop = formProperties[i];
+       if (allProperties.indexOf(prop) == -1 && prop != '/') {
+        allProperties.push(prop);
+        formData.push({id: prop, text: prop});
+      }
+    }
+    for(var i = 0; i < dataProperties.length; i++) {
+      var prop = dataProperties[i];
+      if (allProperties.indexOf(prop) == -1 && prop != '/') {
+        allProperties.push(prop);
+        otherData.push({id: prop, text: prop});
+      }
+    }
+
+    {% for originName, mappedObject in mapping %}
+      var originName = '{{ originName }}';
+      if (originName && allProperties.indexOf(originName) == -1 && coreFields.indexOf(originName) == -1 && originName != '/')
+      {
+        originName = originName.split('/')[originName.split('/').length - 1]
+        importedData.push({id: originName, text:  originName});
+        allProperties.push(originName);
+      }
+      var mappedName = '{{ mappedObject.mappedProperty }}';
+      if (mappedName && allProperties.indexOf(mappedName) == -1 && coreFields.indexOf(mappedName) == -1 && mappedName != '/')
+      {
+        otherData.push({id: mappedName, text: mappedName});
+        allProperties.push(mappedName);
+      }
+    {% endfor %}
+
+    options = [{ id: "/", text: ""}]
+    options.push({ text: t('js.mapping_ontology.coreData'), children: coreData});
+    options.push({ text: t('js.mapping_ontology.specificData'), children: specificData});
+    options.push({ text: t('js.mapping_ontology.formData'), children: formData});
+    if (otherData.length > 0) options.push({text: t('js.mapping_ontology.otherData'), children: otherData});
+    options.push({ text: t('js.mapping_ontology.importedData'), children: importedData});
+
+    $(".property-selector")
+      .select2({
+        createSearchChoice:function(term, data) {
+            if ($(data).filter(function() {
+                return this.text.localeCompare(term)===0;
+            }).length===0)
+            {return {id:term, text:term};}
+        },
+        data: options
+    }).change(function() {
+      var newVal = $(this).val().replace('.', '_');
+      $(this).val(newVal);
+      var $row = $(this).closest('tr')
+      $row.find('.clear-icon').toggle(newVal != '/')
+      $row.find('.field-info').removeClass('label-primary label-info label-success')
+      var text = '', type = '', title = ''
+      if (coreData.map(el => el.id).concat(formProperties).indexOf(newVal) > -1) {
+        text = t('js.mapping_ontology.info')
+        type = "info"
+        title = t('js.mapping_ontology.info_title')
+      } else if (newVal != '/' && newVal != '') {
+        text = t('js.mapping_ontology.primary')
+        type = "primary"
+        title = t('js.mapping_ontology.primary_title')
+      }
+      $row.find('.field-info').addClass('label-'+type).text(text).attr('title', title)
+    }).trigger('change')
+
+    // on arrow click, use the original name
+    $('.mapping-ontology-table .arrow-icon').click(function() {
+      let valueTocopy = $(this).parent().siblings('.original').text().split('/')
+      valueTocopy = valueTocopy[valueTocopy.length - 1] // get last
+      $(this).parent().parent().find('.property-selector:not(.select2-container)').val(valueTocopy).trigger('change');
+    });
+
+    $('.mapping-ontology-table .clear-icon').click(function() {
+      $(this).parent().parent().find('.property-selector:not(.select2-container)').val("/").trigger('change');
+    });
+
+
+  });
+</script>

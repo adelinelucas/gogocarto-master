@@ -1,0 +1,47 @@
+<div class="main-container" style="background-color: {{ config.getDefaultColor('backgroundColor') }};
+            height: 100%;
+            padding: 30px 45px">
+  <div class="header" style="background-color : {{ config.getDefaultColor('contentBackgroundColor') }};
+              max-width: 700px;
+              color: {{ config.textColor }};
+              margin: 0 auto;
+              border-radius: 5px;
+              font-weight: normal;
+              overflow: hidden;
+              font-family: Arial, sans-serif;
+              line-height: 26px;
+              font-size: 15px;">
+    <div style="text-align:center;
+                padding: 10px;
+                padding-top: 15px;
+                border-radius: 5px 5px 0 0;
+                border-bottom: 1px solid #eaeaea;
+                background-color: {{ config.getDefaultColor('headerColor') }};">
+        <a href="{{ homeUrl }}" style="color: {{ config.getDefaultColor('headerTextColor') }}; text-decoration: none;">
+          {% if config.logo and config.logo.imageUrl %}
+            <img src="{{ config.logo.imageUrl }}" alt="{{ config.appName }}" title="{{ config.appName }}"
+                   style="max-height: 100px;
+                          color: white;
+                          font-family: sans-serif;
+                          max-width: 100%;" />
+          {% else %}
+            <h1>{{ config.appName }}</h1>
+          {% endif %}
+        </a>
+        {% if config.appBaseline %}
+          <div style="color: {{ config.getDefaultColor('headerTextColor') }};
+                    text-transform: uppercase;
+                    margin-top: 8px;
+                    font-size: 15px;
+                    font-weight: bold;
+                    line-height: 30px;
+                    font-family: sans-serif;
+                    ">{{ config.appBaseline }}</br></div>
+        {% endif %}
+    </div>
+    <div class="content" style="padding:20px 25px;">
+      {{ content | raw }}
+    </div>
+  </div>
+</div>
+

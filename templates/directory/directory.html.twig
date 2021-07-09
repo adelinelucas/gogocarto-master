@@ -1,0 +1,36 @@
+{% extends "page-layout.html.twig" %}
+
+{% set pageName = 'directory' %}
+{% set pageTitle = "directory._label"|trans() %}
+
+{# Stylessheets #}
+{% block page_stylesheets %}
+
+{% endblock %}
+
+{# BODY CONTENT #}
+{% block body_content %}
+
+  <div id="directory-container"></div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+  <script>
+
+    $(document).ready(function()
+    {
+      carto = goGoCarto(
+        '#directory-container',
+        {% if gogoConfig is defined %}
+          {{ gogoConfig | json_encode | raw }}
+        {% elseif gogoConfigUrl is defined %}
+          "{{ gogoConfigUrl }}"
+        {% endif %}
+      );
+    });
+
+  </script>
+
+{% endblock %}

@@ -1,0 +1,7 @@
+<div class="checkbox-container">
+  <input type="checkbox" name="data[{{ field.name }}]" id="{{ field.name }}"
+          {% if field.required|default(false) %}class="required"{% endif %}
+          data-checked-value="{{ field.checked_value|default('on') }}"
+          {% if elementValue or not elementValue and field.defaultvalue == "yes" %}checked="checked"{% endif %}/>
+  <label for="{{ field.name }}" class="to-html">{{ field.label|raw }}</label>
+</div>

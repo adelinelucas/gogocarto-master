@@ -1,0 +1,45 @@
+ssh sur serveur gogocarto
+
+certbot certonly --server https://acme-v02.api.letsencrypt.org/directory --manual --preferred-challenges dns-01 --agree-tos --manual-public-ip-logging-ok -d *.gogocarto.fr -d gogocarto.fr
+
+le truc a faire a la main c'est donc d'aller sur https://admin.gandi.net, choisir le domaine gogocarto.fr puis Enregistrement dns
+if faut éditer l'entrée txt acme-challenge pour gogocarto.fr et mettre al valeur donnée par la ligne de commande
+
+Bug chelou, il faut toujours faire l'operation 2fois, c'est que à al deuxième que ça marche
+
+puis service nginx restart
+
+Only renew?
+-----
+
+Message suivant à la fin du prcess :
+
+- Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/gogocarto.fr/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/gogocarto.fr/privkey.pem
+   Your cert will expire on 2019-08-21. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot
+   again. To non-interactively renew *all* of your certificates, run
+   "certbot renew"
+
+Faudrait essayer de faire juste renew pour voir
+
+Update
+----
+
+bon ben c'est louche
+
+en tout cas c'est réparé
+bizarre car cela marche pas la premiere fois
+puis ok la deuxieme fois
+aussi il y avait un truc louche avec 2 comptes
+peut etre d'ici 4 mois switcher sur https://github.com/Neilpang/acme.sh
+
+github.com
+Neilpang/acme.sh
+A pure Unix shell script implementing ACME client protocol - Neilpang/acme.sh
+apparement il gere l'api de gandi, donc a priori il peut faire tout seul les renouvellements
+faudra creer une clé api chez gandi, virer certbot et tester celui la, pas le temps de le faire, mais on a 4 mois devant nous
+`certbot certonly --server https://acme-v02.api.letsencrypt.org/directory --manual --preferred-challenges dns-01 --agree-tos --manual-public-ip-logging-ok -d *.gogocarto.fr -d gogocarto.fr`
+voila la commande qui a un param --manual-public-ip-logging-ok en plus pour eviter de repondre a des questions lors de l'install

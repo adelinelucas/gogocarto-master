@@ -1,0 +1,20 @@
+<div class="table-responsive no-padding">
+  <table class="table"> 
+  <tbody>
+    {% for key, data in object.data %}
+      <tr class="sonata-ba-view-container">
+        <th>{{ key }}</th>
+        <td>
+          {% if data is iterable %}
+            {% for subkey, subdata in data %}
+              {{ subkey }} : {{ subdata is iterable ? subdata|join(',') : subdata }}<br/>
+            {% endfor %}
+          {% else %}
+            {{ data }}
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+</div>

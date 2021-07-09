@@ -1,0 +1,22 @@
+<div class="source-priority-container">
+
+    <ul class="list-group" v-sortable="{ onUpdate: onUpdate }">
+        <li v-for="(item, key) in list" v-text="(key+1) + '. ' + textFrom(item)" :key="item"
+            class="list-group-item"></li>
+    </ul>
+
+    <input type="hidden" :value="value" name="{{ form.vars.full_name }}" />
+
+</div>
+
+<script>
+    // See Vue Component
+    var sourceList = {{ form.vars.value|json_encode|raw }}
+    var formName = {{ form.vars.full_name|split('[')|first|json_encode|raw }}  
+</script>
+
+<style>
+    .list-group-item {
+        cursor: move;
+    }
+</style>

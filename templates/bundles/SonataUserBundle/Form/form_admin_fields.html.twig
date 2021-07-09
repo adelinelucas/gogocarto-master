@@ -1,0 +1,134 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% trans_default_domain 'admin' %}
+
+{% block sonata_security_roles_widget %}
+{% spaceless %}
+    <div class="editable">
+        {% set object = form.vars.sonata_admin.admin.subject %}
+
+        <div class="role-group">
+            <h4 class="role-group-title main-roles">{{ 'sonata.user.user.form.main-roles'|trans }}</h4>
+            {% set mainRoles = {
+                'ROLE_SUPER_ADMIN':                       'sonata.user.user.role.ROLE_SUPER_ADMIN'|trans,
+                'ROLE_ADMIN':                             'sonata.user.user.role.ROLE_ADMIN'|trans,
+                'ROLE_DIRECTMODERATION_ADD':              'sonata.user.user.role.ROLE_DIRECTMODERATION_ADD'|trans,
+                'ROLE_DIRECTMODERATION_EDIT_OWN_CONTRIB': 'sonata.user.user.role.ROLE_DIRECTMODERATION_EDIT_OWN_CONTRIB'|trans,
+                'ROLE_SONATA_ADMIN':                      'sonata.user.user.role.ROLE_SONATA_ADMIN'|trans
+            }%}
+            {% for role, label in mainRoles %}
+                <div class="checkbox role-checkbox {{ role }}">
+                  <label>
+                    <input type="checkbox" name="{{form.vars.full_name}}[]" value="{{role}}"
+                            {{ role in object.roles ? 'checked' : '' }}
+                            {{ is_granted(role) ? '' : 'disabled'}}>
+                    <span class="control-label__text">{{ label }}</span>
+                  </label>
+               </div>
+            {% endfor %}
+        </div>
+
+        <div class="admin-config">
+            <p>{{ 'sonata.user.user.fields.permissions_warning'|trans|raw }}</p>
+            <div class="btn-check-all btn btn-primary btn-sm checked">{{ 'sonata.user.user.fields.check_uncheck'|trans }}</div>
+
+            {% for roles_group in choices|batch(5) %}
+                {% set firstRole = roles_group|first %}
+                {% if 'ROLE_ADMIN_' in firstRole.label or 'ROLE_SONATA_USER_ADMIN_' in firstRole.label %}
+                    {% set title = firstRole.label|split('ROLE_ADMIN_')|last|split('ROLE_SONATA_USER_ADMIN_')|last %}
+                    {% set title = title|replace({'_': ' '})|slice(0,-5) %}
+                    {% set hidden = 'HIDDEN' in title %}
+
+                    {% if title in ["GENERAL CONFIG", "ELEMENTS", "PROJECT"]%}<hr>{% endif %}
+
+                    {% if not hidden %}
+                        <div class="role-group object">
+                            <div class="checkbox role-checkbox group-checkbox inline">
+                              <label>
+                                <i class="fa fa-check-circle btn-check-all-for-object"></i>
+                                <span class="role-group-title btn-check-all-for-object">{{ title|capitalize }}</span>
+                              </label>
+                           </div>
+
+                            {% for role in roles_group %}
+                               {% set action = role.label|split('_')|last %}
+                               <div class="checkbox role-checkbox inline">
+                                  <label>
+                                    <input type="checkbox" name="{{form.vars.full_name}}[]" value="{{role.value}}"
+                                          {% if role.value in object.roles %}checked{% endif %}>
+                                    <span class="control-label__text">{{ action }}</span>
+                                  </label>
+                               </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.btn-check-all-for-object').click(function() {
+                var checkboxes = $(this).closest('.role-group').find('input[type=checkbox]');
+                var value = !checkboxes.first().is(':checked');
+                $.each(checkboxes, function() {
+                    $(this).prop('checked', value).trigger('change');
+                    if (value) $(this).parent().addClass('checked');
+                    else $(this).parent().removeClass('checked');
+                });
+            });
+
+            $('.btn-check-all:not(.initialized)').click(function() {
+                var value = $(this).hasClass('checked');
+                $(this).toggleClass('checked', !value);
+                var checkboxes = $('.role-group.object input[type=checkbox]');
+                $.each(checkboxes, function() {
+                    $(this).prop('checked', value).trigger('change');
+                    if (value) $(this).parent().addClass('checked');
+                    else $(this).parent().removeClass('checked');
+                });
+            }).addClass('.initialized');
+
+            checkForChanges();
+        });
+
+        function checkForChanges()
+        {
+            var show = $('.ROLE_SONATA_ADMIN .icheckbox_square-blue').hasClass('checked') && !$('.ROLE_SUPER_ADMIN .icheckbox_square-blue').hasClass('checked');
+            $('.admin-config').toggle(show);
+            setTimeout(checkForChanges, 200);
+        }
+
+    </script>
+
+    <style>
+        .role-group { margin-bottom: 15px; }
+        .role-group-title {
+            font-size: 18px;
+            color: #2b89c5;
+            margin-right: 15px;
+            font-weight: bold;
+            width: 200px;
+            display: inline-block;
+        }
+        .main-roles { margin-bottom: 20px; }
+        .role-checkbox {
+            margin-bottom: 15px;
+            margin-right: 20px;
+        }
+        .role-checkbox.inline { display: inline; }
+        .btn-check-all-for-object { font-size: 18px; margin-right: 10px;  }
+        .btn-check-all { margin-bottom: 20px; }
+        .icheckbox_square-blue.disabled ~ .control-label__text { color: grey; }
+    </style>
+{% endspaceless %}
+{% endblock sonata_security_roles_widget %}

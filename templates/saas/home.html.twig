@@ -1,0 +1,112 @@
+{% extends "saas/sass-layout.html.twig" %}
+
+{% set pageName = 'home' %}
+
+{% block body %}
+  <section class="title">
+    <img src="{{ asset('img/background1-small.jpg')}}"/>
+    <div class="floating">
+      <button class="btn btn-primary-neutral discover">{{ 'home.discover'|trans }}</button>
+      <button class="btn btn-primary-neutral reversed">{{ 'projects.pitch'|trans }}</button>
+    </div>
+  </section>
+
+  <section class="video gogo-bg-primary">
+    <iframe class="video-demo" sandbox="allow-same-origin allow-scripts" src="https://video.colibris-outilslibres.org/videos/embed/62279fe4-06d9-4fdc-8e0d-3d5de3c05072" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <section class="projects">
+     <div class="actions">
+      <p>
+        <a href="{{ path('gogo_saas_new_project') }}"><button class="btn btn-primary-neutral new-project">{{ 'projects.form._label'|trans }}</button></a>
+      </p>
+
+      <p class="secondary-buttons">
+        <a href="https://doc.gogocarto.fr" target="_blank">
+          <button class="btn btn-outline-neutral btn-doc"><img src="{{ asset('img/icon-question.png') }}"></img>{{ 'home.documentation'|trans}}</button>
+        </a>
+        <a href="https://gitlab.com/seballot/gogocarto" target="_blank">
+          <button class="btn btn-outline-neutral btn-repo"><img src="{{ asset('img/icon-code.png') }}"></img>{{ 'home.source_code'|trans }}</button>
+        </a>
+        {% if config.saas.donationUrl %}
+        <a href="{{ config.saas.donationUrl }}" target="_blank">
+          <button class="btn btn-outline-neutral btn-donate"><img src="{{ asset('img/icon-heart.png') }}"></img></i>{{ 'home.donate'|trans }}</button>
+        </a>
+        {% endif %}
+      </p>
+    </div>
+  </section>
+
+  <div class="projects-list">
+    {% if pinnedProjects|length > 0 %}   
+      <div class="pinned-projects-container">
+        <img class="img-hand before" src="{{ asset('img/hand.png') }}"/>
+        <img class="img-hand after" src="{{ asset('img/hand-2.png') }}"/>
+        <section class=" projects">
+          <h2>{{ 'home.pinned_projects'|trans }}</h2>
+          <div class="pinned-projects projects-container">
+            <dataset :ds-data="pinnedProjects">
+              <dataset-item>
+                <template #default="{ row, rowIndex }">
+                  <project-display :project="row" :loop-index="rowIndex"></project-display>
+                </template>
+              </dataset-item>
+            </dataset>
+          </div>      
+        </section>
+      </div>
+    {% endif %}
+
+    <div class="all-projects-container">
+      <section class="projects">
+        <h2><img src="{{ asset('img/bike.png') }}">{{ 'home.all_projects'|trans({ length: projects|length}) }}</h2>
+        <div class="projects-container">
+          <dataset
+            v-slot="{ ds }"
+            :ds-data="projects"
+            :ds-sortby="[sortBy]"
+            :ds-search-in="['name', 'tags']"
+          >
+            <div class="projects-list-actions row">
+              <div class="col l4 s12">
+                <dataset-search class="search" ds-search-placeholder="{{ 'home.search_placeholder'|trans }}" :wait="300"></dataset-search>
+              </div>
+              <div class="col l4 s12">
+                <button class="sort btn btn-sm btn-neutral" @click="sortField = 'date'; sortAsc = !sortAsc">
+                  {{ 'home.sort_by_date'|trans }}
+                  <span v-if="sortField == 'date'" class="sort-arrow" v-text="sortAsc ? '⇡' : '⇣'"></span>
+                </button>
+              </div>
+              <div class="col l4 s12">
+                <button class="sort btn btn-sm btn-neutral" @click="sortField = 'dataSize'; sortAsc = !sortAsc">
+                  {{ 'home.sort_by_points'|trans }}
+                  <span v-if="sortField == 'dataSize'" class="sort-arrow" v-text="sortAsc ? '⇡' : '⇣'"></span>
+                </button>
+              </div>
+            </div>
+            <dataset-item>
+              <template #default="{ row, rowIndex }">
+                <project-display :project="row" :loop-index="rowIndex"></project-display>
+              </template>
+            </dataset-item>
+            <div class="hide">
+              <dataset-show :ds-show-entries="18"></dataset-show>
+            </div>
+            <dataset-pager></dataset-pager>
+            
+          </dataset>          
+        </div>
+      </section>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascripts %}
+  <script>
+    $('section.title').on('click', function() {
+      $(this).toggleClass('reduced')
+    })
+    var pinnedProjects = {{ pinnedProjects|json_encode|raw }};
+    var projects = Object.values({{ projects|json_encode|raw }});
+  </script>
+{% endblock %}

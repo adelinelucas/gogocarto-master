@@ -1,0 +1,529 @@
+@import 'partials/base';
+
+@import 'vendor/timepicki';
+@import 'vendor/bootstrap-datepicker3';
+
+.gogo-load-css
+{
+  @import "components/element-form/category-field";
+  @import "components/element-form/daterangepicker";
+  @import 'vendor/select2-materialize';
+
+  label { color: inherit; }
+
+  label.gogo-form-label {
+
+    &.active {
+      font-weight: bold;
+      .more { display: none; }
+    }
+
+    &:after {
+      font-weight: normal;
+      top: 2.5rem !important;
+    }
+
+    .more {
+      font-size: .9rem;
+      font-style: italic;
+    }
+
+    p { display: inline; }
+  }
+
+  .select-dropdown li
+  {
+    &.disabled
+    {
+      text-transform: uppercase;
+      font-size: .8rem;
+      font-weight: bold;
+    }
+  }
+
+  .select-wrapper + label {
+    color: inherit;
+    font-weight: bold;
+  }
+  .select-wrapper .caret {
+    opacity: .6;
+  }
+  .select-input:not(.initialized) {
+    label { opacity: 0; }
+  }
+  .mandatory-asterisk:after {
+    content: "*";
+    margin-left: 5px;
+    position: absolute;
+    top: 1px;
+    font-size: .9rem;
+  }
+
+  .field-address + .field-container { margin-top: 25px; }
+
+  .field-checkbox { margin-bottom: 20px; }
+
+  .input-field .prefix~.select-wrapper {
+    margin-left: 3rem;
+    width: calc(100% - 3rem);
+  }
+
+  .field-elements {
+    margin: 2rem 0;
+    i.prefix {
+      top: -3px;
+      left: 0 !important;
+    }
+  }
+
+  .input-field.error > label {
+    color: inherit !important;
+  }
+
+
+  .field-checkbox-group, .field-checkbox-group { margin-top: 10px; }
+  .checkbox-radio-group {
+    margin-bottom: 25px;
+    .checkbox-radio-group-label { font-weight: bold; font-size: .9rem; position: relative; }
+    .label-container { margin-bottom: 15px; }
+
+    .checkbox-container {
+      label { padding-left: 42px; }
+      label:after, label:before { left: 2px; }
+    }
+
+    &.invalid-required {
+      label .error { display: inline-block; }
+    }
+  }
+  .checkbox-container {
+    margin-bottom: 10px;
+    margin-top: 15px;
+
+    [type=checkbox]+label:before {
+      top: 1px;
+      left: 5px;
+    }
+    [type=checkbox]:checked+label:before {
+      left: 2px;
+      top: -4px;
+    }
+
+  }
+
+  .character-counter { margin-top: -10px; }
+  .option-field-description .character-counter { margin-top: 0; }
+  textarea ~ .character-counter { margin-top: -15px; }
+
+  .invalid-required {
+    @extend .invalid;
+  }
+
+  label .error {
+    display:none;
+    margin-left: 10px;
+  }
+
+  .input-field.select-input { margin-bottom:25px; }
+
+  .input-field.error.select-input.invalid-required {
+    label .error { display: inline-block; }
+  }
+
+  .invalid + label:after, .invalid:focus + label:after {
+    display: inline !important;
+    position: initial !important;
+    margin-left: 1rem !important;
+    font-weight: bold !important;
+  }
+
+  i.material-icons {
+      top: 4px;
+      &.openhours-icons { line-height: 3.2rem; }
+      &.fa, &.fab, &.fas {
+        font-size: 1.8rem;
+        left: 3px;
+      }
+  }
+
+  .invalid-required + label.gogo-form-label {
+    &:after, .more { display:none !important; }
+  }
+
+  .input-field label
+  {
+    left: 0 !important;
+  }
+
+  @media #{$medium-and-up} { #input-address { width: calc(100% - 260px); } }
+
+  #input-address {
+    margin-bottom: 10px;
+  }
+
+  #input-address-field.error
+  {
+    #input-address { margin-bottom: 20px; }
+
+    &:after
+    {
+      content: attr(data-error-msg);
+      position: absolute;
+      width: 600px;
+      top: 3.5rem;
+      font-weight:bold;
+      left: 3rem;
+      font-size: .8rem;
+      font-style: normal;
+    }
+  }
+
+  @media #{$small-only} {
+    h2 { text-align: left}
+    h2 .optional { right: 1rem !important;}
+  }
+
+  .input-field textarea { padding-bottom: 12px !important; }
+
+  #section-validate-and-send
+  {
+    margin-bottom: 2rem;
+  }
+
+  #section_vos_infos
+  {
+    padding-bottom: 1rem;
+  }
+
+  .element-form-submit-btn
+  {
+    margin-top: 1.5rem;
+  }
+
+  .element-form-cancel-btn {
+    display: block;
+    margin-top: 1.5rem;
+  }
+
+  #element-form-title
+  {
+    padding-top: 2rem;
+    margin-bottom: 5px !important;
+    @media screen and (min-width: 600px) { margin-bottom: -10px !important; }
+  }
+
+  .logged-info
+  {
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    font-style: italic;
+    text-align: center;
+  }
+
+  // ---------------------------------------
+  //             MAP
+  // ---------------------------------------
+  #address-preview-map
+  {
+    height:13rem;
+    margin-top: 1.5rem;
+    border-radius: 5px;
+    z-index: 500;
+    //border: 2px solid #D0CCCC;
+  }
+
+  a.leaflet-control-zoom-in {
+      font-size: 18px !important;
+      color: #3d3d3d;
+  }
+
+  a.leaflet-control-zoom-out {
+      font-size: 25px! important;
+      font-weight: normal;
+      color: #3d3d3d;
+      text-indent: 0;
+  }
+
+  #geocode-spinner-loader
+  {
+    display:none;
+    position: absolute;
+    bottom: 50%;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .copy-hours-col {
+      margin-left: -7px !important;
+      margin-right: 7px !important;
+   }
+
+  .btn-geolocalize, .btn-geolocalize-help
+  {
+    margin-top: .5rem;
+    @media screen and (min-width: 600px) { float: right; width: auto; margin-top: 1rem;  }
+    width: 60%;
+    font-size: .9rem;
+    height: 2rem !important;
+    line-height: 2rem !important;
+    padding: 0 1.3rem !important;
+  }
+
+  .btn-geolocalize-help {
+    margin-right: 5px;
+    @media screen and (max-width: 600px){
+      width: calc(39% - 15px);
+      margin-right: 0;
+      margin-left: 10px;
+    }
+  }
+
+  .geolocalize-help-text {
+    display: none;
+    margin-top: 18px;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: justify;
+    font-style: italic;
+
+    .btn-close {
+      float: right;
+      font-size: 1.2rem;
+      padding-top: 10px;
+      padding-left: 15px;
+      cursor: pointer;
+    }
+  }
+
+
+  // ---------------------------------------
+  //             TYPE PRODUIT
+  // ---------------------------------------
+  [type="checkbox"] + label {
+      padding-left: 26px;
+  }
+
+  @media screen and (min-width: 600px)
+  {
+    [type="checkbox"] + label {
+        padding-left: 32px;
+    }
+  }
+
+  #section_vos_infos
+  {
+    margin-bottom: 0;
+  }
+
+  .checkbox-container  [type="checkbox"] + label
+  {
+    padding-left: 42px;
+  }
+
+  #precisions
+  {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .label_precision
+  {
+    color:#5A5959 !important;
+    font-weight: bold !important;
+  }
+
+
+  // ---------------------------------------
+  //               HORAIRES
+  // ---------------------------------------
+  .second-line-slot {
+      display: none !important;
+      @include transition(all 1s);
+      opacity: 0;
+      height: 0;
+  }
+
+  .second-line-slot.active {
+      opacity: 1;
+      display: flex !important;
+      height: 100%;
+
+  }
+
+  .open-hours-day
+  {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .open-hours-container
+  {
+    padding: .2rem 0 .6rem .5rem;
+  }
+
+  .timepicker_1, .timepicker_2, .timepicker_3, .timepicker_4
+  {
+    height: 2rem !important;
+    margin: 0 !important;
+  }
+
+  .btn-floating i {
+    color: rgb(52, 52, 52) !important;
+  }
+
+  .col
+  {
+    padding: 0 !important;
+  }
+
+  .add-time-slot-button:hover, .redo-time-slot-button:hover, .clear-time-slot-button:hover
+  {
+    @include transition(color 0.5s);
+  }
+  .redo-time-slot-button { line-height: 3rem; }
+
+  .file-fields-list.images {
+    display: flex;
+    .image-container {
+      margin: 8px 10px;
+      &:first-child { margin-left: 0; }
+      &:last-child { margin-right: 0; }
+      position: relative;
+      max-height: 150px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity .3s;
+      }
+      .btn-close {
+        position: absolute;
+        top: -12px;
+        right: -14px;
+        cursor: pointer;
+        padding: 5px;
+        &:before {
+          color: white;
+          background-color: #495057;
+          transition: background-color .1s;
+          border-radius: 50%;
+          padding: 2px 3px 3px 3px;
+        }
+        &:hover {
+          &:before { background-color: #64d29a; }
+        }
+      }
+    }
+  }
+
+  .file-fields-list, .new-file-fields-list {
+    margin: 0;
+  }
+
+  .new-file-fields-list.images li:first-child { margin-top: .8rem; }
+
+  .btn-add-file, .btn-pick-file {
+    font-size: .9rem;
+    height: 2rem !important;
+    line-height: 2rem !important;
+    padding: 0 1.3rem !important;
+    p { margin: 0; }
+  }
+
+  .btn-pick-file {
+    width: calc(3rem - 10px);
+    padding: 0 !important;
+  }
+
+  .file-field {
+    margin-top: 0;
+    .file-path { height: 2rem; }
+    .file-path-wrapper {
+      padding-right: 30px;
+    }
+    .btn-close {
+      position: absolute;
+      top: 10px;
+      right: 0;
+      font-size: 17px;
+    }
+  }
+
+  .input-field .prefix~button {
+    margin-left: 3rem;
+  }
+  .input-field.file-field {
+    line-height: 2.2rem;
+    .file-path-wrapper {
+      height: 2.5rem;
+      a { color: inherit !important; }
+    }
+  }
+  .input-field.images, .input-field.files {
+    line-height: 3rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    .prefix { line-height: 2.8rem; }
+  }
+
+  .field-images, .field-files {
+    margin-bottom: 15px;
+  }
+
+  .error, .form-error {
+    color: $error-color;
+  }
+
+  .field-wysiwyg {
+    margin-top: 3.5rem;
+    .input-field .prefix~.cke {
+      margin-left: 3rem;
+      width: calc(100% - 3rem);
+      border: none;
+      border-bottom: 1px solid #ced4de !important;
+    }
+    .label-wysiwyg, .material-icons {
+      top: -5px !important;
+    }
+    .cke_button__about {
+      display: none;
+    }
+    .cke_top {
+      border-radius: 5px 5px 0 0;
+      border: none;
+      padding-left: 5px;
+      padding-bottom: 5px;
+    }
+    .cke_contents {
+      margin-left: -20px;
+    }
+    a.cke_button_on {
+      background-color: #e8e8e8;
+      border: none;
+      border-radius: 2px;
+      padding: 4px 6px;
+    }
+    .cke_toolgroup {
+      margin: 0;
+    }
+    .cke_toolbar_separator {
+      width: 0;
+    }
+    .cke_toolgroup a.cke_button:last-child:after, .cke_toolgroup a.cke_button.cke_button_disabled:hover:last-child:after {
+      content: none;
+    }
+  }
+  .cke_dialog_body {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .to-html:not(.initialized) {
+    visibility: hidden;
+  }
+}

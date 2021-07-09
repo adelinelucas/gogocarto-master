@@ -1,0 +1,1810 @@
+abouts:
+  _label: Popups type 'A propos'
+  fields:
+    content: Contenu
+    name: Nom
+
+bulk:
+  _label: Actions de masse
+  analyse: Analyse des éléments de {first} à {last}
+  automaticMerge: Fusion automatique
+  batchDone: Tous les éléments ont été traité avec succès
+  continue: Continuer à traiter les éléments suivants (encore {count} à traiter)
+  delete: Supprimer les éléments reportés comme n'existant plus
+  deleteElement: >-
+    {count, plural,  =0 {Aucun élément supprimé} =1 {# élément a été supprimé}
+    other {# éléments ont été supprimés} }
+  detectDuplicatesAction: Détection des doublons
+  done: Tous les éléments ont été traités avec succès
+  duplicateDeleted: Doublon Supprimé
+  duplicateKept: Doublon Conservé
+  errorElement: 'Erreur en traitant l''élement {id} : {error} FILE {file} LINE {line}'
+  isDuplicateAction: Détection des doublons
+  managed: Gérer les doublons détectés
+  manualMerge: Doublons potentiels détectés
+  results: Résultats
+  return: Retour à la gestion des doublons
+  updateUser: >-
+    {count, plural, =0 {Aucun utilisateur mis à jour} =1 {# utilisateur a été
+    mis à jour} other {# utilisateurs ont été mis à jour} }
+  update_gamification: >-
+    Mettre à jour les scores (nombre de votes, de contributions, et score total
+    par utilisateur)
+
+categories:
+  _label: Catégories
+  fields:
+    customId: ID personnalisé
+    descriptionLabel: Label pour le champ de description
+    displayInForm: Dans le formulaire
+    displayInForm_help: Ni le groupe ni les catégories ne seront affichés dans le formulaire
+    displayInInfoBar: Dans la fiche détail
+    displayInInfoBar_help: Le nom du groupe ne sera pas affiché, mais les catégories le seront
+    displayInMenu: Dans le menu
+    displayInMenu_help: Le nom du groupe ne sera pas affiché, mais les catégories le seront
+    displaySuboptionsInline: Afficher les sous catégories sur une seule ligne
+    enableDescription: Activer la description des catégories
+    enableDescription_help: >-
+      On pourra renseigner un texte pour décrire chaque catégorie. Par example,
+      pour un catégorie Agriculture, on pourrait ajouter comme texte
+      "Maraîchage, produits transformés…"
+    index: Position
+    isMandatory: Choix obligatoire
+    isMandatory_help: Une catégorie de ce groupe doit être obligatoirement selectionnée
+    name: Nom du groupe
+    nameShort: Nom (version courte)
+    nameShort_help: >-
+      La version courte est utilisée dans le menu, car souvent on manque de
+      place
+    option:
+      color: Couleur
+      icon: Icône
+      id: Plus de paramètres
+      index: Position
+      name: Nom
+    parent: Catégorie parente
+    parent_placeholder: Racine
+    pickingOptionText: 'Texte à afficher dans le formulaire : Choisissez…'
+    showExpanded: >-
+      En position intiale afficher les catégories (sinon il faudra cliquer pour
+      les afficher)
+    singleOption: Choix unique
+    singleOption_help: Une seule catégorie est sélectionnable à la fois
+    unexpandable: Ne pas pouvoir reduire ce groupe de catégories
+    unexpandable_help: Dans le menu, les catégories de ce groupe seront toujours affichées
+  form:
+    groups:
+      categories: Catégories contenues dans ce groupe
+      display: Afficher ce groupe
+      primary: Paramètres principaux
+      secondary: Paramètres secondaires d'affichage
+  list:
+    addCategories: Ajouter un Groupe de catégories
+    addCategory: Ajouter une Catégorie
+    categoriesDescription: Description des catégories
+    empty: >-
+      Aucune catégories. Veuillez créer un nouveau Groupe de catégorie, puis des
+      catégories à l'intérieur de celui-ci. Les catégories sont un élément
+      essentiel dans GoGoCarto. Il se peut que votre carte ne fonctionne plus
+      sans catégories
+    help: Quelques explications
+    help_description: >-
+      <div style="float: left;margin-right: 30px;"><iframe height="200"
+      sandbox="allow-same-origin allow-scripts"
+      src="https://video.colibris-outilslibres.org/videos/embed/4a5b7593-aedb-4983-b562-3cab03bb1691"
+      frameborder="0" allowfullscreen></iframe></div>
+
+      <div style=""><iframe height="200" sandbox="allow-same-origin
+      allow-scripts"
+      src="https://video.colibris-outilslibres.org/videos/embed/6ff39dd4-0db8-435b-a3bd-e87307e7e5d1"
+      frameborder="0" allowfullscreen></iframe></div> </br> Les catégories sont
+      toujours regroupées dans des <b>Groupe de catégories</b></br> Pour ajouter
+      des catégories à un Groupe, le plus simple est d''éditer le Groupe de
+      catégories, et vous allez vous apparaitre en bas de page la liste des
+      catégories contenues dans ce groupe. Vous pourrez alors les éditer et en
+      ajouter de nouvelles</br></br>
+
+      Vous pouvez avoir plusieurs Groupes de catégories en parrallèle. Pour cela
+      créez un nouveau groupe, enregistrez, puis ajoutez lui ensuite des
+      catégories</br></br>
+
+      Une catégorie peut elle même contenir un sous groupe avec des sous
+      catégories à l''intérieur. Lorsque vous éditer une catégorie, en bas de la
+      page vous pouvez y ajouter un sous groupe puis le remplir avec de
+      nouvelles catégories.</br></br> <b>(Groupe) GROUPE DE CATÉGORIES 1</b>
+      <ul>
+        <li>Catégorie 1</li>
+        <li>Catégorie 2</li>
+      </ul> <b>(Groupe) GROUPE DE CATÉGORIES 2</b> <ul>
+        <li>Catégorie 1</li>
+        <li>Catégorie 2</li>
+        <li>Catégorie 3</li>
+      </ul> <ul>
+        <b>(Groupe) SOUS GROUPE 1</b>
+        <ul>
+          <li>Sous Catégorie 1</li>
+          <li>Sous Catégorie 2</li>
+        </ul>
+      </ul>
+    multiple: Multiple
+    sort_alpha: Ranger les catégories par ordre alphabétique
+    title: Liste des catégories
+    unique: Unique
+
+charts:
+  collabRefused: Derniers refus collaboratifs
+  collabResolve:
+    axisTitle: Validations/Refus collaboratifs
+    refused: Refus collaboratifs
+    title: Validations/Refus collaboratifs
+    validate: Validations Collaborative
+  collabValidated: Dernières validation collaboratives
+  contribsResolved:
+    added: Ajouts résolus
+    edited: Modifications résolues
+    resolved: Résolution des contributions
+    total: Nombre Total (depuis le début)
+  empty: Aucun élement trouvé
+  showAll: Afficher tous
+  userInteract:
+    added: Ajouts
+    modified: Modifications
+    reported: Signalements
+    subtitle: Click & drag pour zoomer sur une période
+    title: Statistiques des interactions utilisateur
+    voted: Votes
+
+commons:
+  actual_file: 'Fichier actuel :'
+  anonymous: Anonyme
+  btn_update_and_edit: Mettre à jour
+  date_format: d/m/Y
+  date_time_format: d/m/Y à H:i
+  default: Défaut
+  more_options: Plus d'options
+  send: Envoyer
+
+config_api:
+  _label: API
+  config: Configuration
+  elements: Éléments
+  fields:
+    api.publicApiPrivateProperties: Liste des champs que vous ne voulez pas partager
+    apilist: null
+    gogo_api_configuration: Configuration GoGoCarto
+    gogo_api_element_get: Un Element (remplacer ID par l'id de l'élement)
+    gogo_api_elements_from_text: Rechercher un élément
+    gogo_api_gogocartojs_configuration: Configuration GoGoCartoJs
+    gogo_api_semanatic_taxonomy: Taxonomie sémantique
+    gogo_api_taxonomy: Taxonomie
+    gogo_api_taxonomy_mapping: Liste des options avec correspondance ID
+    gogo_api_taxonomy_show: Une Catégorie (remplacer ID par l'id de la catégorie)
+    gogo_api_ui: Interface graphique pour construire une API
+    gogo_element_import_available_options: Liste des options
+    text: votre_texte_de_recherche
+  form:
+    groups:
+      apis: Liste des API disponibles
+      config: Configuration
+      config_description: >-
+        <div class="iframe-container"><iframe height="200"
+        sandbox="allow-same-origin allow-scripts"
+        src="https://video.colibris-outilslibres.org/videos/embed/aa05a654-a5d6-472a-bb12-108e0f6ce18e"
+        frameborder="0" allowfullscreen></iframe></div>
+  taxonomy: Taxonomie / Catégories
+
+config_contributions:
+  _label: "Qui peut contribuer\_?"
+  fields:
+    collaborativeModerationExplanations: Explications au sujet de la modération collaborative
+    maxDaysLeavingAnElementPending: >-
+      Nombre de jours au bout desquels un élément toujours en attente apparaîtra
+      à modérer
+    maxOppositeVoteTolerated: Nombres maximum de votes contradictoires tolérés
+    minDayBetweenContributionAndCollaborativeValidation: Nombre de jours minimum avant une validation/refus collaboratif
+    minVoteToChangeStatus: Nombre votes pour valider/refuser automatiquement
+    minVoteToForceChangeStatus: >-
+      Nombre votes pour valider/refuser automatiquement, sans attendre de jours
+      minimum
+  form:
+    groups:
+      addFeature: Pouvoir ajouter un élément
+      collaborativeModerationFeature: Modération collaborative (pouvoir voter)
+      collaborativeModerationParameters: Paramètres pour la modération collaborative
+      deleteFeature: Pouvoir supprimer un élément
+      directModerationFeature: Modération directe
+      editFeature: Pouvoir editer un élément
+      text: Textes
+
+config_custom_js_css:
+  _label: CSS / JS personnalisé
+  fields:
+    customCSS: CSS personnalisé
+    customJavascript: Javascript personnalisé
+  form:
+    groups:
+      custom_javascript: Javascript personnalisé
+      custom_javascript_hint: Entrez du code Javascript qui sera chargé sur toutes les pages publiques
+      custom_style: Style personnalisé
+      custom_style_hint: Entrez du code CSS qui sera chargé sur toutes les pages publiques
+
+config_duplicates:
+  _label: Gestion des Doublons
+  fields:
+    duplicates:
+      automaticMergeIfPerfectMatch: Fusionner automatiquement lors d'une correspondance parfaite
+      detectAfterImport: Détecter les doublons après chaque Import
+      detectAfterImport_help: >-
+        Pour chaque nouvel élément ajouté lors de l'import, une recherche sera
+        effectuée sur l'ensemble de la base de donnée pour trouver d'éventuels
+        doublons
+      fieldsToBeUsedForComparaison: Autres champs utilisés pour la détection de doublons (recherche stricte)
+      fieldsToBeUsedForComparaison_help: >-
+        Seuls les valeurs exactement identiques seront détectés. Une
+        correspondance d'un seul de ces champ sera interprété comme une
+        correspondance parfaite entre les deux éléments
+      rangeInMeters: Distance maximale (en mètres) entre deux doublons
+      sourcePriorityInAutomaticMerge: Lors d'une fusion, quelle source voulez vous conserver en priorité ?
+      sourcesToDetectFrom: >-
+        Chercher les doublons entre les sources (laisser vide pour chercher dans
+        toute la base de donnée)
+      sourcesToDetectWith: Et les sources (laisser vide pour chercher dans toute la base de donnée)
+      useGlobalSearch: >-
+        Utiliser la recherche générale pour chercher les doublons (recherche
+        souple dans {fields})
+      useGlobalSearch_help: >-
+        La recherche générale est configurée dans la personalisation du
+        formulaire (choisissez quels champs seront recherchés, de base cela
+        recherche uniquement dans le titre de la fiche). Elle est souple, c'est
+        à dire qu'elle détectera des valeurs similaires ("test" trouvera "Un
+        TésT"). Un correspondance parfaite sera détectée uniquement si les
+        titres de fiche sont quasiment similaire : "test" et "Un TésT" ne sera
+        pas une correspondance parfaite, alors que "test" et "TésT" le sera
+    gogo_bulk_actions_detect_duplicates: Détecter les doublons
+    gogo_duplicates_index: Gérer les doublons détectés
+  form:
+    groups:
+      configuration: Configuration
+      fusion: Fusion des doublons
+      manualDetection: Restreindre la détection manuelle (optionel)
+
+config_emails:
+  _label: E-mails / Newsletter
+  form:
+    groups:
+      add: Lors d'un ajout - <a href=''{url}'' target='_blank'>TESTER</a>
+      delete: Lors d'une suppression - <a href=''{url}'' target='_blank'>TESTER</a>
+      edit: Lors d'une modification - <a href=''{url}'' target='_blank'>TESTER</a>
+      infosContributors: Informations concernant les e-mails automatiques
+      infosContributors_description: "Ces courriels sont envoyés automatiquement aux contributeurs lorsque leurs contributions sont acceptées, refusées etc.</br> Il est possible d'inclure les variables suivantes dans les messages (en conservant les '''{{'}}'' ) : </br> <li>'{{ element '}} le nom de {element}</li> <li>'{{ user '}} le nom ou l'adresse électronique du contributeur</li> <li>'{{ showUrl '}} l'adresse qui renvoie à la visualisation de la fiche</li> <li>'{{ editUrl '}} l'adresse qui renvoie à la modification de la fiche</li> <li>'{{ homeUrl '}} l'adresse de la page d'accueil du site</li> <li>'{{ userContributionsUrl '}} l'adresse de la page «\_Mes contributions\_»</li> <li>'{{ customMessage '}} le message personnel qui a été rédigé par les admins (uniquement lors d''un refus)</li></br> Vous pouvez également utiliser ces variables dans les contenus spéciaux de l'éditeur de texte. Par exemple dans le champs URL de la popup qui s'ouvre lorsqu'on clique sur d''ajouter un lien.</br> <b>Une fois le message sauvegardé</b>, vous pouvez cliquer sur les boutons <b>TESTER</b> pour visualiser le rendu"
+      infosElements: Informations concernant les e-mails automatiques
+      infosElements_description: >-
+        <div class="text-and-iframe-container"> <div
+        class="iframe-container-aside"><iframe height="200"
+        sandbox="allow-same-origin allow-scripts"
+        src="https://video.colibris-outilslibres.org/videos/embed/d5d007ec-e5c6-4a50-ab66-572e35e8905a"
+        frameborder="0" allowfullscreen></iframe></div> Ces messages sont
+        envoyés automatiquement aux {elements} lorsque leur fiche est ajoutée,
+        modifiée ou supprimée.</br> Il est possible d'inclure les variables
+        suivantes dans les messages (en conservant les '''{{'}}'' ) : </br>
+        <li>'{{ element '}} le nom de {element}</li> <li>'{{ showUrl '}}
+        l'adresse qui renvoie à la visualisation de la fiche</li> <li>'{{
+        editUrl '}} l'adresse qui renvoie à la modification de la fiche</li>
+        <li>'{{ homeUrl '}} l''adresse de la page d'accueil du site</li> <li>'{{
+        directEditElementUniqueUrl '}} l'adresse unique pour modifier
+        directement l'élément sans être admin</li> <li>'{{ customMessage '}} le
+        message personnel qui a été rédigé par les admins (uniquement lors de la
+        suppression)</li></br> </div> Vous pouvez également utiliser ces
+        variables dans les contenus spéciaux de l'éditeur de texte. Par exemple
+        dans le champs URL de la popup qui s'ouvre lorsqu'on clique sur
+        d''ajouter un lien.</br> <b>Une fois le message sauvegardé</b>, vous
+        pouvez cliquer sur les boutons <b>TESTER</b> pour visualiser le rendu
+      infosNewletter: Informations concernant la newsletter
+      infosNewletter_description: "Ce message est envoyé automatiquement aux utilisateurs y ayant souscrit. Il donne la liste des derniers éléments ajoutés dans une zone géographique déterminée et optionnellement des nouvelles</br></br> <b>Il est nécessaire d'inclure la variable <u>'{{ newElements '}}</u> et/ou <u>'{{ pendingElements '}}</u></b> qui seront respectivement remplacées par la liste des nouveaux éléments et des nouveaux élements en attente de validation</br></br> Il est possible d'inclure les variables suivantes dans les messages (en conservant les '''{{'}}'' ) : </br> <ul> <li>'{{ news '}} la dernière nouvelle publiée</li> <li>'{{ user '}} le nom ou l'adresse électronique du contributeur</li> <li>'{{ homeUrl '}} l'adresse de la page d'accueil du site</li> <li>'{{ userProfileUrl '}} l'adresse de la page «\_Mes paramètres\_» dans l'espace utilisateur</li> <li>'{{ showOnMapBtn '}} un bouton pour renvoyer vers la carte centrée sur la position de l'utilisateur</li> </ul> </br> <b>Une fois le message sauvegardé</b>, vous pouvez cliquer sur le bouton <b>TESTER</b> pour visualiser le rendu"
+      mailForContributors: E-mails auto pour les contributeurs
+      mailForElements: E-mails auto pour les {element}
+      newsletter: Newsletter - <a href=''{url}'' target='_blank'>TESTER</a>
+      newsletters: Newsletter
+      refusal: Lors d'un refus - <a href=''{url}'' target='_blank'>TESTER</a>
+      report: >-
+        Lors d'un signalement pris en compte - <a href=''{url}''
+        target='_blank'>TESTER</a>
+      validation: Lors d'une validation - <a href=''{url}'' target='_blank'>TESTER</a>
+
+config_features:
+  fields:
+    active: Activé
+    activeInIframe: Activé en Iframe
+    allow_role_admin: Autoriser Modérateurs
+    allow_role_anonymous: Autoriser Anonymes
+    allow_role_user: Autoriser Utilisateurs
+
+config_form:
+  _label: Formulaire
+  fields:
+    elementFormGeocodingHelp: Texte d'aide pour la géolocalisation
+    elementFormIntroText: Texte d'introduction qui apparait en haut du formulaire
+    elementFormIntroText_placeholder: 'Exemple: Attention nous ne référençons pas tel et tel type d''élements'
+    elementFormOwningText: >-
+      Libellé pour demander si l'utilisateur est propriétaire de la fiche
+      (laisser vide pour désactiver)
+    elementFormOwningText_placeholder: 'Exemple: Je suis impliqué.e dans la gestion de la structure décrite'
+    elementFormValidationText: >-
+      Libellé de la checkbox de validation du formulaire (laisser vide pour
+      désactiver)
+    elementFormValidationText_placeholder: >-
+      Exemple: Je certifie que les informations renseignées dans ce formulaire
+      sont exactes
+  form:
+    groups:
+      config: Configuration du formulaire
+      config_description: >-
+        <div class='text-and-iframe-container'><div
+        class='iframe-container-aside'><iframe height='200'
+        sandbox='allow-same-origin allow-scripts'
+        src='https://video.colibris-outilslibres.org/videos/embed/2dd4dad3-63fa-4bb4-b48c-e518f8e56d36'
+        frameborder='0' allowfullscreen></iframe></div> <b>Le formulaire permet
+        d'ajouter/éditer des données depuis l'interface publique</b></br> Si
+        vous avez importé des données, vous pouvez ajouter un champ au
+        formulaire et le lier au champ importé grâce à l'attribut \"Nom du
+        champ\"</div>
+      form: Formulaire
+      other: Autres textes et options
+
+config_general:
+  _label: Configuration Générale
+  cannot_delete: >-
+    Impossible de supprimer la configuration, cette action est interdite car est
+    elle casserait toute votre carte
+  downloadImage: Téléchargez une image
+  fields:
+    aboutHeaderTitle: Titre de la section 'A propos'
+    activateAbouts: Activer les popups type 'A propos'
+    activatePartnersPage: Activer la page type "Partenaires"
+    appBaseline: Description du site (baseline)
+    appName: Nom du site
+    appTags: Mot clés pour le référencement (séparés par une virgule)
+    customDomain: >-
+      Utiliser un nom de domaine personnalisé (exemple macarte.org au lieu de
+      macarte.gogocarto.fr)
+    customDomain_help: >-
+      Après avoir acheté le nom de domaine macarte.org, vous devez d'abords le
+      rediriger sur l'adresse IP du serveur GoGoCarto ({ip}).  Ensuite
+      renseignez ici le nom de votre domaine, et attendez le temps que cela soit
+      configuré par GoGoCarto  (une tentative est effectuée toute les heures).
+      GoGoCarto abandonne au bout de 4 tentatives.  Si au bout de plusieurs
+      heures rien ne se passe, vous devrez remettre vide la configuration du
+      sous domaine,  sauvegarder, puis la reremplir pour créer un nouvel essai
+    dataLicenseUrl: URL de la licence qui protège vos données
+    elementDisplayName: Nom
+    elementDisplayNameDefinite: Nom avec article défini
+    elementDisplayNameIndefinite: Nom avec article indéfini
+    elementDisplayNamePlural: Nom pluriel
+    favicon: Favicon
+    locale: Langue
+    logo: Logo
+    logoInline: Logo pour la barre de menu
+    partnerPageTitle: Titre de la page 'Partenaires'
+    publishOnSaasPage: Rendre ce projet visible sur {url}
+    socialShareImage: Image à afficher lors d'un partage sur les réseaux sociaux
+  form:
+    groups:
+      images: Images générales
+      main: Le Site
+      main_description: >-
+        <div class="iframe-container"><iframe height="110"
+        sandbox="allow-same-origin allow-scripts"
+        src="https://video.colibris-outilslibres.org/videos/embed/fc7d3784-7bd1-4f3a-b915-ab6daefdd52d"
+        frameborder="0" allowfullscreen></iframe></div>
+      pages: Fonctions principales
+      text: Nom des entités référencées sur l'annuaire
+
+config_home:
+  _label: Page d'Accueil
+  fields:
+    activateHomePage: Activer la page d'accueil
+    backgroundImage: >-
+      Image de fond (le nom du fichier ne doit pas contenir d'espaces ou de
+      caractères spéciaux)
+    backgroundImage_placeholder: Sélectionnez une image déjà importée, ou ajoutez en une !
+    home:
+      addElementHintText: Texte au dessus du bouton "Ajouter un élément"
+      addElementHintText_placeholder: >-
+        Exemple: "Aidez nous à renrichir la base de donnée en ajoutant un
+        élément !"
+      displayCategoriesToPick: Afficher les catégories principales sélectionnables pour la recherche
+      seeMoreButtonText: >-
+        Texte pour inviter à scroller (si des bandeaux de la page d'accueil
+        existent)
+      seeMoreButtonText_placeholder: 'Exemple: "Plus d''informations"'
+
+config_infobar:
+  _label: Fiche détail
+  fields:
+    description:
+      _label: Description
+      categories: Liste des noms des catégories de l'élément
+      categoriesFull: >-
+        Liste des catégories complète, inclus l id, le nom, la description et la
+        position
+      colorOptionId: L'id de la catégorie qui donne la couleur principale de cet élément
+      createdAt: Date de la création dans la base de donnée
+      distance: Si une adresse a été rentrée, distance entre le point et cette adresse
+      images: Tableau des URLs des différentes images
+      isDeleted: Raccourci pour status = Refusé ou Supprimé
+      isPending: Raccourci pour status == En attente (modifs ou ajout)
+      originalAddress: L'adresse détaillée avec le code postal, la ville etc…
+      sourceKey: Nom de la source de cet élément (peut être vide)
+      status: |-
+        <ul>
+          <li>-6: Doublon</li>
+          <li>-4: Supprimé </li>
+          <li>-3: Refusé (votes)  </li>
+          <li>-2: Refusé (admin) </li>
+          <li>-1: En attente (modifs) </li>
+          <li> 0: En attente (ajout)</li>
+          <li> 1: Validé (admin)</li>
+          <li> 2: Validé (votes)</li>
+          <li> 3: Ajouté par admin</li>
+          <li> 4: Modifié par admin</li>
+          <li> 5: Modifié par propriétaire</li>
+          <li> 6: Modifié avec lien direct</li>
+          <li> 7: Importé</li>
+        </ul>
+      updatedAt: Date de la dernière mise à jour
+    example:
+      categories: '''{% if "ma catégorie" in categories ''%} … ''{% endif ''%}'
+      categoriesFull: |-
+        '{% for category in categoriesFull '%}
+          <div>  Id: '{{ category.id '}}</div>
+          <div>  Nom: '{{ category.name '}}</div>
+          <div>  Description: '{{ category.description '}}</div>
+          <div>  Position: '{{ category.index '}}</div>
+        '{% endfor '%}
+      colorOptionId: >-
+        &lt;div class="gogo-color-as" option-id="'{{colorOptionId'}}">Texte de
+        la couleur de la catégorie principale&lt;/div></br> &lt;div
+        class="gogo-bg-color-as" option-id="'{{colorOptionId'}}">Arrière plan de
+        la couleur de la catégorie principale&lt;/div></br> &lt;div
+        class="gogo-border-color-as" option-id="'{{colorOptionId'}}">Bordure de
+        la couleur de la catégorie principal&lt;div></br> Vous pouvez aussi
+        utiliser les classes "gogo-soft-color-as" et "gogo-soft-bg-bolor-as"   
+      createdAt: 'Créé le : ''{{ createdAt ''}}'
+      distance: >-
+        '{% if distance is defined '%} <span>'{{ distance '}}</span> '{% endif
+        '%}
+      images: >-
+        Les images sont affichées par default dans la fiche détail et vous
+        n'avez pas besoin d'inclure ce champ. Mais vous pouvez toujours utiliser
+        cette variable selon vos besoins
+      isDeleted: '''{% if isDeleted ''%} … ''{% endif ''%}'
+      isPending: '''{% if isPending ''%} … ''{% endif ''%}'
+      originalAddress: >-
+        '{{ originalAddress.streetAddress ~ '' - '' ~
+        originalAddress.addressLocality ~ '' - '' ~ originalAddress.postalCode ~
+        '' - '' ~ originalAddress.addressCountry }}
+      sourceKey: >-
+        '{% if sourceKey == "Fablab" '%}Référencé par http://fablabs.io'{% endif
+        '%}
+      status: '''{% if status == 2 ''%} … ''{% endif ''%}'
+      updatedAt: 'Dernière mise à jour : ''{{ updatedAt ''}}'
+    exemple: Exemple de filtre à utiliser
+    infobar:
+      bodyTemplate: Corps de la fiche (body)
+      bodyTemplateUseMarkdown: >-
+        Utiliser la syntaxe markdown pour le body (sinon uniquement la syntaxe
+        Nunjucks)
+      headerTemplate: En tête de la fiche (header)
+      headerTemplateUseMarkdown: >-
+        Utilisez la syntaxe markdown pour le header (sinon uniquement la syntaxe
+        Nunjucks)
+      width: 'Largeur de la fiche détail (en pixels, par défaut : 540)'
+    label: Libellé dans le formulaire
+    name: Nom du champ
+    type: Type
+    usage: Utilisation
+  fields_list:
+    form: Liste des champs disponibles via le formulaire
+    other: Tous les autres champs dans vos données sont aussi disponibles
+    system: Champs / Variables fournies par le système
+  form:
+    groups:
+      automatic_emails: Informations concernant les e-mails automatiques
+      automatic_emails_description: >-
+        <p><b>Les filtres permettent d'appliquer des transformations sur un
+        variable / un champ</b></p> <h3>Les filtres du language nunjucks</h3> <a
+        href='https://mozilla.github.io/nunjucks/fr/templating.html#filtres-int-gr-s'>Voir
+        la documentation en ligne</a> <h3>Les filtres spéciaux de GoGoCarto</h3>
+
+        <h4>gogo_text</h4> Afficher du texte (avec retour à la ligne avant et
+        après le texte)</br> Vous pouvez utiliser <b>l'option label</b> : '{{
+        tel|gogo_text(label = "Téléphone") '}}
+
+        <h4>gogo_date</h4> <ul>
+          <li>Formater une date '{{ event_date | date '}} ou '{{ event_date | gogo_date(label="Date")
+        '}}</li>
+          <li>Ou si vous voulez utiliser un format particulier '{{ event_date|date("DD/MM/YYYY")
+        '}} ou '{{ event_date | gogo_date(label="Date", format="DD/MM/YYYY")
+        '}}. <a href='https://momentjs.com/docs/#/displaying/format/'>Voir les
+        choix possibles</a></li> </ul>
+
+        <h4>gogo_tags</h4> Affiche un tableau sous forme de tags '{{ ["Service",
+        "Blanc"] | gogo_tags '}}
+
+        <h4>gogo_textarea</h4> Afficher des texte longs, il y a plusieurs
+        options <ul><li><b>truncate</b>: tronquer le texte au bout de XX
+        caractères (par défaut 1000), et mettre un petit bouton "afficher
+        plus"</li> <li><b>tolerance</b>: le troncage essaie de se faire à la fin
+        d'une phrase ou moins d'un mot. La tolérance est le nombre de caractère
+        que l'on donne comme marge à l'algorithme. i.e tronque à 1000 caractères
+        +/- 50</li> <li><b>glossary</b>: un glossaire pour expliquer certains
+        mots. Le mot sera légèrement surligné et au survol s'affichera
+        l'explication</li></ul> <pre>'{{ "Mon beautiful texte supposement très
+        très long"|gogo_textarea(truncate = 15, tolerance = 5, glossary = {
+        "beautiful": "Mot anglais qui veut dire joli"}) '}}</pre>
+
+
+        <h3>Déboguer des données</h3> Si vous utilisez des données un peu
+        spécifiques de type object, vous pouvez utiliser le filtre "dump" pour
+        afficher leur contenu '{{ my_specific_field|dump '}}
+      field_list: Liste des champs disponibles (aide)
+      filter_list: Liste des filtres disponibles (aide)
+      infobar_content: >-
+        Contenu de la Fiche détail (panneau qui s'affiche lors d'un click sur un
+        marker)
+      infobar_content_description: >-
+        <div class="text-and-iframe-container"><div
+        class="iframe-container-aside" style="margin-top: 0"><iframe
+        height="200" sandbox="allow-same-origin allow-scripts"
+        src="https://video.colibris-outilslibres.org/videos/embed/354086c4-e826-44ad-b44a-475e517c3af6"
+        frameborder="0" allowfullscreen></iframe></div> <p style="margin-top:
+        10px">Vous pouvez utiliser <a
+        href="https://guides.github.com/features/mastering-markdown/#syntax">la
+        syntaxe mardown</a> et <a href="https://mozilla.github.io/nunjucks/">la
+        syntaxe nunjucks (pour des utilisations avancée)</a></p> <p>Pour
+        afficher la valeur d''un champ de votre formulaire (voir liste des
+        champs ci-après) utilisez une double accolades <b>'{{ nom_de_mon_champ
+        '}}</b>. Vous pouvez également choisir de formatter votre champ avec un
+        filtre en utilisant le symbole <b>|</b> suivi du nom du filtre. Par
+        example, pour afficher un champ en majuscule on pourra faire <b>'{{
+        nom_de_mon_champ|upper '}}</b>. Des filtres spéciaux pour gogocarto ont
+        été créés, ils permettent d''afficher simplement certains type de champ.
+        Par example, pour un champ de description longue, on pourra utiliser
+        <br>'{{ nom_de_mon_champ_description_longue|gogo_textarea(truncate =
+        300) }}</br>. Cela coupera la description aux environs de 300 caractères
+        et affichera un petit bouton pour afficher la description entière.<p>
+        <p>Consultez la liste des <a
+        href="https://mozilla.github.io/nunjucks/templating.html#builtin-filters">filtres
+        nunjucks ici</a>. La liste des filtres de gogocarto n''est pas encore
+        documentée</p></div>
+
+        <h2 style="margin: 0 0 25px 0">
+          Contenu de la fiche détail
+          <span class="btn btn-primary" id="generate-body-template" onclick="generateBodyTemplate()">Générer
+        automatiquement le contenu de la fiche détail</span> </h2>
+      infobar_param: Autres Paramètres
+
+config_map:
+  _label: Carte / Fonctionalités
+  fields:
+    customPopupId: Numéro de version du popup (à changer quand vous modifiez le texte)
+    customPopupShowOnlyOnce: >-
+      Afficher la popup une fois seulement (si l'utilisateur la ferme, il ne la
+      reverra plus jusqu'à ce que vous changiez le numéro de version)
+    customPopupText: 'Texte à afficher (Exemple: "Ce site est encore en version bêta !")'
+    defaultTileLayer: >-
+      Fond de carte par défaut (enregistez pour voir apparaitre le fond
+      délectionné sur la carte ci-dessous)
+    saveTileLayerInCookies: Sauvegarder le choix du fond de carte par l'utilisateur dans les cookies
+    saveViewportInCookies: Sauvegarder la position courante de la carte dans les cookies
+    viewport_picker: Vue par défault de la carte (dessinez un rectangle sur la carte)
+  form:
+    groups:
+      cookies: Cookies
+      directionsFeature: Calcul d'itinéraire
+      exportIframeFeature: Export Iframe
+      favoriteFeature: Favoris
+      features: Fonctionnalités
+      layersFeature: Choix du fond de carte
+      listModeFeature: Mode Liste
+      map: La carte
+      mapDefaultViewFeature: Revenir à la vue par défault
+      message_config: Message personnalisé à faire apparaitre dans un coin de la carte
+      messages: Message personnalisé
+      params: Paramètres de la carte
+      pendingFeature: Affichage des éléments en attente de validation
+      reportFeature: Signalement d'une erreur
+      shareFeature: Partage de l'URL
+      stampFeature: Étiquetter les éléments
+
+config_marker:
+  _label: Marqueur / Popup
+  fields:
+    marker.displayPopup: Afficher la popup
+    marker.popupAlwaysVisible: >-
+      Toujours afficher la popup (par défault elle ne s'affiche qu'au survol du
+      marqueur)
+    marker.popupTemplate: Contenu de la popup
+    marker.popupTemplateUseMarkdown: >-
+      Utiliser la syntaxe markdown pour ce template (sinon uniquement la syntaxe
+      Nunjucks)
+    marker.useClusters: Activer les clusters
+  form:
+    groups:
+      cluster: >-
+        Clusters (grouper les marqueurs lorsqu'ils sont proches les uns des
+        autres)
+      cluster_description: >-
+        Sans utiliser les clusters, à partir de 1000 marqueurs affichés sur
+        l'écran cela peut causer des ralentissements pour l'utilisateur
+      popup: Popup (contenu qui s'affiche par défault lors du survol d'un marqueur)
+      popup_description: >-
+        Pour la configuration du template, référrez vous aux instructions
+        données dans Modèle de Donnée / Fiche détail
+
+config_menu:
+  _label: Menu / Filtres / Recherche
+  fields:
+    box: Champs à utiliser pour chercher dans les élements
+    box_description: >-
+      Pour choisir les champs de recherche, allez dans le formulaire, éditer un
+      des champs et vous verrez apparaître l'option "Recherche dans ce
+      champ".<br/> Vous pouvez aussi assigner des poids différents sur chaque
+      champs, les poids seront utilisés pour classer les résultats par
+      pertinence.
+    menu:
+      displayNumberOfElementForEachCategory: >-
+        Pour chaque catégorie, afficher le nombre d'élément ayant cette
+        catégorie
+      displayNumberOfElementRoundResults: Arrondir les résultat (afficher 300+ au lieu de 326)
+      displayNumberOfElementRoundResults_help: >-
+        Valable uniquement si "afficher le nombre d''éléments par catégorie" est
+        coché'
+      showCheckboxForMainFilterPane: Afficher les checkbox dans la panneau principal
+      showCheckboxForSubFilterPane: Afficher les checkbox dans les sous panneaux
+      showCheckboxForSubFilterPane_help: >-
+        Valable uniquement si "afficher un sous menu pour chaque catégorie
+        principale" est coché
+      showOnePanePerMainOption: Afficher un sous menu pour chaque catégorie principale
+      smallWidthStyle: Utilisez un style compressé
+      smallWidthStyle_help: >-
+        Diminue un peu la taille de la police et les marges. Pratique lorsque le
+        nom des catégories sont longues que l'on veut gagner en largeur
+      width: Largeur du menu
+      width_placeholder: '290'
+    searchCategoriesFeature: Recherche dans les catégories
+    searchElementsFeature: Recherche d'un élément
+    searchExcludingWords: Mots à exclure de la recherche, séparés par des virgules
+    searchExcludingWords_title: >-
+      Si vous faites un annuaire de producteurs locaux, vous voudrez peut être
+      exclure les mots comme "bio", car ce genre de recherche donnerait de
+      mauvais résultats. Par exemple si vous cherchez "Ferme du bayou bio", des
+      résultat qui n'ont rien à voir tel que "Amap bio" sortiraient dans les
+      résultats, juste à cause du mot "bio". De manière générale, excluez les
+      mots communément utilisés dans les titres de vos fiches. Notez que la
+      recherche est aussi utilisée dans la détection de doublons
+    searchGeolocateFeature: Bouton geolocalisation
+    searchPlaceFeature: Recherche d'un lieu
+  form:
+    groups:
+      custom: Personnalisez les filtres dans le menu
+      general: Général
+      menu: Menu (contient les filtre et la barre de recherche)
+      search: Recherche
+
+config_mobile:
+  _label: App Mobile
+  fields:
+    appNameShort: Nom court de l'application (12 caractères max.)
+    hideHeaderInPwa: Masquer la barre du haut lorsque la carte est ouverte en mode PWA
+    packageName: >-
+      Nom de domaine de l'appli (si vous la publiez en tant que TWA). Quelque
+      chose comme: fr.gogocarto.macarto
+    sha256CertFingerprints: >-
+      Empreintes du certificat SHA256 (si vous la publiez en tant que TWA).
+      Quelque chose comme: 57:2B:36:…
+  form:
+    groups:
+      progressive: Application mobile simulée (Progressive Web App)
+      progressive_description: >-
+        Gogocarto est nativement une <b>Progressive Web App</b>: lorsqu'un
+        utilisateur visite le site depuis son téléphone portable, il aura la
+        possibilité d'ajouter un raccourci sur son écran d'accueil. En cliquant
+        sur ce raccourci, le site s'ouvrira en plein écran comme une application
+        mobile standard.
+      trusted: Vrai application mobile (Trusted Web Activity)
+      trusted_description: >-
+        Pour publier votre site sous forme d'application mobile dans le Play
+        Store de Google:</br> 1) Aller sur https://www.pwabuilder.com et créer
+        une application Android à partir l'url de votre carte</br> 2) Renseigner
+        ci-dessous les valeurs contenues dans le fichier assetlinks.json que
+        vous aurez téléchargé</br> 3) Créez l'application depuis le Play Store
+        (processus payant, merci Google..)</br> 4) Mettez à jour la valeur de
+        l'empreinte du certificat SHA256 avec la nouvelle valeur donnée par
+        Google</br>
+
+config_osm:
+  _label: OpenStreetMap
+  fields.osm:
+    osmHost: URL du serveur
+    osmPassword: Mot de passe
+    osmUsername: Nom d'utilisateur
+  form:
+    groups:
+      account: Compte d'instance
+      account_description: >-
+        Pour permettre l'édition vers OpenStreetMap, renseignez un compte
+        utilisateur ci-dessous. Si vous n'avez pas de compte, vous pouvez en
+        créer un sur <a href='https://www.openstreetmap.org/user/new'>le site
+        d'OpenStreetMap</a>.
+      host_description: >-
+        URL du serveur OpenStreetMap sur lequel envoyer les données éditées par
+        GoGoCarto
+  sync:
+    comment_text: '{action}{name}'
+    comments:
+      add: Ajout
+      delete: Supression
+      edit: Modification
+    no_feature: Cette fonctionnalité n'existe pas sur OSM
+    notags: >-
+      Cet élément n'a aucun des clés principales d'OpenStreetMap (amenity,
+      shop...)
+    version_mismatch: 'Décallage de version: {local_version} ici, {remote_version} sur OSM'
+
+config_saas:
+  _label: Configuration
+  fields:
+    saas:
+      donationUrl: URL pour faire un don (un bouton sera ajouté sur la page d'accueil)
+      endUserLicenceAgreement: Conditions Générales d'Utilisation
+      newProjectInstructions: >-
+        Texte personnalisé affiché en haut du formulaire de création d'un
+        nouveau projet
+
+config_style:
+  _label: Style / Couleurs / Icones
+  fields:
+    backgroundColor: Couleur de fond de page
+    choose_color: Cliquez pour choisir une couleur
+    contentBackgroundColor: Couleur arrière plan du contenu des pages
+    contentBackgroundElementBodyColor: Couleur arrière plan du contenu de la fiche détail
+    disableColor: Couleur désactivé
+    errorColor: Couleur d'erreur
+    fontImport: Lien pour le CDN des polices
+    headerColor: Couleur fond de l'entête
+    headerHoverColor: Couleur texte survol de l'entête
+    headerTextColor: Couleur texte de l'entête
+    homeBackgroundColor: Couleur arrière plan de la page d'accueil
+    iconImport: >-
+      Lien pour le CDN des icônes (par défault, les icônes de FontAwesome sont
+      chargées)
+    interactiveSectionColor: Couleur section pour voter dans la fiche détail
+    mainFont: Police principale
+    pendingColor: Couleur en attente de validation
+    primaryColor: Couleur Primaire
+    searchBarColor: Couleur barre de recherche
+    secondaryColor: Couleur Secondaire
+    select_font_placeholder: Choisissez une police ou utilisez une police personalisée
+    textColor: Couleur de texte
+    textDarkColor: Couleur text foncé
+    textDarkSoftColor: Couleur text foncé adoucie
+    textLightColor: Couleur texte clair
+    textLightSoftColor: Couleur text clair adoucie
+    theme: Thème
+    titleFont: Police de titre
+  form:
+    groups:
+      advancedColor: Couleurs avancées
+      fontImport: Charger d'autres polices et icones
+      primaryColors: Couleurs principales
+      secondaryColor: Autres couleurs
+      theme: Thème et polices
+
+config_users:
+  _label: Configuration
+  fields:
+    user:
+      enableRegistration: Autoriser la création de compte
+      loginWithFacebook: Activer la connexion avec Facebook
+      loginWithGoogle: Activer la connexion avec Google
+      loginWithLesCommuns: Activer la connexion avec "LesCommuns.org"
+      loginWithMonPrintemps: Activer la connexion avec MonPrintemps
+      sendConfirmationEmail: Valider la création avec un e-mail de confirmation
+
+dashboard:
+  _label: GoGoCarto Administration
+  confirm: >-
+    Cette action ne peux pas être annulée. Vous allez supprimer entièrement
+    votre projet. Êtes vous sur de vouloir continuer ?
+  delete: Supprimer ce projet
+  errors: '{count, plural,  =1 {# erreur} other {# erreurs} }'
+  menu:
+    contents: Contenus
+    custom: Personnalisation
+    data: Données / Import
+    emailing: E-mails / Newsletter
+    other_config: Autre Configuration
+    saas: Ferme de Carto
+    users: Utilisateurs
+  messages: '{count, plural,  =1 {# message} other {# messages} }'
+  sidebar:
+    gogo_directory: La Carte
+    gogo_element_add: Formulaire
+    gogo_homepage: Retour au site
+    gogo_partners: Qui sommes nous
+  welcome: >-
+    <b>Bienvenue dans votre espace Administrateur !</b></br> L'aventure commence
+    tout juste pour vous, il vous faut maintenant commencer à configurer votre
+    site :)</br> <a target="_blank" href="https://doc.gogocarto.fr/">Consulter
+    la documentation</a> pour vous aider à démarrer ! Tutoriels vidéos, foire
+    aux questions…
+
+duplicates:
+  index:
+    leftDuplicatesToProceedCount: "{count}\_doublons sont en fait encore à traiter, mais ont été bloqués par un autre utilisateur. Attendez 10 minutes pour qu'ils se débloquent"
+    merge: Fusionnez les doublons
+    none: Aucun doublon à traiter !
+    return: Retour à la gestion des doublons
+    title: Gestion des doublons
+    wantMore: J'en veux encore ! (Plus que {count} doublons à traiter)
+  node:
+    address: Adresse
+    deleted: Cet élément a été supprimé. L'élément fusionné restera en status supprimé
+    merge: Fusionner
+    merge_title: >-
+      Les éléments vont être fusionnés. Seul le premier élément sera conservé,
+      et les attributs du second seront fusionnés
+    non-duplicates: Pas doublons
+    non-duplicates_title: >-
+      Rien ne se passe, GoGoCarto se souviendra que ces deux éléments ne sont
+      pas des doublons et ils ne seront plus détectés comme tel
+
+dynamic_imports:
+  _label: Import dynamique
+  fields: &ref_1
+    customCode: Code PHP qui sera exécuté
+    customCodeForExport: Code PHP qui sera exécuté
+    deletedCount: '{count} localement supprimés'
+    elementsCreatedCount: +{count}
+    elementsDeletedCount: '-{count}'
+    elementsErrorsCount: '{count, plural, =1 {# erreur} other {# erreurs} } '
+    elementsMissingGeoCount: '{count} sans géoloc'
+    elementsMissingTaxoCount: '{count} sans catégories'
+    elementsNothingToDoCount: '{count, plural, =1 {# inchangé} other {# inchangés} } '
+    elementsPreventImportedNoTaxo: '{count} non importés car sans catégories'
+    elementsUpdatedCount: '{count} mis à jour'
+    fieldToCheckElementHaveBeenUpdated: Nom de l'attribut à comparer pour la mise à jour
+    fieldToCheckElementHaveBeenUpdated_help: >-
+      Lorsqu'on met à jour une source, certains des éléments à importer existent
+      déjà dans notre base de donnée. Vous pouvez renseigner ici un champs qui
+      permettra de comparer si l'élément à été mis à jour au sein de la source
+      depuis le dernier import. Exple de champ: updatedAt, date_maj etc…
+      (laisser vide pour mettre à jour les éléments à chaque fois)
+    file: Fichier CSV à importer (séparation par virgules, encodage en UTF8)
+    geocodeIfNecessary: Géocoder les élements sans latitude ni longitude à partir de leur adresse
+    idsToIgnore: Liste des IDs qui seront ignorées lors de l'import
+    idsToIgnore_help: >-
+      Pour ignorer un élément, supprimer le (définitivement) et il ne sera plus
+      jamais importé. Si vous supprimez un élément dynamiquement importé juste
+      en changeant son status (soft delete), l'élément sera quand meme importé
+      mais conservera son status supprimé. Vous pourrez donc à tout moment
+      restaurer cet élement pour le voir apparaitre de nouveau
+    isSynchronized: Autoriser l'édition des données {submessage}
+    isSynchronized_help: Chaque modification sera envoyée à OpenStreetMap
+    lastRefresh: Dernier import
+    logs: Nombre d'éléments
+    manualRefresh: Manuelle
+    moderateElements: Modérer les éléments importés
+    moderateElements_help: >-
+      Les éléments importés auront le status "en attente de validation" et
+      devront être manuellement validés. Idem pour des mise à jour d'éléments
+      existant (modification)
+    needToHaveOptionsOtherThanTheOnesAddedToEachElements: >-
+      Les éléments importés sans catégorie (en dehors de celles ajoutées
+      manuellement ci-dessus) seront marqués comme "à modérer"
+    needToHaveOptionsOtherThanTheOnesAddedToEachElements_help: >-
+      Sans prendre en compte les catégories ajoutés via le champs "Catégories à
+      ajouter à chaque élément importé", si les éléments importés n'ont pas de
+      catégories, ils seront marqués comme "Modération aucune catégorie
+      renseignée"
+    newOntologyToMap: Nouveaux champs à mapper
+    newTaxonomyToMap: Nouvelles catégories à mapper
+    optionsToAddToEachElement: Catégories à ajouter à chaque élément importé
+    parameters: Paramètres
+    preventImportIfNoCategories: Ne pas importer les éléments qui n'ont aucune catégories
+    preventImportIfNoCategories_help: >-
+      Lorsqu'on veut importer seulement une partie des éléments d'une base de
+      donnée, il peut être pratique de mapper uniquement les catégories que l'on
+      veut importer. Mais tous les autres élément seront aussi importés mais
+      sans catégories. En cochant cette option, uniquement les éléments avec une
+      catégorie mappée seront importés
+    refreshFrequency: >-
+      {days, plural, =1 {Quotidienne} =7 {Hebdomadaire} other {Tous les # jours}
+      }
+    refreshFrequencyInDays: Fréquence de mise à jours des données en jours
+    refreshFrequencyInDays_help: (laisser vide pour ne jamais mettre à jour automatiquement
+    sourceName: Nom de la source
+    sourceType: Type de la source
+    submessage: >-
+      (Vous devez préalablement renseigner des identifiants dans Autre
+      configuration -> OpenStreetMap)
+    url: Ou URL vers une API JSON
+    usersToNotify: >-
+      Utilisateurs à notifier en cas d'erreur, ou lorsque de nouveaux
+      champs/catégories sont à faire correspondre
+  form: &ref_2
+    groups:
+      Historic: Historique
+      code: >-
+        Entrez du code qui sera exécuté à la reception des données, avant leur
+        traitement par GoGoCarto
+      code_description: >-
+        La variable <b>$data</b> représente le tableau PHP créé à partir des
+        données CSV ou JSON. </br> <pre>Quelques examples de transformations
+        simple :</pre> Si les éléments à importer sont dans une sous propriété
+        appelée ''elements'' <pre>&lt;?php</br>$data =
+        $data[''elements''];</pre> Ajouter un attribut ''source'' à tous les
+        éléments, avec comme valeur ''MySource'' <pre>&lt;?php</br>foreach($data
+        as $key => $row) '{
+           $data[$key][''source''] = ''MySource'';
+        '}</pre> Ajouter un attribut en utilisant la valeur d''un autre attribut
+        <pre>&lt;?php</br>foreach($data as $key => $row) '{
+            $data[$key][''latitude'']  = $row[''geo''][''latitude'']);
+            $data[$key][''longitude''] = $row[''geo''][''longitude'']);
+        '}</pre> Transformer un attribut <pre>&lt;?php</br>foreach($data as $key
+        => $row) '{
+            $data[$key][''categories''] = array_map(function($cat) { return $cat[0];
+        }, $row[''categories'']); '}</pre>
+      customCode: Modifier les données en exécutant du code
+      customCodeForExportPanel: >-
+        Entrez du code qui sera exécuté lors de l'export, avant leur envoi pour
+        synchronisation
+      customCodeForExportPanel_description: >-
+        La variable <b>$element</b> représente l'élément dans GoGoCarto, la
+        variable <b>$gogoFeature</b> représente la donnée OSM reconstruite à
+        partir de l''élement GoGoCarto</br> <pre>Quelques examples de
+        transformations simple:</pre> Si l''élement contient la catégorie
+        "Vrac", on rajoute un tag OSM <pre> if (in_array(''Vrac'',
+        $element->getCategoriesNames())) '{
+            $gogoFeature[''tags''][''bulk_purchase''] = ''yes'';
+        '}</pre> Si l''élement contient la catégorie numéro 12, on rajoute un
+        tag OSM<br/> Cette méthode est à préférer car si on change le nom de la
+        catégorie le code fonctionnera toujours<br/> L''ID d''une catégorie est
+        noté entre parenthèse après son nom dans Personnalisation / Catégories
+        <pre> if (in_array(12, $element->getCategoriesIds())) '{
+            $gogoFeature[''tags''][''bulk_purchase''] = ''yes'';
+        '}</pre> Si l''élement a une valeur spécifique pour un champ définit
+        dans le formulaire <pre> if ($element->getProperty(''vrac'') == ''oui'')
+        '{
+            $gogoFeature[''tags''][''bulk_purchase''] = ''yes'';
+        '}</pre> On ajoute un tag pour tous les éléments <pre>
+        $gogoFeature[''tags''][''bulk_purchase''] = ''yes''; </pre>
+      customCodeForExportTab: Convertir les données pour l'export
+      dynamicList: >-
+        Liste des imports dynamiques (les données importées seront en lecture
+        seule car elles sont gérées par un autre site)
+      general: Général
+      historic: Historique
+      newCategories: Nouvelles catégories
+      newFields: Nouveaux champs
+      ontologyMappingPanel: Table de correspondance des champs
+      ontologyMappingTab: Transformer les données à importer {suffix}
+      otherOptions: Autres options
+      staticList: >-
+        Liste des imports "en dur" (les données importées seront gérées par ce
+        site)
+      taxonomyMapping: Table de correspondance des catégories {suffix}
+      taxonomyMapping2: Faites correspondre les catégories
+  list: &ref_3
+    idsToIgnore: Infos
+    refreshFrequencyInDays: Mise à jour
+
+elements:
+  _label: Éléments
+  action:
+    batch:
+      delete: Supprimer définitivement
+      editOptions: Modifier les catégories
+      params:
+        comment: >-
+          Détail de la modification, raison de la suppression… ce texte
+          remplacera '{{ customMessage '}} dans les e-mails automatiques
+        dont_send_mail: Ne pas envoyer d'e-mail
+        from: Votre adresse électronique
+        mail_content: Contenu
+        mail_subject: Objet
+        optionsToAdd: Catégories à ajouter
+        optionsToRemove: Catégories à supprimer
+        send_to_element: Envoyer l'e-mail aux éléments
+        send_to_last_contributor: Envoyer l'e-mail aux derniers contributeurs
+      refusal: Refuser
+      resolveReports: Résoudre la modération
+      restore: Restaurer
+      sendMail: Envoyer un e-mail
+      softDelete: Supprimer (changement de status)
+      validation: Valider
+    edit:
+      editOnSite: Éditer sur le site
+      geocode: Géocoder l'adresse
+      havePendingReports: >-
+        Détail de la modification, raison de la suppression… ce texte remplacera
+        '{{ customMessage '}} dans les e-mails automatiques
+      isPending: Message particulier si refus
+      returnToList: Retourner à la liste
+      send_mail: Prévenir l'acteur de la modification
+      showEdit: Afficher/Editer
+      showOnSite: Voir sur le site
+      submit: Sauvegarder
+      submit_accept: Valider
+      submit_delete: Supprimer
+      submit_redirect: Sauvegarder et fermer
+      submit_refuse: Refuser
+      submit_resolve: Sauvegarder et résoudre les signalements
+      submit_restore: Restaurer
+      updateJSON: Mettre à jour le JSON
+  fields:
+    address:
+      addressCountry: Pays
+      addressLocality: Ville
+      customFormatedAddress: Address Complète
+      postalCode: Code Postal
+      streetAddress: Rue
+    contributionType_choices:
+      '-1': Suppression
+      '0': Ajout
+      '1': Modif
+      '2': Vote
+      '3': Signalement
+      '4': Import
+      '5': Restauration
+      '6': Résolution modération
+    createdAt: Créé le
+    email: E-mail de l'élément
+    id: ID
+    itemValues_choices:
+      '0': L'élément n'existe plus
+      '1': Les informations sont incorrectes
+      '2': L'élément ne respecte pas la charte
+      '4': L'élément est référencé plusieurs fois
+    moderationState: Modération
+    moderationState_choices:
+      '-1': Aucune catégorie renseignée
+      '-2': Erreur geolocalisation
+      '0': Pas de modération nécessaire
+      '1': Erreurs signalées
+      '2': Votes non consensuels
+      '3': En attente depuis trop longtemps
+      '4': Doublon potentiel
+    name: Nom
+    newsletterFrequency: Réception newsletter
+    oldId: Id dans la base de données importée
+    optionIds: Catégories
+    optionsString: Catégories
+    randomHash: Hâchage aléatoire
+    reportValues_choices:
+      '0': N'existe plus
+      '1': Info incorrecte
+      '2': Charte
+      '4': Doublon
+    reports: Signalements
+    sourceKey: Source
+    sourceTypeJSON: URL de l'API JSON
+    sourceType_choices:
+      csv: Fichier CSV
+      json: API JSON
+      osm: OpenStreetMap
+    status: Statut
+    status_choices:
+      '': En attente
+      '-1': En attente (modifs)
+      '-2': Refusé (admin)
+      '-3': Refusé (votes)
+      '-4': Supprimé
+      '-5': Modifié en attente
+      '-6': Doublon
+      '0': En attente (ajout)
+      '1': Validé (admin)
+      '2': Validé (votes)
+      '3': Ajouté par admin
+      '4': Modifié par admin
+      '5': Modifié par propriétaire
+      '6': Modifié avec lien direct
+      '7': Importé
+    updatedAt: 'Mise à jour le '
+    userOwnerEmail: E-mail de l'utilisateur propriétaire de cette fiche
+    userRoles_choices:
+      '0': Anonyme
+      '1': Anonyme avec e-mail
+      '2': Utilisateur identifié
+      '3': Admin
+      '4': Anonyme avec lien
+      '5': GoGoBot
+    voteValues_choices:
+      '-1': N'existe pas
+      '-2': Ne respecte pas la charte
+      '0': Existe mais infos mauvaises
+      '1': Existe
+      '2': Existe et valide info
+  filter:
+    departementCode: Numéro de département
+    moderationNeeded: Modération nécessaire
+    moderationState: Type de modération
+    name: Nom
+    optionValuesAll: Catégories (contient toutes)
+    optionValuesIn: Catégories (contient une parmis)
+    optionValuesNotIn: Catégories (ne contient pas)
+    pending: En attente
+    postalCode: Code Postal
+    sourceKey: Source
+    valide: Validés
+  form:
+    addCustomField: Ajouter un champ personnalisé
+    duplicateOf: 'Cet élément a été fusionné avec un autre :'
+    groups:
+      customFields: Champs Personnalisés
+      general: Informations générales
+      localisation: Localisation
+      moderation: Modération
+      otherInfos: Autre infos
+      pending: En attente
+      seeOnOSM: Voir cet élément sur OpenStreetMap
+      show_contributions: Historique des contributions
+      specialFields: Champs Spéciaux
+    seeDuplicate: voir l'élément fusionné
+  proposedAt: le {date}
+  proposedBy: Proposé par <u>{name}</u>
+  recent_elements: Derniers éléments
+
+emails:
+  controller:
+    error:
+      error_occured: 'Une erreur est survenue : {msg}'
+      missing_data: Vous devez renseigner un objet et un contenu. Veuillez recommencer.
+      no_email: >-
+        {nb} mails n'ont pas pu être envoyé car aucune adresse n'était
+        renseignée.
+      not_sent: Les emails n'ont pas été envoyés, trop d'éléments à traiter d'un coup.
+    info:
+      too_many: Trop d'éléments à traiter ! Seulement {nb} ont été traités.
+    success:
+      categories_updated: Les catégories des {nb} élements ont bien été mis à jour.
+      processed: Les {nb} élements ont bien été traités.
+      sent: '{nb} mails ont bien été envoyés.'
+  service:
+    error: 'Erreur :'
+    inactive_config: La configuration {config} est désactivée
+    no_automatic_mail: L'e-mail automatique {config} n'existe pas
+    no_email: Pas de destinataire
+    no_specific_message: Pas de message spécifique
+    no_subject_or_content: Pas de sujet ou de contenu pour l'e-mail automatique {config}
+    success: Le message a été envoyé
+    unknown: Inconnu
+    unknown_config: La configuration {config} n'existe pas
+  show_map: Voir la carte près de chez vous
+  template:
+    fields:
+      active: Activé
+      content: Contenu du message
+      subject: Objet du message
+  test:
+    _label: Test du rendu de l'e-mail {name}
+    custom_message_example: Un customMessage de test
+    done: >-
+      L'e-mail a bien été envoyé à {mail}</br>Si vous ne le voyez pas vérifiez
+      dans vos indésirables
+    email: Entrez une adresse électronique
+    missing_element: Vous devez créer un élément dans la base de donnée pour tester l'e-mail
+    missing_email: Aucune adresse électronique n'a été renseignée
+    subject: "Objet du message\_: <em>{subject}</em>"
+    submit: Envoyer un test à cette adresse
+
+files:
+  _label: Uploader des fichiers
+  fields:
+    file: Fichier
+    fileName: Nom du fichier
+    fileUrl: URL
+  form:
+    customDirectory: Changer le répertoire d'upload
+    customDirectory_help: >-
+      Dans certains cas, par l'exemple pour l'upload d'une police d'icones, vous
+      devez respecter une arborescence de fichier précise (le fichier CSS à la
+      racine, et les fichiers polices dans un répertoire fonts par exemple)
+    customDirectory_placeholder: /fonts
+    fileName: Changer le nom du fichier (optionel)
+    fileName_placeholder: nouveau_nom.png
+
+help:
+  _label: Aide
+  doc: 'Un problème, une question ? c''est par ici : '
+
+images: &ref_0
+  _label: Téléchargez une image
+  fields:
+    externalImageUrl: Lien vers une image externe
+    file: Fichier à importer
+  placeholder: Sélectionnez une image déjà importée, ou ajoutez en une !
+
+images_conf: *ref_0
+
+images_element: *ref_0
+
+images_partner: *ref_0
+
+importService:
+  auto_added_category: Automatiquement ajoutée (categorie parente d'une categorie importée)
+  automaticMergesCount: >-
+    {count, plural, =1 {# fusionné} other {# fusionnés} } avec un élément déjà
+    existant
+  close: Fermer
+  dismissLog: Ne plus afficher
+  duplicate: 'Détection des doublons : {i}/{size} éléments traitées'
+  elementsCreatedCount: '{count, plural, =1 {# importé} other {# importés} }'
+  elementsDeletedCount: '{count, plural, =1 {# supprimé} other {# supprimés} }'
+  elementsErrorsCount: '{count, plural, =1 {# erreur} other {# erreurs} } pendant l''import'
+  elementsMissingGeoCount: '{count} sans géoloc'
+  elementsMissingTaxoCount: '{count} sans catégories'
+  elementsNothingToDoCount: >-
+    {count, plural, =1 {# laissé tel quel} other {# laissés tels quels} } (rien
+    à mettre à jour)
+  elementsPreventImportedNoTaxo: non {count, plural, =1 {# importé} other {# importés} } car sans catégories
+  elementsUpdatedCount: '{count} mis à jour'
+  error_no_source: 'ERREUR pendant l''import : Aucune source avec pour nom ou id {source}'
+  inProgress: Téléchargement des données en cours… Veuillez patienter…
+  logError: ', mais avec des problèmes !'
+  logMessage: Import de {name} terminé
+  potentialDuplicatesCount: >-
+    {count, plural, =1 {# doublon potentiel détecté} other {# doublons
+    potentiels détectés} }
+  processing: Importation des données {i}/{size} traitées
+  total: 'Total : {count}'
+  x: 'Calcul des liens pour le champ ''{linkField}'' : {i}/{size} éléments traitées'
+
+imports:
+  _label: Import
+  controller:
+    a_category: une catégorie
+    sonata:
+      error:
+        csv: >-
+          Vérifiez que les colonnes sont bien <b>séparées avec des virgules</b> 
+          (et non pas avec des point virgules ou des espaces) : <a
+          href='https://help.libreoffice.org/Calc/Importing_and_Exporting_CSV_Files/fr'>
+          Cliquez ici pour savoir comment faire</a>.  Vérifiez aussi que
+          <b>l'encodage soit en UTF-8</b>.
+        empty: Erreur pendant le chargement des données, le résultat est vide.
+        interlinked_fields: >-
+          Les champs {name} et {reverse} étant liées entre eux,  il n'est pas
+          possible de les importer les deux en même temps.  Seul le champ {name}
+          est conservé pour l'import, le champ {reverse}  sera automatiquement
+          ajusté à la fin de l'import.
+        json: >-
+          Vérifiez que le <b>tableau de donnée soit bien à la racine du
+          JSON</b>.  Si ce n'est pas le cas, utilisez l'onglet 'Modifier les
+          données en exécutant du code'
+        main: Un problème semble avoir lieu pendant la lecture des données.
+        need_title: >-
+          Avant d'importer les données, vous devez d'abord remplir le tableau
+          de  correspondance des champs. Renseignez au moins le Titre de la
+          fiche.
+      info:
+        need_title: >-
+          Merci de remplir le tableau de correspondance des champs.  Renseignez
+          au moins le Titre de la fiche
+      success:
+        main: >-
+          <b>{count} éléments ont été lus avec succès.</b></br> Voici le
+          résultat obtenu pour le premier élément à importer :
+        removed: Les éléments liés à cet import ont été effacés
+        see_all: Voir toutes les données
+    waiting: En attente...
+  dynamic: Import Dynamique, pour afficher des données gérées par quelqu'un d'autre
+  edit:
+    clear-elements: Effacer tous les éléments
+    collect: Lire les données
+    confirm: >-
+      Attention ! La détection des doublons aura lieu pendant l'import, et des
+      fusions automatiques sont susceptibles d'arriver. Vérifier bien vos
+      paramètres de détection des doublons (Dans Données -> Gestion des
+      doublons) avant de continuer
+    delete: Supprimer l'import (ainsi que tous les éléments importés)
+    import: Importer les données
+    lastRefresh: 'Dernier import :'
+    reimport: Importer de nouveau
+    saving: Sauvegarde et lecture des données en cours…
+    submit: Sauvegarder
+    test_export:
+      no_element: >-
+        Aucun élément trouvé. Veuillez d'abords importer des données avant de
+        pouvoir faire un test
+      see_osm_export: Tester à quoi ressemblera l'export OSM d'un élément
+  fields: *ref_1
+  form: *ref_2
+  import: 'Import - '
+  last: null
+  list: *ref_3
+  progress:
+    inProgress: En attente…
+    reading_from: Lecture des données issues de {source}
+    return_to_import: Retourner à l'import
+    return_to_list: Retourner à la liste
+    title: Importation de {name}
+  static: Importer des données en dur, depuis un fichier CSV ou une API JSON
+
+js:
+  api:
+    placeholder: Sélectionnez une ou plusieurs catégories
+  bounds_picker:
+    draw_rectangle: Dessiner un rectangle sur la carte
+    nomatch: Aucune résultat trouvé pour {address}
+    search_button: Chercher
+    search_by_address: Chercher par adresse
+    search_placeholder: Une ville, une région, un pays...
+    title: Zone Géographique de la requête
+  charts:
+    display: Afficher
+    field:
+      avg_time_on_page: Temps moyen sur la page (secondes)
+      nb_visits: Nombre de visites
+    last: Les derniers
+    period:
+      day: Jour
+      month: Mois
+      week: Semaine
+      year: Année
+    reload: Recharger
+    title_visitors: Statistiques des visiteurs
+  element_form:
+    geocode_error: Erreur lors de la géolocalisation de "{address}"
+    geocoded_marker_text: Déplacez-moi pour préciser la position</br>(au centre du bâtiment)
+  filters_builder:
+    choose_field: Veuillez choisir le champ à utiliser
+    contracted_field: Filtre replié par défaut
+    customize_field: Personnaliser ce filtre dans le menu des catégories
+    date_views:
+      day: Jour
+      month: Mois
+      range: Plage
+      week: Semaine
+      year: Année
+    default_view: Vue par défaut
+    field_end: Champ pour la Date de fin (optionel)
+    field_name: Nom du champ à utiliser
+    gogo_date: Filtre Date
+    gogo_number: Filtre Nombre
+    max: Maxi
+    min: Mini
+    multiday: Plusieurs jours sélectionnable
+    options:
+      slider: Slider
+      value: Valeur
+    select_views: Vues (Ctrl + Click)
+    step: Pas
+    taxonomy: Filtre Catégories
+    type: Type
+    used_field: 'Champ utilisé : {field}'
+  form_builder:
+    accept: Fichier acceptés
+    accept_placeholder: .pdf audio/* .mp3 (séparés par des espaces)
+    addOption: Ajouter une Option
+    checkbox: Case à cocher
+    checkboxGroup: Groupe de cases à cocher
+    checked_value: Valeur du champ si coché
+    class: Classe
+    close: Fermer
+    content: Contenu
+    copy_icon: Dupliquer
+    dateField: Champ Date
+    defaultvalue: Valeur initiale
+    description: Texte d'Aide
+    edit_icon: Editer/Masquer
+    errorMsg: Msg. Erreur
+    errorMsg_placeholder: >-
+      Oups ce texte est un peu long ! // Veuillez renseigner une adresse
+      électronique valide // …
+    fields:
+      address: Adresse (obligatoire)
+      address_help: Ce champ est indispensable
+      checkbox: Case à cocher
+      elements: Lien vers un autre élément
+      email: E-mail principal
+      email_help: Ce champ est conseillé (permet d'envoyer des e-mails)
+      files: Fichiers (upload)
+      images: Images (upload)
+      openhours: Horaires d'ouvertures
+      openhours_help: Bloc contenant un selecteur d'horaires
+      separator: Séparateur de section
+      taxonomy: Catégories (obligatoire)
+      title: Titre de la fiche (obligatoire)
+      title_help: Ce champ est indispensable
+    header: Titre
+    icon: Icône
+    icon_placeholder: Choisissez une icône
+    label: Libellé
+    limitRole: Visible uniquement par les admin
+    mandatory: Obligatoire
+    maxlength: Longueur Max.
+    multiple: Plusieurs choix
+    name: Nom du champ
+    number: Nombre
+    option: Option
+    optionLabelPlaceholder: Libellé
+    optionValuePlaceholder: Valeur
+    optional: optionnel
+    options:
+      filled: Plein
+      'no': Non cochée
+      normal: Normal
+      'yes': Cochée
+    paragraph: Paragraphe
+    pattern: Pattern de validation
+    pattern_placeholder: Expression régulière pour la validation de ce champ
+    placeholder: Placeholder
+    placeholder_className: classes séparées par des espaces
+    placeholder_email: Saisir votre adresse électronique
+    placeholder_label: Label
+    placeholder_password: Saisir votre mot de passe
+    placeholder_placeholder: Placeholder
+    placeholder_text: Saisir du Texte
+    placeholder_textarea: Saisir un Texte long
+    placeholder_value: Value
+    propNameOptions: Choisissez un champ existant ou entrez un nouveau champ
+    radio: Bouton Radio
+    radioGroup: Groupe de Boutons Radio
+    range: Intervale de dates
+    remove_icon: Supprimer
+    required: Obligatoire
+    reversedBy: Inversée par
+    reversedBy_placeholder: Le nom d'un autre champ de type "lien vers un autre élément"
+    richText: Editeur de texte
+    roles: Accès
+    roles_admin: Administrateur
+    search: Recherche dans ce champ
+    searchWeigh: Poids de la recherche
+    select: Sélection
+    selectOptions: Options
+    style: Style des cases
+    subtype: Type
+    subtype_options:
+      email: Courriel
+      tel: Téléphone
+      text: Texte
+      textarea: Editeur simple
+      url: URL
+      wysiwyg: Editeur enrichi
+    text: Texte, e-mail, téléphone, URL.
+    textArea: Texte long
+    timepicker: Timepicker
+    toggle: Toggle
+    value: Valeur
+  import:
+    source_this_map: Cette Carte
+  mapping_ontology:
+    addressCountry: "Adresse\_: pays"
+    addressLocality: "Adresse\_: ville"
+    categories: Catégories (plusieurs champs sélectionnable)
+    coreData: Champs principaux
+    email: E-mail de l'élément
+    files: Fichier(s) sous forme d'URL, en tableau, ou séparées par des virgules
+    formData: Champs du formulaire
+    fullAddress: Adresse complète
+    id: Identifiant unique (dans l'ancienne base de donnée)
+    images: Image(s) sous forme d'URL, en tableau, ou séparées par des virgules
+    importedData: Champs originaux de l'import
+    info: Éditable
+    info_title: Ce champ sera éditable dans le formulaire public
+    latitude: Latitude
+    longitude: Longitude
+    name: Titre de la fiche
+    openHours: Horaires d'ouverture (format GoGoCarto)
+    osm_opening_hours: Horaires d'ouverture (format OSM)
+    osm_source: Source de la donnée OpenStreetMap
+    osm_timestamp: OSM Timestamp (mappé automatiquement)
+    osm_url: OSM URL (mappé automatiquement)
+    osm_version: OSM Version (mappé automatiquement)
+    otherData: Autres champs déjà présent dans la base de donnée
+    owner: E-mail de l'utilisateur propriétaire de la fiche
+    postalCode: 'Adresse: code postal'
+    primary: Non éditable
+    primary_title: >-
+      Ce champ n'est actuellement pas présent dans le formulaire public. Il sera
+      uniquement éditable depuis l'interface administrateur. Vous pouvez
+      modifier le formulaire public pour rendre ce champ éditable par tous
+    source: Origine de l'élément (source)
+    specificData: Champs spécifiques
+    streetAddress: 'Adresse: rue'
+    streetNumber: 'Adresse: numéro de rue'
+  mapping_taxonomy:
+    createTerm: '{term} (Sera créé au moment de sauvegarder)'
+    selectCategory: >-
+      Sélectionnez une catégorie existante ou entrez le nom d'une nouvelle
+      catégorie à créer
+  osm_query_builder:
+    add_condition: Ajouter une condition
+    auto_generated: Code automatiquement généré pour la requête OpenStreetMap (via OverPass)
+    condition:
+      different_from: Est différent de
+      dont_exist: N'existe pas
+      equal_to: Est égal à
+      exists: Existe
+      none_of: N'est aucune des valeurs
+      one_of: Est l'une des valeurs
+      search: Chercher une clé
+      title: Condition…
+    or_add_manually: Ou ajouter une requête manuellement
+    tagsearch:
+      search_placeholder: >-
+        Recherche rapide dans OpenSteetMap en Anglais (restaurant, organic,
+        second hand...)
+    title: Liste des requêtes dans la base OpenStreetMap
+    wikilink:
+      link_to: Lien vers la fiche Wiki de {key}
+
+mapping-ontology:
+  alert: >-
+    Veuillez cliquer sur le bouton "Lire les données" afin de charger les
+    attributs des données à importer
+  arrowTitle: Utiliser le nom d'origine
+  clearTitle: Ne plus importer ce champ
+  displayMore: >-
+    Voir tous les champs (les champs présents dans moins de {percent}% des
+    éléments sont cachés par défault)
+  mapped: >-
+    À transformer en <span style='font-weight: normal'>(les champs vides ne
+    seront pas importés)</span>
+  original: Nom d'origine
+
+mapping-taxonomy:
+  alert: >-
+    Veuillez d'abords sélectionner le champs correspondant aux catégories dans
+    l'onglet 'Table de correspondance des champs' puis cliquer sur 'Lire les
+    données'
+  arrowTitle: Créer une catégorie à partir du nom d'origine
+  category-group: Groupe {name}
+  clearTitle: Ne pas utiliser cette catégorie
+  collectedPercent: Présent dans {percent}% des éléments importés.
+  create-missing-categories: Créer toutes les catégories manquantes
+  mapped: Catégories du site
+  moreInfos: " Valeurs : \n\r {values}"
+  original: Catégories lues depuis le fichier d'origine
+
+monitoring:
+  activeUsersNewsletter: Abonnés à la newsletter
+  all_elements: Tous les éléments visibles
+  delete: Supprimer tous les messages
+  detectDuplicates: Détecter les doublons
+  display: Afficher
+  display_all: Tout afficher
+  duplicates: Doublons Potentiels
+  error: Des erreurs ont eu lieu récemment
+  manageDuplicates: Gérer les doublons
+  moderationNeeded: Éléments à modérer
+  pending: En attente de validation
+  title: Du nouveau sur GoGoCarto !
+  users: Utilisateurs
+
+news:
+  _label: Actualités (newsletter)
+  fields:
+    content: Contenu
+    publicationDate: Date de publication
+    status: Statut
+    status_choices:
+      draft: Brouillon (non publiée)
+      published: Publiée
+    title: Titre
+  form:
+    groups:
+      list_header: Créez des actualités qui seront incluses dans la newsletter
+
+options:
+  _label: Option
+  fields:
+    add_a_tag: Ajouter un tag
+    color: Couleur
+    customId: Id personnalisé
+    customId_help: >-
+      Lors de l'import d'éléments, on va comparer le nom des catégories de
+      l'élément importé avec le nom des catégorie de votre carte. On va aussi
+      comparer avec les Ids personnalisés
+    descriptionLabel: Label pour le champ additionel
+    displayChildrenInForm: Dans le formulaire
+    displayChildrenInInfoBar: Dans la fiche détail
+    displayChildrenInMenu: Dans le menu
+    displayInForm: Dans le formulaire
+    displayInInfoBar: Dans la fiche détail
+    displayInMenu: Dans le menu
+    enableDescription: Ajoutez un champ texte à cette catégorie
+    enableDescription_help: >-
+      On pourra renseigner un texte pour décrire cette catégorie. Par example,
+      pour un catégorie "Autre" on pourra préciser la valeur. Si vous voulez
+      activer ce champ pour toutes les catégorie, activez le paramètre
+      "description des catégories" dans le Groupe de catégorie
+    icon: Icône
+    index: Position (pour classer les catégories)
+    name: Nom
+    nameShort: Nom (version courte)
+    nameShort_help: >-
+      La version courte est utilisée dans le menu, car souvent on manque de
+      place
+    osmTags: Liste de tags OSM
+    osmTags_help: >-
+      Lors d'un export OSM, chaque élément qui aura cette catégorie se verra
+      attribué le tag OSM correspondant
+    parent: Groupe de Catégorie parent
+    pickingOptionText: 'Text à afficher dans le formulaire : Choisissez…'
+    return_to_list: Retourner à la liste
+    showExpanded: En position intiale afficher les sous groupes de cette catégorie
+    softColor: Couleur adoucie
+    softColor_help: >-
+      Certaines couleurs convienent bien pour le marqueur (un peu flashy), mais
+      pas trop pour les aplat comme pour le header de la fiche détail. Dans ce
+      cas là, la version "adoucie" est utilisée si ellle a été renseignée
+    textHelper: Message d'aide pour décrire rapidement cette catégorie
+    textHelper_help: Il sera affiché dans le menu et dans le formulaire
+    unexpandable: Ne pas pouvoir reduire cette catégorie
+    unexpandable_help: Les sous groupes et sous catégories seront toujours affichés
+    url: URL vers une page externe
+    url_help: >-
+      Dans la fiche détail, une petite icone apâraitra à côté de la catégorie
+      avec un lein vers cette URL externe. Cela peut être pas exemple une age
+      d'un wiki pour décrire cette catégorie
+    useColorForMarker: Utiliser la couleur de cette catégorie pour le marqueur
+    useColorForMarker_help: >-
+      Si un élément a plusieurs catégories qui donnent la couleur, on utilise la
+      catégorie de plus bas niveau
+    useIconForMarker: Utiliser l'icone de cette catégorie pour le marqueur
+    useIconForMarker_help: >-
+      Le marqueur affichera toutes icones de chaque catégorie ayant cette option
+      activée. Les icones seront classées par ordre de selection des catégories
+      dans le formulaire
+  form:
+    groups:
+      advanced: Configuration avancée
+      description: Champs texte adjacent à la catégorie
+      display: Afficher la catégorie
+      displayChildren: Afficher les sous groupes et les sous catégories
+      main: Principal
+      osm: Lien avec OpenStreetMap
+      osm_help: >-
+        Lors d'un export OSM, chaque élément qui aura cette catégorie se verra
+        attribué le tag OSM correspondant
+      primary: Paramètres principaux
+      secondary: Paramètres secondaires
+      subcategories: Sous groupes
+
+partners:
+  _label: Partenaires
+  form:
+    content: Contenu
+    logo: Logo
+    logo_placeholder: Sélectionnez une image déjà importée, ou ajoutez en une !
+    name: Nom
+    websiteUrl: URL du site web
+
+projects:
+  _label: Liste des Projets
+  warnings:
+    abandonned_map: Votre carte créée sur {baseUrl} peut elle être effacée ?
+    message: >-
+      Bonjour !</br></br> Vous êtes administrateur.ice de la carte {projectName}
+      sur {baseUrl}. Nous avons noté qu'aucun utilisateur ne s'est logué sur
+      cette carte depuis plusieurs mois. Votre projet est-il abandonné?</br> Le
+      nombre de carte sur {baseUrl} ne cesse de grandir, et cela utilise pas mal
+      de ressources sur notre serveur. </br> <b>Si votre projet n'a plus lieu
+      d'être merci de vous connecter à votre <a href='{adminUrl}'>espace
+      d'administration</a> et de cliquer sur "Supprimer mon projet" en bas du
+      menu de gauche.</b></br> Si au contraire vous souhaitez conserver votre
+      projet, merci de vous loguer sur votre carte.</br> <b>Si votre inactivité
+      persiste dans les prochains mois, nous nous réservons le droit de
+      supprimer votre carte.</b></br></br> Bien cordialement,</br> L'équipe de
+      {baseUrl}.
+
+sonata.user.user:
+  _label: Utilisateurs
+  batch:
+    error: 'ERREUR : {message}'
+    mailError: Vous devez renseigner un objet et un contenu. Veuillez recommencer
+    sendmails: >-
+      {count, plural, =1 {# e-mail a bien été envoyé} other {# e-mails ont bien
+      été envoyés} }
+    tooMany: Trop d'éléments à traiter ! Seulement {limit} ont été traités
+    usersWithoutEmail: >-
+      {count, plural =1 {# e-mail n'a pas pu être envoyé car aucune adresse
+      électronique n'était renseignée} other {# e-mails n'ont pas pu être envoyé
+      car aucune adresse électronique n'était renseignée} }
+  facebook_warning: >-
+    ATTENTION ! Si votre adresse électronique est privée sur Facebook, vous ne
+    serez pas informé(e) de l'évolution de vos contributions
+  fields:
+    check_uncheck: Tout cocher/décocher
+    content: Message
+    contributionsCount: Contributions
+    createdAt: Créé le
+    email: E-mail
+    gamification: Interactions
+    groups: Groupes
+    impersonating: null
+    object: Titre
+    permissions_warning: >-
+      Pour les utilisateurs ayant accès à l'interface administrateur, vous
+      devez  <b>configurer les permissions sur chaque object</b></br> (Note: les
+      SUPER_ADMIN ont accès à tous les objects, pas besoin de configurer pour
+      eux)
+    reportsCount: Signalements
+    sendMail: Envoyer un e-mail
+    username: Nom
+    votes: Votes
+    votesCount: Votes
+  forgottedPassword: Mot de passe oublié
+  form:
+    allowedStamps: Étiquettes autorisées
+    credentialsExpired: null
+    enabled: Activée
+    expired: Expirée
+    groups:
+      general: Général
+      roles: Rôles
+      security: Sécurité
+      status: Statut
+      user: Utilisateur
+    locked: Verrouillée
+    main-roles: Rôles Principaux
+    plainPassword: Mot de passe
+    watchModeration: Être notifié(e) par e-mail lorsque des éléments sont à modérer
+    watchModerationOnlyWithOptions: Seulement pour les éléments ayant une des catégories suivante
+    watchModerationOnlyWithPostCodes: Seulement pour les éléments avec code postal
+    watchModerationOnlyWithPostCodes_help: >-
+      Séparés par des virgules. On peut utiliser le symbole * pour choisir tout
+      un département, par example : 40*, 47*, 48500
+    watchModerationOnlyWithPostCodes_placeholder: 40*, 47*, 48500
+  role:
+    ROLE_ADMIN: >-
+      MODERATEUR (Accès aux fonctions de modérations, à détailler dans
+      ModèleDeDonnées/QuiPeutContribuer)
+    ROLE_DIRECTMODERATION_ADD: CONTRIBUTEUR + (peut ajouter des éléments comme un Admin depuis le site)
+    ROLE_DIRECTMODERATION_EDIT_OWN_CONTRIB: >-
+      CONTRIBUTEUR + (peut éditer les éléments auquel il a contribué, même sans
+      être propriétaire)
+    ROLE_SONATA_ADMIN: INTERFACE ADMINISTRATEUR
+    ROLE_SUPER_ADMIN: SUPER ADMIN (tous les pouvoirs)
+
+stamps:
+  _label: Étiquettes
+  fields:
+    isPublic: Publique (tout le monde peut l'assigner)
+    name: Nom
+
+tile_layers:
+  _label: Fonds de Carte
+  fields: null
+  form:
+    groups: null
+
+webhooks:
+  _label: Webhooks
+  fields:
+    format: Format
+    url: URL
+  messages:
+    error_msg: '(Essai n°{attempts}). L''erreur est : {message}'
+    error_osm_auth: Les identifiants de votre compte OSM sont probablement incorrect.
+    error_send: Erreur lors de l'envoi du webhook {url} pour l'élement {element}
+    error_sync: Erreur lors de la synchronisation de l'élement {element}.
+  texts:
+    add: ajoutés
+    delete: supprimés
+    edit: mis à jour
+  titles:
+    add: AJOUT
+    delete: SUPPRESSION
+    edit: MODIFICATION
+
+wrappers:
+  _label: Bandeaux de la page d'accueil
+  fields:
+    backgroundColor: Couleur du fond
+    content: Contenu du bandeau
+    rawContent: Contenu en raw HTML (optionel)
+    textColor: Couleur du texte

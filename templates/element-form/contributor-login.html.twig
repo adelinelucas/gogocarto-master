@@ -1,0 +1,113 @@
+{% extends "page-layout.html.twig" %}
+
+{% set pageName = 'contributor-login with-section' %}
+{% set pageTitle = 'login._label'|trans %}
+
+{# Stylessheets #}
+{% block page_stylesheets %}
+
+ 	<link rel="stylesheet" href="{{ asset('css/element-form.css?ver=' ~ version) }}">
+
+{% endblock %}
+
+
+{# BODY CONTENT #}
+{% block body_content %}
+	{# NOT ACTIVE #}
+	{% if not featureConfig.getActive() %}
+
+		<h1>{{ 'contributor-login.error'|trans }}</h1>
+		<p><center>{{ 'contributor-login.error.inactive_feature'|trans }}</center></p>
+
+	{# NOT ACTIVE IN IFRAME #}
+	{% elseif app.request.get('iframe') and not featureConfig.getActiveInIframe() %}
+
+		<h1>{{ 'contributor-login.error'|trans }}</h1>
+		<p><center>{{ 'contributor-login.error.inactive_iframe'|trans }}</center></p>
+
+	{% else %}
+
+		<h1>{{ 'contributor-login._label'|trans }}</h1>
+		<section>
+			{# Only Admins warning #}
+			{% if featureConfig.isOnlyAllowedForAdmin() %}
+				<p>{{ 'contributor-login.error.admin_only'|trans }}</p>
+			{% endif %}
+
+			{# Login button #}
+			{% if featureConfig.getAllowRoleUser() or featureConfig.getAllowRoleAdmin() %}
+				<div class="login-section">
+					{% set oauthLoginAvailable = config.user.loginWithLesCommuns and oauth_communs != 'disabled' or config.user.loginWithMonPrintemps and oauth_communs != 'disabled' or config.user.loginWithGoogle and oauth_google != 'disabled' or config.user.loginWithFacebook and oauth_facebook != 'disabled' %}
+
+					{% if oauthLoginAvailable %}
+						<h3>{{ 'contributor-login.oauth'|trans }}</h3>
+						<div class="oauth-section">
+							<a class="oauth-btn waves-effect waves-light instance-login" onclick="$('#popup-login').openModal()">
+								{% set logo = config.favicon ? config.favicon : config.logo %}
+								{% if logo %}<img src="{{ logo.imageUrl }}"/>{% endif %}
+								{{ config.appName }}
+							</a>
+							{% if config.user.loginWithMonPrintemps and oauth_communs != 'disabled' %}
+								<a class="oauth-btn waves-effect waves-light printemps" href="{{ hwi_oauth_login_url('communs') }}"><i class="icon gogo-icon-printemps left"></i>{{ 'contributor-login.printemps'|trans }}</a>
+							{% endif %}
+							{% if config.user.loginWithLesCommuns and oauth_communs != 'disabled' %}
+								<a class="oauth-btn waves-effect waves-light communs" href="{{ hwi_oauth_login_url('communs') }}"><i class="icon gogo-icon-communs left"></i>{{ 'contributor-login.communs'|trans }}</a>
+							{% endif %}
+						{% if config.user.loginWithMonPrintemps and oauth_communs != 'disabled' %}
+						</div>
+						<div class="oauth-section">
+						{% endif %}
+							{% if config.user.loginWithGoogle and oauth_google != 'disabled' %}
+								<a class="oauth-btn waves-effect waves-light gplus" href="{{ hwi_oauth_login_url('gplus') }}"><i class="icon gogo-icon-gplus left"></i>Google</a>
+							{% endif %}
+							{% if config.user.loginWithFacebook and oauth_facebook != 'disabled' %}
+								<a class="oauth-btn waves-effect waves-light facebook" href="{{ hwi_oauth_login_url('facebook') }}"><i class="icon gogo-icon-facebook left"></i>Facebook</a>
+							{% endif %}
+						</div>
+					{% else %}
+						<a class="btn btn-primary waves-effect waves-light" onclick="$('#popup-login').openModal()">
+							{{ 'contributor-login.login'|trans }}
+						</a>
+					{% endif %}
+				</div>
+			{% endif %}
+
+			{% if featureConfig.getAllowRoleUser() %}
+				{# separator #}
+				<div class="or-label">ou</div>
+
+				{{ form_start(loginForm) }}
+
+				<div class="input-field col s12">
+					<i class="material-icons gogo-icon-mail prefix"></i>
+					{{ form_widget(loginForm.email, {'id': 'inputMail',
+					'attr': {'class': 'validate required', 'placeholder':'contributor-login.email'|trans }}) }}
+					<label for="inputMail" data-error="{{ 'contributor-login.error.invalid_email'|trans }}" class="gogo-form-label" style="margin-left: 2.5rem;"></label>
+				</div>
+
+				{% if emailAlreadyUsed %}
+					<div class="email-already-in-use">
+						{{ 'contributor-login.error.used_email'|trans }}
+					</div>
+				{% endif %}
+
+				<div class="explanations">
+					<!-- Un mail vous sera envoyé pour vous permettre d'annuler votre contribution. -->
+				</div>
+
+				{{ form_rest(loginForm) }}
+				{# Fermeture de la balise <form> du formulaire HTML #}
+				{{ form_end(loginForm) }}
+
+				<center>
+					<button onclick="checkLoginAndSend()" class="btn btn-secondary waves-effect waves-light">{{ 'action.continue'|trans }}</button>
+				</center>
+			{% endif %}
+		</section>
+	{% endif %} {# end isActive #}
+</section>
+{% endblock %}
+
+{% block page_javascripts %}
+    <script src="{{ asset('js/element-form.js?ver=' ~ version) }}"></script>
+{% endblock %}

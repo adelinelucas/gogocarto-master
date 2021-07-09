@@ -1,0 +1,138 @@
+{% extends "base-layout.html.twig" %}
+
+{% set pageName = 'home' %}
+
+{% block stylesheets %}
+
+  <link rel="stylesheet" href="{{ asset('css/pages.css?ver=' ~ version) }}">
+  <link rel="stylesheet" href="{{ asset('css/home.css?ver=' ~ version) }}">
+
+{% endblock %}
+
+{# BODY CONTENT #}
+{% block body %}
+
+<div id="home-main-wrapper" class="valign-wrapper gogocarto-container">
+	<section id="home-main-container" class="valign">
+
+		{% if config.logo %}
+			<img src="{{ config.logo.imageUrl }}" id="home-logo"/>
+		{% else %}
+			<h1>{{ config.appName }}</h1>
+		{% endif %}
+
+		{% if config.appBaseLine %}<h2>{{ config.appBaseline }}</h2>{% endif %}
+
+		<div class="input-field autocomplete-container" id="search-bar-container">
+			<a class="gogo-icon-search waves-effect waves-light search-bar-icon" id="search-bar-icon">
+				{# Spinner loader #}
+				<div id="search-spinner-loader" class="preloader-wrapper active">
+				  <div class="spinner-layer">
+				    <div class="circle-clipper left">
+				      <div class="circle"></div>
+				    </div><div class="gap-patch">
+				      <div class="circle"></div>
+				    </div><div class="circle-clipper right">
+				      <div class="circle"></div>
+				    </div>
+				  </div>
+				</div>
+			</a>
+
+			{# Set the search placeholder depending on different search authorizations #}
+			{% set placeholder = 'home.search.placeholder'|trans %}
+			{% set delimiter = ' ' %}
+			{% set inIframe = app.request.get('iframe') %}
+			{% if config.searchPlaceFeature.isAllowed(app.user, inIframe) %}
+				{% set placeholder = placeholder ~ delimiter ~ 'home.search.address'|trans %}
+				{% set delimiter = ', ' %}
+			{% endif %}
+			{% if config.searchElementsFeature.isAllowed(app.user, inIframe) %}
+				{% set placeholder = placeholder ~ delimiter ~ config.elementDisplayNameIndefinite %}
+				{% set delimiter = ', ' %}
+			{% endif %}
+			{% if config.searchCategoriesFeature.isAllowed(app.user, inIframe) %}
+				{% set placeholder = placeholder ~ delimiter ~ 'home.search.category'|trans %}
+			{% endif %}
+			<a href="annuaire#/carte/autour-de-moi"
+				 class="gogo-icon-locate gogo-h-primary search-icon tooltipped" id="search-geolocalize"
+         data-position="left" data-delay="0" data-tooltip="{{ "home.geolocalize"|trans }}"></a>
+			<input class="validate search-bar" placeholder="{{ placeholder }}" type="text" id="search-bar" name="adresse"/>
+		</div>
+
+		{% if config.home.displayCategoriesToPick %}
+			<div class="main-options-container">
+				<input class="main-option-radio-btn" data-name="all" name="mainOption" type="radio" id="option-all" checked/>
+		    <label class="main-option-radio-label" for="option-all">{{ 'home.search.all'|trans }}</label>
+
+				{% for option in mainOptions %}
+					<input class="main-option-radio-btn" data-name="{{ option.nameShort ? option.nameShort : option.name }}" name="mainOption" type="radio" id="option-{{option.id}}" />
+		      <label class="main-option-radio-label" for="option-{{option.id}}">{{ option.name }}</label>
+				{% endfor %}
+			</div>
+
+			<span class="category-field-select input-field">
+		    <select  class="category-select" id="category-select">
+		   	  <option disabled selected value="all">{{ 'home.pick_category'|trans }}</option>
+
+		     {% for option in mainOptions %}
+		      	<option value="{{ option.nameShort ? option.nameShort : option.name }}">{{ option.name }}</option>
+		      {% endfor %}
+		    </select>
+	  	</span>
+  	{% endif %}
+
+		<button id="btn-directory" class="primary-button btn waves-effect waves-light search-bar-btn">{{ 'action.search'|trans }}</button>
+		<a href="annuaire#/carte/autour-de-moi">
+			<button id="btn-geolocation" class="primary-button gogo-bg-neutral btn btn-neutral waves-effect waves-light">{{ 'action.geolocalize_me'|trans }}</button>
+		</a>
+
+		{% if config.addFeature.active and config.addFeature.allowedRoles|length > 0 and config.addFeature.allowedRoles != ['admin'] or config.addFeature.isAllowed(app.user, app.request.get('iframe')) %}
+			<div class="divider"></div>
+
+			<div>
+				<p class="contribution-text">{{ config.home.addElementHintText }}</p>
+				<a href="{{ path('gogo_element_add') }}">
+					<button class="btn-secondary btn waves-effect waves-light">{{ "element.form.title_add"|trans({element: config.elementDisplayNameIndefinite}) }}</button>
+				</a>
+			</div>
+		{% endif %}
+
+	</section>
+
+	{% if listWrappers.count > 0 %}
+		<div id="bottom-more-info" class="gogo-bg-neutral">
+			<span class="icon gogo-icon-arrow-circle-down"></span>
+			<span class="text">{{ config.home.seeMoreButtonText }}</span>
+			<span class="icon gogo-icon-arrow-circle-down"></span>
+		</div>
+	{% endif %}
+</div>
+
+<div class="wrappers-container">
+{% for wrapper in listWrappers %}
+	<section class="bottom-section valign-wrapper" style="background-color: {{wrapper.backgroundColor}}">
+	    <div class="content valign" style="color: {{wrapper.textColor}}">
+	    	<h2 >{{wrapper.title | raw}}</h2>
+	    	<p class="wysiwyg-content">{{ wrapper.content | raw }} {{ wrapper.rawContent | raw}}</p>
+        </div>
+    </section>
+{% endfor %}
+</div>
+
+
+<section id="section-credits" class="">
+		{{ 'home.credits'|trans({ggc: '<a href="https://gitlab.com/seballot/gogocarto" style=\"font-weight:bold;color: #bdc900;" target="_blank"><strong>GoGoCarto</strong></a>'})|raw }}
+</section>
+
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+		var gogoJsConf = {{ gogoConfig | json_encode | raw }};
+	</script>
+	<script src="{{ asset('js/home.js') }}"></script>
+{% endblock %}
+
+
+

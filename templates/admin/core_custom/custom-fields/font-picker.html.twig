@@ -1,0 +1,58 @@
+<div class="input-container">
+    <input type='hidden' id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}" class="font-picker" style="width: 100%" placeholder="{{ 'config_style.fields.select_font_placeholder'|trans({}, 'admin') }}"/>
+</div>
+
+
+<script>
+  jQuery(document).ready(function() {
+    var fonts = [
+        {id: "Roboto, sans-serif", text: 'Roboto'},
+        {id: "Roboto Lt, sans-serif", text: 'Roboto Light'},
+        {id: "Roboto Bk, sans-serif", text: 'Roboto Black'},
+        {id: "Nunito, sans-serif", text: 'Nunito'},
+        {id: "Ubuntu, sans-serif", text: 'Ubuntu'},
+        {id: "OpenSans, sans-serif", text: 'OpenSans'},
+        {id: "Lobster, sans-serif", text: 'Lobster'},
+        {id: "Oxygen, sans-serif", text: 'Oxygen'},
+        {id: "Amatic, sans-serif", text: 'Amatic'},
+        {id: "'Times New Roman', Times, 'Liberation Serif', FreeSerif, serif", text: 'Times New Roman'},
+        {id: "Georgia, 'DejaVu Serif', Norasi, serif", text: 'Georgia'},
+        {id: "Arial, Helvetica, 'Liberation Sans', FreeSans, sans-serif", text: 'Arial'},
+        {id: "'Trebuchet MS', Arial, Helvetica, sans-serif", text: 'Trebuchet'},
+        {id: "'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Luxi Sans', sans-serif", text: 'Lucida'},
+        {id: "Tahoma, Geneva, Kalimati, sans-serif", text: 'Tahoma'},
+        {id: "Verdana, 'DejaVu Sans', 'Bitstream Vera Sans', Geneva, sans-serif", text: 'Verdana'},
+        {id: "Helvetica", text: 'Helvetica'},
+        {id: "Impact, 'Arial Black', sans-serif", text: 'Impact'},
+        {id: "'Courier New', Courier, 'Liberation Mono', monospace", text: 'Courier New'},
+        {id: "Monaco, 'DejaVu Sans Mono', 'Lucida Console', 'Andale Mono', monospace", text: 'Monaco'},
+    ]
+    var value = "{{ form.vars.value }}";
+    var standardValue = false;
+    for (var i = fonts.length - 1; i >= 0; i--) {
+        if (fonts[i].id == value) standardValue = true;
+    }
+    if (!standardValue) fonts.unshift({id: value, text: value});
+
+
+
+    $(".font-picker").select2({
+        createSearchChoice:function(term, data) {
+            if ($(data).filter(function() {
+                return this.text.localeCompare(term)===0;
+            }).length===0)
+            {return {id:term, text:term};}
+        },
+        multiple: false,
+        data: fonts,
+        // formatSelection: function(font) { return $('<span style="font-family: ' + font.id + '">' + font.text + '</span>') },
+        formatResult: function(font) { return $('<span style="font-size:3rem;font-family: ' + font.id + '">' + font.text + '</span>') }
+    });
+  });
+</script>
+    {# included only for the fonts to be loaded #}
+    <link rel="stylesheet" href="{{ asset('css/pages.css') }}" />
+    {% set config = form.vars.sonata_admin.admin.subject %}
+    {{ config.fontImport | raw }}
+<style>
+</style>
